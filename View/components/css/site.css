@@ -1,0 +1,75 @@
+@import url('responsimple.min.css');
+@import url('font-awesome.min.css');
+@import url('bootstrap.css');
+@import url('tabs.css');
+/*Estilos menu desplegable*/
+@import url('drop-down.css');
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11/06/2016, 18:56:17
+    Author     : Edgar Castro www.mentordevel.com
+*/
+body,html{
+    background-color: #F1F4F9;
+}
+.map-content{
+    border: solid 1px #cccccc;
+    min-height: 645px;
+}
+.nav-bar-top li{
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 1px;
+}
+.side-menu-right{
+    min-height: 610px;
+
+}
+/*.side-menu-right i{
+    min-height: 50px;
+}*/
+.item{
+    padding: 0.05rem;
+}
+.cart{
+    margin: 3px;
+    padding: 3px;
+    background-color: #FFF;
+    box-shadow: 0 0 3px #999;
+}
+.error-monitor{
+    padding: 0 5px 0 5px;
+    border-radius: 50%;
+}
+/********************************************************************************\
+Iconos png
+\********************************************************************************/
+.icon{
+    background-size: 75%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+.icon-cheked{
+    background-image: url(../images/icons/Checked.png);
+}
+.icon-cancel{
+    background-image: url(../images/icons/Cancel.png);
+}
+.icon-info{
+    background-image: url(../images/icons/Info.png);
+}
+.icon-minus{
+    background-image: url(../images/icons/Minus.png);
+}
+.icon-plus{
+    background-image: url(../images/icons/Plus.png);
+}
+
+#page-wrapper {
+    padding: 10px;
+}
+.table > tbody > tr > td{padding: 2px;font-size: 10px;font-weight: bolder;}

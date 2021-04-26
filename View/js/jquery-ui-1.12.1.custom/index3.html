@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+      <link href="jquery-ui.css" rel="stylesheet">
+    <input id="autocomplete" title="type &quot;a&quot;">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script>
+    var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"
+    ];
+    $( "#autocomplete" ).autocomplete({
+    source: availableTags
+    });
+    </script>
+  </body>
+</html>

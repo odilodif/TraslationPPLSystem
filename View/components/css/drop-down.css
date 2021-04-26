@@ -1,0 +1,66 @@
+/*[class^="icon-"]:before, 
+.cd-dropdown span[class*=" icon-"]:before*/
+
+.cd-dropdown {
+    position: absolute;
+    min-width: 318px;
+}
+.cd-dropdown ul {
+    min-width: 100%;
+    margin-left: 0px;
+    padding: 1px;
+    position: relative;
+    /*box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.4);*/
+}
+.cd-dropdown li{
+    list-style: none;
+    padding-top: 8px;
+    margin-left: 0px;
+    width: 100%;
+    height: 40px;
+    /*vertical-align: bottom;*/
+    border-bottom:solid 1px #dedede;
+}
+.cd-dropdown ul li i {
+    height: 101%;
+    margin: auto 0;
+    cursor: pointer;
+    width: 10%;
+    border-right: 1px #000;
+    text-align: center;
+    padding-top: 2px;
+    /*vertical-align: bottom;*/
+    /*box-shadow: 0 0 1px rgba(0,0,0,0.4) inset;*/
+}
+.cd-dropdown ul li label {
+    font-size: 16px;
+    box-shadow: none !important;
+    margin-left: 3px;
+    font-weight: 600;
+    color: #666666;
+}
+
+.cd-dropdown ul li.cd-active {
+    background-color: #286090;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5) inset;
+}
+
+.cd-dropdown ul li.cd-active label {
+    font-size: 18px;
+    font-weight: bolder;
+    color: #fff;
+}
+
+.cd-dropdown ul li {
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+}
+
+.cd-dropdown ul li:hover {
+    background: #fc756f;
+    color: #fff;
+}

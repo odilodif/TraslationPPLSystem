@@ -1,0 +1,113 @@
+
+
+#seccionLogin{
+    margin:auto;
+    margin-top:50px;
+    width:400px;
+    padding:20px;
+    border-radius:5px;
+    box-shadow:2px 2px 10px #6F6F6F;
+}
+
+.tbl-registro tr td{
+    padding-right:10px;
+    padding-bottom:10px;
+    text-align:center;
+}
+#modalContenido{
+    margin:auto;
+    margin-top:50px;
+    width:900px;
+    padding:20px;
+    border-radius:5px;
+    box-shadow:2px 2px 10px #6F6F6F;
+
+}
+
+#modalDialog{
+    margin-left: 300px;
+
+}
+
+#modalContenidoMenuPlatillo{
+
+    margin: auto;
+    margin-top: 50px;
+    width: 1000px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 40px;
+}
+
+#modalDialogMenuPla{
+    width: 1000px;
+}
+#tablaListProductos{
+    width: 950px;
+}
+
+
+
+#tablaListadoPedidos{
+    /* border: solid 1px;
+    width: 20%;*/
+
+}
+
+#menuVertical{
+    max-height: 315px;
+    width: 346px;
+    overflow-y:scroll;
+    overflow-x:scroll;
+}
+#seccionArticle{
+    margin-left: 60px;
+    margin-top: 5px;
+    box-shadow:2px 2px 10px #6F6F6F;
+    width: 90%px;
+
+}
+.dataTables_empty{
+
+    margin-left: 40px;
+}
+#filatblPed{
+
+    margin-left: 5px;
+    width: 99%;
+}
+
+#trEBotones{
+
+    width:  246px;
+
+}
+#modalDiagProd{
+    width: 1000px;
+}
+#modalContenidoProd{
+
+    margin: auto;
+    margin-top: 6px;
+    width: 1050px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 60px;
+
+}
+#ArticuleFact{
+    margin: auto;
+    margin-left:  200px;
+
+
+}
+
+#articuleDetallePed{
+    margin: auto;
+    margin-left: 100px;
+    margin-top: 2px;
+    box-shadow:2px 2px 10px #6F6F6F;
+    width: 1200px;
+
+}
+
