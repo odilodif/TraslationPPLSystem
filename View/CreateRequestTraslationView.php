@@ -15,8 +15,8 @@
 <!-- Page Heading -->
 
 
-<img src="./View/images/head_image.png" alt="" style=""/>
-<img src="./View/images/auction.png"  style="height:2%;width: 2%" /><small>Sistema de Traslados   </small>
+
+
 <div align="center" id="navegation-bar">
     <button id="btnFirstRecord">
         <li>
@@ -53,7 +53,7 @@
         <ol class="breadcrumb">
             <li class="active">
                 <!-- <button type="button" class="btn btn-info btn-xs" id="btnSaveTraslation">Guardar</button>  -->
-                <i class="fa fa-dashboard"></i> Crear Solicitud de Traslado PPL
+                <i class="fa fa-dashboard"></i> <img src="./View/images/auction.png"  style="height:2%;width: 2%" /> Crear Solicitud de Traslado PPL <small>Sistema de Traslados   </small>
                 <a href='javascript:clearFields();' class='glyphicon glyphicon-search' id="btnSearch"  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b>Buscar</b></a>
                 <a href='#' class='glyphicon glyphicon-search' id="btnSearch2" style="display: none"><span class="glyphicon glyphicon-search" ></span><b>Buscando</b></a>
                 <a href='javascript:show_form_income();' class='glyphicon glyphicon-plus' id="btnAddIcon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><b>Añadir</b></a>
