@@ -29,7 +29,7 @@ foreach ($_SESSION['_USU'] as $key=>$value)
           <div class="thumbnail">
               <a href="<?php echo isset($value['menu_description_href']) ? $value['menu_description_href']: ""; ?>" ><?php echo isset($value['menu_traslation_path_img']) ? $value['menu_traslation_path_img']:""; ?></a>
               <div class="text-center">
-                  <h4><?php echo isset($value['menu_description_href']) ? $value['menu_description_href']: ""; ?></h4>
+                  <h4><?php echo isset($value['menu_description_description']) ? $value['menu_description_description']: ""; ?></h4>
               </div>
           </div>
       </div>

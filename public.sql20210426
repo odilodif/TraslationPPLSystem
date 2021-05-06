@@ -12,7 +12,7 @@
  Target Server Version : 90322
  File Encoding         : 65001
 
- Date: 26/04/2021 16:33:05
+ Date: 26/04/2021 13:42:07
 */
 
 
@@ -499,10 +499,23 @@ CREATE TABLE "public"."profile_saved" (
 INSERT INTO "public"."profile_saved" VALUES (1, 4, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (2, 4, 5, 't');
 INSERT INTO "public"."profile_saved" VALUES (3, 4, 6, 't');
+INSERT INTO "public"."profile_saved" VALUES (4, 3, 1, 't');
+INSERT INTO "public"."profile_saved" VALUES (5, 3, 2, 't');
+INSERT INTO "public"."profile_saved" VALUES (6, 3, 3, 't');
+INSERT INTO "public"."profile_saved" VALUES (7, 3, 4, 't');
+INSERT INTO "public"."profile_saved" VALUES (8, 3, 5, 't');
+INSERT INTO "public"."profile_saved" VALUES (9, 3, 6, 't');
+INSERT INTO "public"."profile_saved" VALUES (10, 3, 7, 't');
+INSERT INTO "public"."profile_saved" VALUES (11, 2, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (12, 1, 2, 't');
+INSERT INTO "public"."profile_saved" VALUES (13, 3, 8, 't');
 INSERT INTO "public"."profile_saved" VALUES (14, 13, 9, 't');
 INSERT INTO "public"."profile_saved" VALUES (15, 6, 9, 't');
+INSERT INTO "public"."profile_saved" VALUES (16, 3, 11, 't');
+INSERT INTO "public"."profile_saved" VALUES (17, 3, 9, 't');
+INSERT INTO "public"."profile_saved" VALUES (18, 3, 10, 't');
 INSERT INTO "public"."profile_saved" VALUES (20, 8, 18, 't');
+INSERT INTO "public"."profile_saved" VALUES (21, 3, 13, 't');
 INSERT INTO "public"."profile_saved" VALUES (22, 1, 8, 't');
 INSERT INTO "public"."profile_saved" VALUES (23, 1, 14, 't');
 INSERT INTO "public"."profile_saved" VALUES (24, 1, 16, 't');
@@ -512,10 +525,12 @@ INSERT INTO "public"."profile_saved" VALUES (27, 9, 8, 't');
 INSERT INTO "public"."profile_saved" VALUES (28, 9, 14, 't');
 INSERT INTO "public"."profile_saved" VALUES (29, 9, 16, 't');
 INSERT INTO "public"."profile_saved" VALUES (30, 9, 15, 't');
+INSERT INTO "public"."profile_saved" VALUES (31, 2, 4, 't');
 INSERT INTO "public"."profile_saved" VALUES (32, 10, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (33, 4, 1, 't');
 INSERT INTO "public"."profile_saved" VALUES (34, 5, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (35, 5, 10, 't');
+INSERT INTO "public"."profile_saved" VALUES (37, 2, 13, 't');
 INSERT INTO "public"."profile_saved" VALUES (38, 4, 13, 't');
 INSERT INTO "public"."profile_saved" VALUES (39, 10, 3, 't');
 INSERT INTO "public"."profile_saved" VALUES (40, 10, 13, 't');
@@ -525,6 +540,11 @@ INSERT INTO "public"."profile_saved" VALUES (43, 11, 13, 't');
 INSERT INTO "public"."profile_saved" VALUES (44, 12, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (45, 12, 7, 't');
 INSERT INTO "public"."profile_saved" VALUES (46, 13, 13, 't');
+INSERT INTO "public"."profile_saved" VALUES (48, 16, 2, 't');
+INSERT INTO "public"."profile_saved" VALUES (49, 16, 8, 't');
+INSERT INTO "public"."profile_saved" VALUES (50, 16, 14, 't');
+INSERT INTO "public"."profile_saved" VALUES (51, 16, 16, 't');
+INSERT INTO "public"."profile_saved" VALUES (52, 16, 15, 't');
 INSERT INTO "public"."profile_saved" VALUES (53, 17, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (54, 17, 8, 't');
 INSERT INTO "public"."profile_saved" VALUES (55, 17, 14, 't');
@@ -532,26 +552,6 @@ INSERT INTO "public"."profile_saved" VALUES (56, 17, 16, 't');
 INSERT INTO "public"."profile_saved" VALUES (57, 17, 15, 't');
 INSERT INTO "public"."profile_saved" VALUES (58, 13, 2, 't');
 INSERT INTO "public"."profile_saved" VALUES (59, 9, 24, 't');
-INSERT INTO "public"."profile_saved" VALUES (4, 3, 1, 't');
-INSERT INTO "public"."profile_saved" VALUES (5, 3, 2, 't');
-INSERT INTO "public"."profile_saved" VALUES (6, 3, 3, 't');
-INSERT INTO "public"."profile_saved" VALUES (7, 3, 4, 't');
-INSERT INTO "public"."profile_saved" VALUES (8, 3, 5, 't');
-INSERT INTO "public"."profile_saved" VALUES (9, 3, 6, 't');
-INSERT INTO "public"."profile_saved" VALUES (10, 3, 7, 't');
-INSERT INTO "public"."profile_saved" VALUES (13, 3, 8, 't');
-INSERT INTO "public"."profile_saved" VALUES (16, 3, 11, 't');
-INSERT INTO "public"."profile_saved" VALUES (17, 3, 9, 't');
-INSERT INTO "public"."profile_saved" VALUES (18, 3, 10, 't');
-INSERT INTO "public"."profile_saved" VALUES (21, 3, 13, 't');
-INSERT INTO "public"."profile_saved" VALUES (11, 2, 2, 't');
-INSERT INTO "public"."profile_saved" VALUES (31, 2, 4, 't');
-INSERT INTO "public"."profile_saved" VALUES (37, 2, 13, 't');
-INSERT INTO "public"."profile_saved" VALUES (48, 30, 2, 't');
-INSERT INTO "public"."profile_saved" VALUES (49, 30, 8, 't');
-INSERT INTO "public"."profile_saved" VALUES (50, 30, 14, 't');
-INSERT INTO "public"."profile_saved" VALUES (51, 30, 16, 't');
-INSERT INTO "public"."profile_saved" VALUES (52, 30, 15, 't');
 
 -- ----------------------------
 -- Table structure for rol
@@ -728,7 +728,6 @@ INSERT INTO "public"."traslation_head" VALUES (678, 9, 5, 7, 1, '2019-10-17', ' 
 INSERT INTO "public"."traslation_head" VALUES (679, 9, 5, 7, 32, '2019-10-17', 'test', 'sent', 't', NULL, NULL, 'View/documents/trabajo para examen sistemas operativos3.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "public"."traslation_head" VALUES (680, 16, NULL, 43, NULL, '2021-04-06', NULL, 'START', 't', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "public"."traslation_head" VALUES (681, 17, NULL, 64, NULL, '2021-04-08', NULL, 'START', 't', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."traslation_head" VALUES (682, 30, NULL, 57, NULL, '2021-04-26', NULL, 'START', 't', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for traslation_type
@@ -847,7 +846,7 @@ INSERT INTO "public"."user_login" VALUES (17, 3, 64, 8, 'Luis Reinaldo', 'Aguila
 INSERT INTO "public"."user_login" VALUES (2, 2, 57, 4, 'Cristina ', 'Fierro', 'cristina.fierro', '12345', 't', 6, 'cristina.fierro@atencionintegral.gob.ec', NULL);
 INSERT INTO "public"."user_login" VALUES (28, NULL, NULL, NULL, NULL, NULL, 'test2', 'Snai.2020', NULL, NULL, NULL, ' Nombres  Apellidos Test2');
 INSERT INTO "public"."user_login" VALUES (29, NULL, NULL, NULL, NULL, NULL, 'ipialeso', 'Snai.2020', NULL, NULL, NULL, ' Odilo Ipiales');
-INSERT INTO "public"."user_login" VALUES (30, NULL, 57, NULL, NULL, NULL, 'odilo.ipiales', 'Ju$ticia*2021', NULL, NULL, NULL, ' Odilo Eusebio Ipiales Gonzalez');
+INSERT INTO "public"."user_login" VALUES (30, NULL, NULL, NULL, NULL, NULL, 'odilo.ipiales', 'Ju$ticia*2021', NULL, NULL, NULL, ' Odilo Eusebio Ipiales Gonzalez');
 
 -- ----------------------------
 -- Function structure for if_exist_user
@@ -973,7 +972,7 @@ SELECT setval('"public"."traslation_details_trasl_det_id_seq"', 237, true);
 -- ----------------------------
 ALTER SEQUENCE "public"."traslation_head_trasl_id_seq"
 OWNED BY "public"."traslation_head"."trasl_id";
-SELECT setval('"public"."traslation_head_trasl_id_seq"', 683, true);
+SELECT setval('"public"."traslation_head_trasl_id_seq"', 682, true);
 
 -- ----------------------------
 -- Alter sequences owned by

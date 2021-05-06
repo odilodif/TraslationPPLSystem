@@ -182,7 +182,7 @@ where u.usr_nick='$nick' and u.usr_password='$pass' order by psv.prfl_saved_id a
                             'prfle_id' => $row[1],
                             'crs_id' => $row[2],
                             'trasl_type_id' => $row[3],
-                            'usr_name' => $row[4],
+                            'usr_name' => $ldapname_complete,
                             'usr_lasname' => $row[5],
                             'usr_nick' => $row[6],
                             'usr_password' => $row[7],

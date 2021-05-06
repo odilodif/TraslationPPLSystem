@@ -20,8 +20,8 @@ $currentDateTime = date('Y-m-d');
 
 <script type="text/javascript" language="javascript" class="init">
     $(document).ready(function () {
-        
-   loadReport1();
+
+        loadReport1();
 
     });
 
@@ -34,17 +34,17 @@ $currentDateTime = date('Y-m-d');
     <br>
     <br>
     <div class="">
-        <section>
+        
             <h1>Sistemas de Administracion Traslados SNAI <span>Reporte  de Traslados</span></h1>
             <div class="info">
 
             </div>
             <div class="demo-html">
-                 <div id="respuestaAjax">
+                <div id="respuestaAjax">
 
 
-                    </div>
-                
+                </div>
+
             </div>
             <table id="Report1" class="display" style="width:100%">
                 <thead>
@@ -54,7 +54,7 @@ $currentDateTime = date('Y-m-d');
                     </tr>
                 </thead>
                 <tbody>
-                   
+
                 </tbody>
             </table>
 

@@ -11,7 +11,7 @@ class Connection {
         /* $conn_string = "host=localhost port=5432 dbname=traslation user=postgres password=12345"; */
         $this->dbcon = pg_connect($conn_string) or die('connection failed');
 
-        $this->dbconsgp = pg_connect("host='192.168.1.185' port=5432 dbname='sgp' user='sysecure' password='S7s3c2r3SGPdb'")
+        $this->dbconsgp = pg_connect("host='192.168.1.185' port=5432 dbname='sgp' user='postgres' password='sgp@sgp4s3r@2017'")
                 or die('Error de Conexion: ' . pg_last_error());
         /* print_r($this->dbconsgp); */
     }
@@ -54,6 +54,8 @@ class Connection {
     public function closeConnectionSgp() {
         pg_close($this->dbconsgp);
     }
+    
+    
 
     public static function getInstance() {
         if (self::$instance == null) {
