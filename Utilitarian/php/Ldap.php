@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+include_once ('./../Model/User.php');
 
 class Ldap {
 
@@ -35,13 +36,23 @@ class Ldap {
                 $cn = $get_explode[0];
                 $usr_name_complete = str_replace('CN=', ' ', $cn);
             }
-
-
-            return array('autentication' => TRUE, 'name_complete' => $usr_name_complete);
+            $profiles = $this->search_profiles($nick, $pass, $usr_name_complete);
+            return array('autentication' => TRUE,'name_complete'=>$usr_name_complete ,'profiles' => $profiles);
         } else {
-            return array('autentication' => FALSE);
+            return array('autentication' => FALSE, 'profiles' => null);
         }
         ldap_unbind($conectado_LDAP);
+    }
+
+    public function search_profiles($nick, $pass, $user_name_complete) {
+        $user = new User();
+        $roles = $user->getUserByNickPass($nick, $pass, $user_name_complete);
+        /* If exists roles and permissions */
+        if ((boolean) $roles[0]['success']) {
+            return $roles;
+        } else {
+            return null;
+        }
     }
 
 }

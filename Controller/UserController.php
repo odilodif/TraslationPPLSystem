@@ -21,41 +21,31 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
         $pass = $_POST['password'];
         $ldap = new Ldap();
         $autentication = $ldap->ldap_consult($nick, $pass);
-        if ($autentication['autentication']) {
-
-            $user = new User();
-            $roles = $user->getUserByNickPass($nick, $pass, $autentication['name_complete']);
+        if ($autentication['autentication'] && $autentication['profiles'] != null) {/* If exists roles and ldap */
             session_start();
-            $_SESSION['_USU'] =$roles ;
-            /*If exists roles and permissions*/
+            $roles = $autentication['profiles'];
+            $_SESSION['_USU'] = $roles;
+            /* If exists roles and permissions */
             if ((boolean) $roles[0]['success'] && !empty($_SESSION['_USU'])) {
                 if (!isset($_SESSION['_USU'])) {
                     session_start();
                     $_SESSION['_USU'] = $roles;
-
                     echo json_encode($roles);
                 }
                 $_SESSION['_USU'] = $roles;
-
                 echo json_encode($roles);
-                /* Wheather no roles then only autentication*/
-            } else if ($autentication['autentication']) {
-                
-                $autentication_user[] = array('success' => TRUE,'usr_name' => $autentication['name_complete']);
-                $_SESSION['_USU'] =$autentication_user;                
+            } else if ($autentication['autentication'] && $autentication['profiles'] == null) {/* Wheather no roles then only autentication */
+                $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete']);
+                $_SESSION['_USU'] = $autentication_user;
                 echo json_encode($autentication_user);
-            }
-            
-           
-        } else {/*autentication no valid*/
+            } else {/* autentication no valid */
 
-            $fail2[] = array('success' => FALSE, 'message' => 'Error ..! El usuario no existe en el AD ');
-            echo json_encode($fail2);
+                $fail2[] = array('success' => FALSE, 'message' => 'Error ..! El usuario no existe en el AD ');
+                echo json_encode($fail2);
+            }
         }
-        
     }
 }
-
 if ($_POST['User'] === 'listDirectorsPlntCtral') {
     include_once ('./../Model/User.php');
     $user = new User();
@@ -66,3 +56,4 @@ if ($_POST['User'] === 'listDirectorsPlntCtral') {
         echo json_encode($usr);
     }
 }
+    
