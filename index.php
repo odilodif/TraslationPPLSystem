@@ -20,7 +20,7 @@ if (isset($_SESSION['_USU'])) {
 ?>
 <style media="screen">
     *{
-      /* border: 1px solid #C00;*/
+      /*  border: 1px solid #C00;*/
 
 
     }
@@ -93,7 +93,7 @@ if (isset($_SESSION['_USU'])) {
             </nav>
 
             <div id="page-wrapper">
-                <div class="container-fluid" style="font-size: 12px;" >
+                <div class="container-fluid" style="font-size: 12px; " >
                     <?php
                     if ($login) {
                         if (isset($_GET['page'])) {
