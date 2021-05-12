@@ -35,9 +35,10 @@ function loadComboboxTraslationType() {
 
 }
 function loadComboboxCrs() {
-
+    var usr_id_sgp = $('#usr_id_sgp').val();    
     var dat = {
-        "CenterCrs": 'listCenterCrs'
+        "CenterCrs": 'listCenterCrs',
+        'usr_id_sgp':usr_id_sgp
     };
 
     $.ajax({
@@ -228,8 +229,7 @@ function editTraslationDirectorCrs(idTraslation, status_proccess) {
 
         });
 
-    }
-    else
+    } else
     {
 
         alert('El Traslado solo se puede Editar si esta en estado de Inicio');
@@ -446,8 +446,7 @@ function  deleteTraslationDialog(itTraslation, status_process) {
         } else {
 
         }
-    }
-    else
+    } else
     {
         alert('El Traslado debe estar en Estado Inicio Para Eliminarlo');
     }
@@ -474,8 +473,7 @@ function deleteTraslation(itTraslation) {
             if (result['success']) {
                 alert(result['message']);
                 location.reload();
-            }
-            else
+            } else
             {
                 alert(result['message']);
             }
@@ -491,8 +489,7 @@ function valid() {
     {
 
         return true;
-    }
-    else
+    } else
     {
 
         alert('Todos lo campos son requeridos');
@@ -553,8 +550,7 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
             }
 
         });
-    }
-    else {
+    } else {
 
         var formulario = $('#fmrCreateTraslation');
 
@@ -754,15 +750,13 @@ function enableDisableFields(result, formulario, prfl, type) {
                 formulario.find("#txt_crs_id_destinationEdit").val(result[0]['crs_destination']);
                 formulario.find("#txt_crs_id_destinationEdit").show();//ComoBox
                 formulario.find("#crs_id_destinationEdit").hide();
-            }
-            else {
+            } else {
                 formulario.find("#crs_id_destinationEdit").show();
                 formulario.find("#txt_crs_id_destinationEdit").hide();//ComoBox
             }
 
 
-        }
-        else
+        } else
         {
 
             formulario.find("#txt_crs_id_destination").val(result[0]['crs_destination']);

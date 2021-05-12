@@ -95,7 +95,32 @@ class LogicalDeletion extends Connection implements ICrud {
         }
     }
 
-    public function deleteLogicProntuario($query) {
+    
+     public function setFree($prontuario) {
+        $query = "UPDATE prison_person SET center_id=NULL ,ult_centro=(SELECT CASE  
+WHEN center_id IS NULL  THEN center_to_id
+ELSE center_id END 
+FROM prison_move WHERE ppl_id= 
+(SELECT id FROM prison_person WHERE prontuario='$prontuario') 
+AND id =(SELECT max(id) from prison_move WHERE ppl_id=(SELECT id FROM prison_person WHERE prontuario='$prontuario'))), state='free',location_id=NULL,pabellon_id=NULL,piso_id=NULL, ala_id=NULL WHERE id=(SELECT id FROM prison_person WHERE prontuario='$prontuario');";
+        // echo ''.$query;
+        $this->rs = parent::execute_sgp($query);
+        if ($this->rs) {
+            return TRUE;
+        } else {
+
+            return FALSE;
+        }
+    }
+    
+        
+    public function deleteLogicProntuario($prontuario) {
+        $query="UPDATE prison_person SET center_id=NULL ,ult_centro=(SELECT CASE  
+WHEN center_id IS NULL  THEN center_to_id
+ELSE center_id END 
+FROM prison_move WHERE ppl_id= 
+(SELECT id FROM prison_person WHERE prontuario='$prontuario') 
+AND id =(SELECT max(id) from prison_move WHERE ppl_id=(SELECT id FROM prison_person WHERE prontuario='$prontuario'))), state='deleted',location_id=NULL,pabellon_id=NULL,piso_id=NULL, ala_id=NULL WHERE id=(SELECT id FROM prison_person WHERE prontuario='$prontuario') ;";
         $this->rs = parent::execute_sgp($query);
         if ($this->rs) {
             parent::closeConnectionSgp();

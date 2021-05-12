@@ -13,35 +13,59 @@ if (isset($_POST["execute"])) {
         $file = fopen($filename, "r");
         //skip first line
         fgetcsv($file);
-        $ld = new LogicalDeletion(); 
-        $row=1;
-        
-             
-        
+        $ld = new LogicalDeletion();
+        $row = 1;
+
+
+
         while (($getData = fgetcsv($file, 10000, ";")) !== FALSE) {
             if (!$getData[0]) {
                 echo "<script type=\"text/javascript\">alert(\"El archivo CSV no es correcto.\");"
                 . "window.location = \"./../index.php\" "
-                ."  $('#respuestaAjax').html(''); "
-                ."</script>";
-            }
-            /*Check whether SolicitudLibertad Exist for make change */
-            if ($getData[5]=='SL') {                
-                if ($ld->readProntuarioIfExist($getData[0]) && $ld->readSL_ifExist($getData[1])) {
-                    $ld->updateSL($getData[1]);
-                     echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
-                     . "window.location = \"./../index.php\" "                    
-                     . "</script>";
-                } else {
-                    echo "<script type=\"text/javascript\">alert(\"El prontuario o solicitud de libertad inválidos.\"".$row. " )"
-                    . "window.location = \"./../index.php\""
-                    ."  $('#respuestaAjax').html(''); "        
-                    ."</script>";
+                . "  $('#respuestaAjax').html(''); "
+                . "</script>";
+            } else {
+                switch (trim($getData[5])) {
+                    case 'SL':
+                        if ($ld->readProntuarioIfExist($getData[0]) && $ld->readSL_ifExist($getData[1])) {
+                            $ld->updateSL($getData[1]);
+                            echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
+                            . "window.location = \"./../index.php\" "
+                            . "</script>";
+                        } else {
+                            echo "<script type=\"text/javascript\">alert(\"El prontuario o solicitud de libertad inválidos.\"" . $row . " )"
+                            . "window.location = \"./../index.php\""
+                            . "  $('#respuestaAjax').html(''); "
+                            . "</script>";
+                        }
+                        break;
+                    case 'FREE':
+                        if ($ld->readProntuarioIfExist($getData[0])) {
+                            $ld->setFree($getData[0]);
+                            echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
+                            . "window.location = \"./../index.php\" "
+                            . "</script>";
+                        } else {
+                            echo "<script type=\"text/javascript\">alert(\"El prontuario es inválido.\"" . $row . " )"
+                            . "window.location = \"./../index.php\""
+                            . "  $('#respuestaAjax').html(''); "
+                            . "</script>";
+                        }
+                        break;
+                    case 'BORRAR':
+                        if ($ld->readProntuarioIfExist($getData[0])) {
+                            $ld->deleteLogicProntuario($getData[0]);
+                            echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
+                            . "window.location = \"./../index.php\" "
+                            . "</script>";
+                        } else {
+                            echo "<script type=\"text/javascript\">alert(\"El prontuario es inválido.\"" . $row . " )"
+                            . "window.location = \"./../index.php\""
+                            . "  $('#respuestaAjax').html(''); "
+                            . "</script>";
+                        }
+                        break;
                 }
-            }
-            //check whether exists prontuario for delete
-            if ($getData[5]=='MJDHC-A') {
-                
             }
             $row++;
         }

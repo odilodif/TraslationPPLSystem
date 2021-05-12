@@ -60,6 +60,7 @@
     </div>-->
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo "" . $_SESSION['_USU'][0]['usr_name']; ?><b class="caret"></b></a>
+        <input type="text" value="<?php echo "" . isset($_SESSION['_USU'][0]['usr_id']) ? $_SESSION['_USU'][0]['usr_id_sgp']: "";  ?>" id="usr_id_sgp" hidden=""/> 
         <input type="text" value="<?php echo "" . isset($_SESSION['_USU'][0]['usr_id']) ? $_SESSION['_USU'][0]['usr_id']: "";  ?>" id="txtIdUser" hidden=""/>
         <input type="text" value="<?php echo "" . isset($_SESSION['_USU'][0]['prfle_id'] ) ? $_SESSION['_USU'][0]['prfle_id'] :"" ?>" id="txtPrfle_id" hidden=""/>
         <input type="text" value="<?php echo "" . isset($_SESSION['_USU'][0]['crs_id']) ? $_SESSION['_USU'][0]['crs_id']: ""; ?>" id="crs_id" hidden="" />

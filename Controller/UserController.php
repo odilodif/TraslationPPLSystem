@@ -21,7 +21,8 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
         $pass = $_POST['password'];
         $ldap = new Ldap();
         $autentication = $ldap->ldap_consult($nick, $pass);
-        if ($autentication['autentication'] && $autentication['profiles'] != null) {/* If exists roles and ldap */
+
+        if ($autentication['autentication'] && !empty($autentication['profiles'])) {/* If exists roles and ldap */
             session_start();
             $roles = $autentication['profiles'];
             $_SESSION['_USU'] = $roles;
@@ -34,15 +35,19 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
                 }
                 $_SESSION['_USU'] = $roles;
                 echo json_encode($roles);
-            } else if ($autentication['autentication'] && $autentication['profiles'] == null) {/* Wheather no roles then only autentication */
-                $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete']);
-                $_SESSION['_USU'] = $autentication_user;
-                echo json_encode($autentication_user);
-            } else {/* autentication no valid */
-
-                $fail2[] = array('success' => FALSE, 'message' => 'Error ..! El usuario no existe en el AD ');
-                echo json_encode($fail2);
             }
+            
+        } else if ($autentication['autentication'] && empty($autentication['profiles'])) {/* Wheather no roles then only autentication */
+            if (!isset($_SESSION['_USU'])) {
+                session_start();
+            }
+            $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete']);
+            $_SESSION['_USU'] = $autentication_user;
+            echo json_encode($autentication_user);
+        } else {/* autentication no valid */
+
+            $fail2[] = array('success' => FALSE, 'message' => 'Error ..! El usuario no existe en el AD ');
+            echo json_encode($fail2);
         }
     }
 }

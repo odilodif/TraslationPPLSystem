@@ -158,21 +158,21 @@ class User extends Connection implements ICrud {
 
     public function getUserByNickPass($nick, $pass,$ldapname_complete) {
         $query_if_exist = "SELECT if_exist_user('$nick','$pass','$ldapname_complete');";
-        $rs_exist = parent::fetch_result($query_if_exist);
+        $rs_exist = parent::fetch_result_sgp($query_if_exist);
         if ((boolean) $rs_exist) {
             //echo "true...".$rs_exist;
             $info = NULL;
             try {
                 $query = "select
-u.usr_id, u.prfle_id, u.crs_id, u.trasl_type_id, u.usr_name,u.usr_lasname, u.usr_nick,u.usr_password ,mb.menu_description_description,mb.menu_description_href,mb.menu_traslation_path_img, crs.crs_description
+u.usr_id, u.prfle_id, u.crs_id, u.trasl_type_id, u.name_complete,u.usr_id_sgp, u.usr_nick,u.usr_password ,mb.menu_description_description,mb.menu_description_href,mb.menu_traslation_path_img, crs.name
 from user_login u
 INNER JOIN  profile_saved psv on u.usr_id=psv.usr_id
-INNER JOIN menu_objects mb on  mb.menu_description_id=psv.menu_description_id
-INNER JOIN  center_crs crs on u.crs_id =crs.crs_id
+INNER JOIN  menu_objects mb on  mb.menu_description_id=psv.menu_description_id
+INNER JOIN  prison_location crs on u.crs_id =crs.id
 where u.usr_nick='$nick' and u.usr_password='$pass' order by psv.prfl_saved_id asc;";
                //echo '' . $query;               
                 
-                $this->rs = parent::execute($query);
+                $this->rs = parent::execute_sgp($query);
                 if ($this->rs) {
 
                     while ($row = pg_fetch_row($this->rs)) {
@@ -183,7 +183,7 @@ where u.usr_nick='$nick' and u.usr_password='$pass' order by psv.prfl_saved_id a
                             'crs_id' => $row[2],
                             'trasl_type_id' => $row[3],
                             'usr_name' => $ldapname_complete,
-                            'usr_lasname' => $row[5],
+                            'usr_id_sgp' => $row[5],
                             'usr_nick' => $row[6],
                             'usr_password' => $row[7],
                             'menu_description_description' => $row[8],

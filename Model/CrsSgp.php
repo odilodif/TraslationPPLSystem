@@ -57,8 +57,8 @@ class CrsSgp extends Connection implements ICrud{
 
     public function listAll() {
         try {
-            $sqlsgp = "select id, name from prison_location where type='crs' ORDER BY id DESC;";
-
+            $sqlsgp = "select id, name from prison_location where type='crs' ORDER BY id DESC ;";
+            echo 'sql'.$sqlsgp;
             $this->rs = parent::execute_sgp($sqlsgp);
             if ($this->rs) {
 
@@ -82,6 +82,33 @@ class CrsSgp extends Connection implements ICrud{
         }
     }
 
+     public function listCrsSgpUsr($usr_id_sgp) {
+        try {
+            $sqlsgp = "select id, name from prison_location where type='crs'  and id <> (SELECT center_id FROM res_users where id = $usr_id_sgp ) ORDER BY 1 DESC;";
+            //echo 'sql'.$sqlsgp;
+            $this->rs = parent::execute_sgp($sqlsgp);
+            if ($this->rs) {
+
+
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info[] = array('success'             => TRUE,
+                        'message'                         => 'Crs encontrados',
+                        'crs_id'                          => $row[0],
+                        'crs_description'                 => $row[1]
+                    );
+                }
+                return $info;
+            } else {
+                return $info;
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
+        } finally {
+            parent::closeConnection();
+        }
+    }
+    
     public function listByParameter($id, $name, $path) {
 
     }

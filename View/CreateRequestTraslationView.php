@@ -395,12 +395,11 @@
 
 
 </script>
-
-
 <script>
 
     $(document).ready(function () {
         var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';
+        console.log(crs_id);
         var type = '<?php echo"" . (isset($_GET['type'])) ? $_GET['type'] : " " ?>';
         var getIdTraslation = '<?php echo"" . (isset($_GET['idTraslation'])) ? $_GET['idTraslation'] : " " ?>';
         //alert(getIdTraslation);

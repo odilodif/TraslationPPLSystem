@@ -45,6 +45,12 @@ class Connection {
         $val = pg_fetch_result($result, 0, 0);
         return $val;
     }
+    
+     public function fetch_result_sgp($sqlsgp) {
+        $result_sgp = pg_query($this->dbconsgp, $sqlsgp);        
+        $val = pg_fetch_result($result_sgp, 0, 0);
+        return $val;
+    }
 
     //pg_close
     public function closeConnection() {
