@@ -501,7 +501,7 @@ function valid() {
 }
 
 function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, type) {
-    //alert(type)
+   
     var txtPrfle_id = $('#txtPrfle_id').val();
     //alert(txtPrfle_id);
     if (bntMove == 'LastRecord') {
@@ -523,9 +523,9 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
 
             },
             success: function (result) {
-                
+               
                 if (result[0]['success']) {
-                   
+                    
                     //alert(result[0]['success'])
                     statusBar(result);
                     $("#tblppl tbody").empty();
@@ -633,7 +633,7 @@ function loadRecordTraslationEdit(bntMove, idTRaslation, status_proccess, id_crs
         },
         success: function (result) {
             if (result[0]['success']) {
-                // alert(result[0]['success']);
+               //alert(result[0]['name_complete']);
 
                 statusBar(result);
                 $("#tblppl tbody").empty();
@@ -673,8 +673,7 @@ function loadRecordTraslationEdit(bntMove, idTRaslation, status_proccess, id_crs
 
 
 function enableDisableFields(result, formulario, prfl, type) {
-    // alert(result[0]['trasl_id'])   
-    //console.log('hello...'+prfl);
+   
     /*Whether view director CRS*/
     if (result[0]['trasl_state_process'] != 'Inicio' && prfl == 3) {
         $("#btnAddIcon").show();
@@ -708,7 +707,7 @@ function enableDisableFields(result, formulario, prfl, type) {
 
     }
     if (result[0]['trasl_state_process'] == 'Inicio' && prfl == 3) {
-
+ 
         $("#btnAddIcon").show();
         $("#btnNewTraslation").show();
 
@@ -734,6 +733,8 @@ function enableDisableFields(result, formulario, prfl, type) {
         formulario.find("#file_pdf").show();
         formulario.find("#pdf_download_dir").attr("href", result[0]['trasl_path']);
         formulario.find("#pdf_download_dir").hide();
+        formulario.find("#audit_usr").text('->'+result[0]['name_complete']);
+        console.log(result[0]['name_complete']);
     }
     /*Whether view analyst profile*/
     if (result[0]['trasl_state_process'] != 'Inicio' && prfl == 2) {

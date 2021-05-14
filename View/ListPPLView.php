@@ -6,8 +6,8 @@ $currentDateTime = date('Y-m-d');
 <script src="./View/css/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script>
-    $(document).ready(function () {
-        listPPL();
+    $(document).ready(function () {        
+      listPPL();
     });
 
 
@@ -78,14 +78,14 @@ $currentDateTime = date('Y-m-d');
                                         <table id="tblPPLList" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
                                             <thead>
                                                 <tr>
-                                                    <th>Nro.</th>
+                                                    <th>&nbsp;&nbsp;&nbsp;</th>
+                                                    <th>Prontuario</th>
                                                     <th>Cédula</th>
                                                     <th>Nombres</th>
                                                     <th>Apellidos</th> 
                                                     <th>Estado</th>
-                                                    <th>Prontuario</th>
-                                                    <th>Editar</th>
-                                                    <th>Eliminar</th>
+                                                    <th>Centro</th>
+                                                   
 
                                                 </tr>
                                             </thead>

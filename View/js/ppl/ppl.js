@@ -1,5 +1,5 @@
 function listPPL() {
-    //alert('listadoDetCliente');
+   // alert('listadoDetCliente');
     var crs_id = $('#crs_id').val()
     var datos = {
         'PrisionPerson': 'listPPL',
@@ -11,22 +11,23 @@ function listPPL() {
         type: 'POST',
         dataType: 'JSON',
         beforeSend: function () {
+           
             $('#waiting').modal('show');
         }
         ,
         success: function (data) {
             $('#waiting').modal('hide');
             if (data[0]['success']) {
+                
                 $.each(data, function (i, data) {
                     var body = "<tr>";
-                    body += "<td>" + data.prison_per_id + "</td>";
+                     body += "<td><input type=\"checkbox\"></td>";
+                    body += "<td>" + data.prontuario + "</td>";
                     body += "<td>" + data.prison_per_identification + "</td>";
                     body += "<td>" + data.prison_per_name + "</td>";
                     body += "<td>" + data.prison_per_lastname + "</td>";
                     body += "<td>" + data.state + "</td>";
-                    body += "<td>" + data.prontuario + "</td>";
-                    body += "<td>" + "<a href='javascript:editPPLForm(" + data.prison_per_id + ");' class='glyphicon glyphicon-edit'></a>" + "</td>";
-                    body += "<td>" + "<a href='javascript:deletePPL(" + data.prison_per_id + ", \"" + data.prison_per_name + "\", \"" + data.prison_per_lastname + "\" );' class = 'glyphicon glyphicon-remove-circle' > </a>" + "</td>";
+                    body += "<td>" + data.crs_name + "</td>";                    
                     body += "</tr>";
                     $("#tblPPLList tbody").append(body);
                 })

@@ -1251,7 +1251,7 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
                         'crs_destination' => $row[2],
                         'trasl_type_descripcion' => $row[3],
                         'trasl_date_request' => $row[4],
-                        'usr_name' => $row[5],
+                        'name_complete' => $row[5],
                         'usr_lasname' => $row[6],
                         'trasl_observations' => $row[7],
                         'trasl_path' => $row[8],

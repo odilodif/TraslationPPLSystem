@@ -8,9 +8,17 @@
 
 <script src="./Utilitarian/js/utils.js" type="text/javascript"></script>
 <script src="./View/js/director/director.js" type="text/javascript"></script>
+
 <link href="./View/js/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link href="./View/js/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="./View/js/jquery-ui-1.12.1.custom/jquery-ui.js" type="text/javascript"></script>
+
+
+<script src="./View/js/ppl/ppl.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./View/css/datatables/dataTables.bootstrap.min.css">
+<script src="./View/css/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
 <!--Style Modal-->
 <style>
     body {font-family: Arial, Helvetica, sans-serif;}
@@ -20,7 +28,7 @@
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
+        padding-top: 64px; /* Location of the box */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -37,7 +45,10 @@
         padding: 20px;
         border: 1px solid #888;
         width: 81%;
-        height: 346px;
+        height: 400px; 
+
+
+
     }
 
     /* The Close Button */
@@ -54,6 +65,22 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    #content-tbl{
+        overflow-y: scroll;
+        height: 350px;
+    }
+    #content-btn-tbl{
+        margin: 10px auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: #E7F6F6;
+        border: 1px solid #99cccc;
+    }
+    th { font-size: 8px; }
+    td { font-size: 8px; }    
 </style>
 <!-- Page Heading -->
 
@@ -97,7 +124,7 @@
                 <a href='javascript:clearFields();' class='glyphicon glyphicon-search' id="btnSearch"  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b>Buscar</b></a>
                 <a href='#' class='glyphicon glyphicon-search' id="btnSearch2" style="display: none"><span class="glyphicon glyphicon-search" ></span><b>Buscando</b></a>
                 <a href='javascript:show_form_income();' class='glyphicon glyphicon-plus' id="btnAddIcon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><b>Añadir</b></a>
-                <a  class='glyphicon glyphicon-new-window' id="btnNewTraslation" ><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span><b>Nuevo</b></a>
+                <a href="" class='glyphicon glyphicon-new-window' id="btnNewTraslation" ><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span><b>Nuevo</b></a>
 
             </li>
         </ol>
@@ -197,6 +224,27 @@
                             <input  type="file" id="file_pdf"  name="file_pdf" required="" style="margin-left: 44px;"/>
                         </label>
                     </div>
+                </div>
+                <div class="row no-padding" style="margin-left: 5px;">
+                    <div class="col-md-1" >
+                        <label></label>
+                    </div>
+                    <div>
+                        <label class="input col-md-4" style="margin-left: 5px;" >
+
+
+                        </label>
+                    </div>
+                    <div class="col-md-1" >
+
+                    </div>
+                    <div>
+                        <label class="input col-md-4" style="margin-left: 5px;" >
+                            <label id="audit_usr"> </label>                          
+
+                        </label>
+                    </div>
+
                 </div>
             </fieldset>
         </div>
@@ -320,7 +368,7 @@
 </form>
 
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">Buscar PPL</button>
+<button id="btnSearching">Buscar PPL</button>
 <!-- Table Content PPL -->
 <div style="width:auto; height: auto; overflow-y: scroll;">
     <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">
@@ -344,35 +392,53 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
+            <button id="AddPPL"  class="btn btn-info btn-xs" style="text-align: left;" >Añadir PPL</button>
             <span class="close">&times;</span>
-            <div class=" col-md-6">
+            <div class="" id="content-btn-tbl">
                 <!--<button id="addRow"  class="btn btn-info btn-xs" style="text-align: left;" >Añadir PPL</button> <div id="resultID"></div>-->
-                <button id="AddPPL"  class="btn btn-info btn-xs" style="text-align: left;" >Añadir PPL</button>
-                <div style="width:auto; height: 70px; overflow-y: scroll;">
-                    <table border="1" id="tblppl2" class="display" style="width:100%;font-size: 10px;">
+
+                <div class="" id="content-tbl">                             
+                    <table id="tblPPLList" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
                         <thead>
                             <tr>
-                                <th>Identificacion</th><th>Nombres</th><th>Apellidos</th><th>Sexo</th><th>Prontuario</th><th>Nro</th><th>Estado</th>
+                                <th>&nbsp;&nbsp;&nbsp;</th>
+                                <th>Prontuario</th>
+                                <th>Cédula</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th> 
+                                <th>Estado</th>
+                                <th>Centro</th>
+
+
                             </tr>
                         </thead>
-
-                        <tbody >
+                        <tbody>
 
                         </tbody>
 
                     </table>
 
+                </div>
+                <div class="">
+                    <!-- Historial-->
+                    <label>Historial</label>
+                    <table id="tblHistory" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
+                        <thead>
+                            <tr>                           
+                                <th>Prontuario</th>
+                                <th>Cédula</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
-            <div class="  col-md-4">
-                <!-- Historial-->
-                <div style="width:auto; height: 100px; overflow-y: scroll;">
 
-
-
-                </div>
-            </div>
         </div>
 
     </div>
@@ -394,6 +460,8 @@
         } else
         {
             loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
+
+
         }
 
         loadComboboxTraslationType();
@@ -544,7 +612,7 @@
                         $('#waiting').modal('show');
                     },
                     success: function (result) { //console.log(response);
-                $('#waiting').modal('hide');
+                        $('#waiting').modal('hide');
                         var obj = JSON.parse(result);
                         if (obj.success) {
                             //alert();
@@ -666,15 +734,15 @@
     var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    var btnSearch = document.getElementById("btnSearching");
 
 // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-    btn.onclick = function () {
+    btnSearch.onclick = function () {
         modal.style.display = "block";
-
+        listPPL();
     }
 
 // When the user clicks on <span> (x), close the modal
