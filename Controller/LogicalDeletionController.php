@@ -27,7 +27,7 @@ if (isset($_POST["execute"])) {
             } else {
                 switch (trim($getData[5])) {
                     case 'SL':
-                        if ($ld->readProntuarioIfExist($getData[0]) && $ld->readSL_ifExist($getData[1])) {
+                        if ($ld->readProntuarioIfExist(trim($getData[0])) && $ld->readSL_ifExist(trim($getData[1]))) {
                             $ld->updateSL($getData[1]);
                             echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
                             . "window.location = \"./../index.php\" "
@@ -40,7 +40,7 @@ if (isset($_POST["execute"])) {
                         }
                         break;
                     case 'FREE':
-                        if ($ld->readProntuarioIfExist($getData[0])) {
+                        if ($ld->readProntuarioIfExist(trim($getData[0]))) {
                             $ld->setFree($getData[0]);
                             echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
                             . "window.location = \"./../index.php\" "
@@ -53,13 +53,26 @@ if (isset($_POST["execute"])) {
                         }
                         break;
                     case 'BORRAR':
-                        if ($ld->readProntuarioIfExist($getData[0])) {
+                        if ($ld->readProntuarioIfExist(trim($getData[0]))) {
                             $ld->deleteLogicProntuario($getData[0]);
                             echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
                             . "window.location = \"./../index.php\" "
                             . "</script>";
                         } else {
                             echo "<script type=\"text/javascript\">alert(\"El prontuario es inválido.\"" . $row . " )"
+                            . "window.location = \"./../index.php\""
+                            . "  $('#respuestaAjax').html(''); "
+                            . "</script>";
+                        }
+                        break;
+                    case 'DET':
+                        if ($ld->readProntuarioIfExist(trim($getData[0])) && $ld->readDET_ifExist(trim($getData[1]))) {
+                            $ld->updateDET($getData[1]);
+                            echo "<script type=\"text/javascript\">alert(\"El cambio se realizó satisfactoriamente.\");"
+                            . "window.location = \"./../index.php\" "
+                            . "</script>";
+                        } else {
+                            echo "<script type=\"text/javascript\">alert(\"El prontuario o Número de Detención inválidos.\"" . $row . " )"
                             . "window.location = \"./../index.php\""
                             . "  $('#respuestaAjax').html(''); "
                             . "</script>";

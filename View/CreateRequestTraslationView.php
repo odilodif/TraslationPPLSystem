@@ -11,7 +11,50 @@
 <link href="./View/js/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link href="./View/js/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="./View/js/jquery-ui-1.12.1.custom/jquery-ui.js" type="text/javascript"></script>
+<!--Style Modal-->
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
 
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin-left:242px;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 81%;
+        height: 346px;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 <!-- Page Heading -->
 
 <div align="center" id="navegation-bar">
@@ -54,7 +97,7 @@
                 <a href='javascript:clearFields();' class='glyphicon glyphicon-search' id="btnSearch"  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b>Buscar</b></a>
                 <a href='#' class='glyphicon glyphicon-search' id="btnSearch2" style="display: none"><span class="glyphicon glyphicon-search" ></span><b>Buscando</b></a>
                 <a href='javascript:show_form_income();' class='glyphicon glyphicon-plus' id="btnAddIcon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><b>Añadir</b></a>
-                <a href='' class='glyphicon glyphicon-new-window' id="btnNewTraslation" ><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span><b>Nuevo</b></a>
+                <a  class='glyphicon glyphicon-new-window' id="btnNewTraslation" ><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span><b>Nuevo</b></a>
 
             </li>
         </ol>
@@ -166,7 +209,6 @@
         </div>
     </div>
 </form>
-
 <form id="fmrEditTraslation" action="" method="POST" enctype="multipart/form-data" style="margin: 2% auto;" hidden="" class="scaled">
 
     <div class="" id="">
@@ -277,55 +319,27 @@
     </div>
 </form>
 
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Buscar PPL</button>
+<!-- Table Content PPL -->
+<div style="width:auto; height: auto; overflow-y: scroll;">
+    <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">
+        <thead>
+            <tr>
+                <th>Identificacion</th><th>Nombres</th><th>Apellidos</th><th>Sexo</th><th>Prontuario</th><th>Nro</th><th>Estado</th>
+            </tr>
+        </thead>
 
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+        <tbody >
 
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin-left:242px;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 81%;
-        height: 346px;
-    }
+        </tbody>
 
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
+    </table>
 
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
 
+</div>
 <!--modal add PPL-->
 <div class="">
-    
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Buscar PPL</button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
@@ -335,7 +349,7 @@
                 <!--<button id="addRow"  class="btn btn-info btn-xs" style="text-align: left;" >Añadir PPL</button> <div id="resultID"></div>-->
                 <button id="AddPPL"  class="btn btn-info btn-xs" style="text-align: left;" >Añadir PPL</button>
                 <div style="width:auto; height: 70px; overflow-y: scroll;">
-                    <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">
+                    <table border="1" id="tblppl2" class="display" style="width:100%;font-size: 10px;">
                         <thead>
                             <tr>
                                 <th>Identificacion</th><th>Nombres</th><th>Apellidos</th><th>Sexo</th><th>Prontuario</th><th>Nro</th><th>Estado</th>
@@ -363,65 +377,29 @@
 
     </div>
 </div>
+<!--Ready Document Load make functions-->
 <script>
-// Get the modal
-    var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block";
-
-    }
-
-// When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            //  modal.style.display = "none";
-        }
-    }
-
-
-
-
-</script>
-<script>
-
     $(document).ready(function () {
         var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';
         console.log(crs_id);
         var type = '<?php echo"" . (isset($_GET['type'])) ? $_GET['type'] : " " ?>';
+        /*Edit Taslation from table with $_GET*/
         var getIdTraslation = '<?php echo"" . (isset($_GET['idTraslation'])) ? $_GET['idTraslation'] : " " ?>';
         //alert(getIdTraslation);
         if (getIdTraslation != ' ') {
             $('#fmrEditTraslation').show();
             $('#fmrCreateTraslation').hide();
             var id_traslation = getIdTraslation;
-            loadRecordTraslationEdit('out_crs', id_traslation, '', '', type);
-
+            //loadRecordTraslationEdit('out_crs', id_traslation, '', '', type);
         } else
         {
-
             loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
-
         }
-
 
         loadComboboxTraslationType();
         loadComboboxCrs();
 
-
-        //loadCrsSgp();
+        // loadCrsSgp();
         var $table = $("#tblppl");
         var $tableBody = $("tbody", $table);
         $('#addRow').on('click', function () {
@@ -548,7 +526,6 @@
         });
     });
 
-
     $(document).ready(function (e) {
         $("#fmrCreateTraslation").on('submit', function (e) {
             e.preventDefault();
@@ -567,6 +544,7 @@
                         $('#waiting').modal('show');
                     },
                     success: function (result) { //console.log(response);
+                $('#waiting').modal('hide');
                         var obj = JSON.parse(result);
                         if (obj.success) {
                             //alert();
@@ -623,7 +601,6 @@
         });
     });
 
-
     $(document).ready(function (e) {
         $("#fmrEditTraslation").on('submit', function (e) {
             e.preventDefault();
@@ -657,7 +634,6 @@
         });
     });
 
-
     $(document).ready(function () {
         $("#trasl_type_id").on('change', function () {
             $("#trasl_type_id option:selected").each(function () {
@@ -683,7 +659,33 @@
             });
         });
     });
+</script>
+<!--Events Modal-->
+<script>
+// Get the modal
+    var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
+// Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
+// When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+
+    }
+
+// When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            //  modal.style.display = "none";
+        }
+    }
 </script>

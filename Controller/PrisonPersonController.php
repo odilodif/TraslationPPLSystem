@@ -103,7 +103,8 @@ if (isset($_POST['PrisionPerson'])) {
 
     if ($_POST['PrisionPerson'] === 'listPPL') {
         $prison_person = new PrisonPerson();
-        $ppl = $prison_person->listAll();
+        $crs_id=$_POST['crs_id'];
+        $ppl = $prison_person->listAllWithCrs($crs_id);
         if ($ppl[0]['success']) {
             echo json_encode($ppl);
         } else {

@@ -208,13 +208,13 @@ class Traslation extends Connection implements ICrud {
         try {
             $query_local = "INSERT INTO traslation_head (usr_id,crs_id_source,trasl_date_request,trasl_state_process,trasl_state)    " . $query;
             //echo "string".$query_local;
-            $rs = parent::execute($query_local);
+            $rs = parent::execute_sgp($query_local);
             if ($rs) {
-                return $info[] = array('success' => TRUE, 'message' => 'Encabezado de Traslado Creado');
+                return $info = array('success' => TRUE, 'message' => 'Encabezado de Traslado Creado');
             } else {
 
-                return $info[] = array('success' => FALSE, 'message' => 'No se pudo crear Traslado');
-                ;
+                return $info = array('success' => FALSE, 'message' => 'No se pudo crear Traslado');
+                
             }
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
@@ -291,8 +291,8 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
 
     public function lastRecording() {
         try {
-            $query = "SELECT  lpad(max(trasl_id) ::text, 4, '0')   FROM traslation_head;";
-            $this->rs = parent::execute($query);
+            $query = "SELECT  lpad(max(trasl_id) ::text, 5, '00')   FROM traslation_head;";
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 while ($row = pg_fetch_row($this->rs)) {
                     $info = array('success' => TRUE,
@@ -302,7 +302,7 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
                 }
                 return $info;
             } else {
-                return $info;
+                return null;
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */
@@ -1239,7 +1239,7 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
         //echo ''.$query;
         try {
             Connection::getInstance()->getConnection();
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 $info = null;
                 ;

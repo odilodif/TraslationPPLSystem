@@ -81,7 +81,9 @@ $currentDateTime = date('Y-m-d');
                                                     <th>Nro.</th>
                                                     <th>Cédula</th>
                                                     <th>Nombres</th>
-                                                    <th>Apellidos</th>                                                    
+                                                    <th>Apellidos</th> 
+                                                    <th>Estado</th>
+                                                    <th>Prontuario</th>
                                                     <th>Editar</th>
                                                     <th>Eliminar</th>
 

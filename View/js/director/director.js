@@ -292,11 +292,13 @@ function viewTraslationDirectorCrs(idTraslation, crs_id) {
 }
 function createAdnSendTraslation(user_id, crs_source_id, trasl_date_request) {
     //alert(  crs_source_id);
+    var profile_id=$('#txtPrfle_id').val()
     var dat = {
         "Traslation": 'createTraslation',
         "user_id": user_id,
         "crs_source_id": crs_source_id,
-        "trasl_date_request": trasl_date_request
+        "trasl_date_request": trasl_date_request,
+        "profile":profile_id
     };
 
     $.ajax({
@@ -305,18 +307,18 @@ function createAdnSendTraslation(user_id, crs_source_id, trasl_date_request) {
         type: 'POST',
         dataType: 'JSON',
         beforeSend: function () {
-            //  alert('before');
+             // alert('before');
         }
         ,
         success: function (result) {
-
+            //alert(result['success']);
             if (result['success']) {
                 lastRecord();
             }
         }
         ,
-        error: function () {
-
+        error: function (jqXHR, exception) {
+                alert('Error: '+jqXHR.responseText);
         }
     })
 }
@@ -340,7 +342,8 @@ function lastRecord() {
                 //alert(result['trasl_id']);
                 $("#idTraslation").val(result['trasl_id']);
                 $("#tblppl tbody").empty();
-                //location.reload();
+                var crs_id=$('#crs_id').val();
+               loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
 
             }
         }
@@ -497,7 +500,6 @@ function valid() {
     }
 }
 
-
 function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, type) {
     //alert(type)
     var txtPrfle_id = $('#txtPrfle_id').val();
@@ -521,11 +523,15 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
 
             },
             success: function (result) {
+                
                 if (result[0]['success']) {
+                   
+                    //alert(result[0]['success'])
                     statusBar(result);
                     $("#tblppl tbody").empty();
                     if (!(result[0]['prison_per_identification'] == ' ')) {
                         $.each(result, function (i, data) {
+                           
                             var body = "<tr>";
                             body += "<td>" + data.prison_per_identification + "</td>";
                             body += "<td>" + data.prison_per_name + "</td>";
@@ -570,12 +576,12 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
             },
             success: function (result) {
                 if (result[0]['success']) {
-                    // alert(result[0]['success']);
-
-                    statusBar(result);
+                     alert(result[0]['prison_per_identification']);
+                    //statusBar(result);
                     $("#tblppl tbody").empty();
                     if (!(result[0]['prison_per_identification'] == '')) {
                         $.each(result, function (i, data) {
+                            
                             var body = "<tr>";
                             body += "<td>" + data.prison_per_identification + "</td>";
                             body += "<td>" + data.prison_per_name + "</td>";
@@ -588,7 +594,7 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
                             $("#tblppl tbody").append(body);
                         });
                     }
-                    enableDisableFields(result, formulario, txtPrfle_id, type);
+                   // enableDisableFields(result, formulario, txtPrfle_id, type);
 
                 } else {
                     alert('Hubo un error al cargar  Traslado');
@@ -667,7 +673,8 @@ function loadRecordTraslationEdit(bntMove, idTRaslation, status_proccess, id_crs
 
 
 function enableDisableFields(result, formulario, prfl, type) {
-    // alert(result[0]['trasl_id'])
+    // alert(result[0]['trasl_id'])   
+    //console.log('hello...'+prfl);
     /*Whether view director CRS*/
     if (result[0]['trasl_state_process'] != 'Inicio' && prfl == 3) {
         $("#btnAddIcon").show();
@@ -825,3 +832,6 @@ function reviewHistory(ppl_id, csr_id) {
     });
 
 }
+
+
+

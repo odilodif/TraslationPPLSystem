@@ -84,7 +84,7 @@ class CrsSgp extends Connection implements ICrud{
 
      public function listCrsSgpUsr($usr_id_sgp) {
         try {
-            $sqlsgp = "select id, name from prison_location where type='crs'  and id <> (SELECT center_id FROM res_users where id = $usr_id_sgp ) ORDER BY 1 DESC;";
+            $sqlsgp = "select id, name from prison_location where type='crs' and id<>10714 and id <> (SELECT center_id FROM res_users where id = $usr_id_sgp )  ORDER BY 1 DESC;";
             //echo 'sql'.$sqlsgp;
             $this->rs = parent::execute_sgp($sqlsgp);
             if ($this->rs) {

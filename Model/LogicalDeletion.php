@@ -82,6 +82,18 @@ class LogicalDeletion extends Connection implements ICrud {
         }
     }
 
+    public function readDET_ifExist($query) {
+        $query = "SELECT * from prison_detention where number ='$query';";
+        $this->rs = parent::execute_sgp($query);
+        if ($this->rs) {
+            // parent::closeConnectionSgp();
+            return TRUE;
+        } else {
+            // parent::closeConnectionSgp();
+            return FALSE;
+        }
+    }
+
     public function updateSL($parameter) {
         $query = "UPDATE prison_freedom SET \"state\"='draft' WHERE \"name\" ='$parameter';";
         // echo ''.$query;
@@ -95,8 +107,20 @@ class LogicalDeletion extends Connection implements ICrud {
         }
     }
 
-    
-     public function setFree($prontuario) {
+    public function updateDET($parameter) {
+        $query = "UPDATE prison_detention SET \"state\"='noprocess' WHERE \"number\" ='$parameter';";
+        // echo ''.$query;
+        $this->rs = parent::execute_sgp($query);
+        if ($this->rs) {
+
+            return TRUE;
+        } else {
+
+            return FALSE;
+        }
+    }
+
+    public function setFree($prontuario) {
         $query = "UPDATE prison_person SET center_id=NULL ,ult_centro=(SELECT CASE  
 WHEN center_id IS NULL  THEN center_to_id
 ELSE center_id END 
@@ -112,10 +136,9 @@ AND id =(SELECT max(id) from prison_move WHERE ppl_id=(SELECT id FROM prison_per
             return FALSE;
         }
     }
-    
-        
+
     public function deleteLogicProntuario($prontuario) {
-        $query="UPDATE prison_person SET center_id=NULL ,ult_centro=(SELECT CASE  
+        $query = "UPDATE prison_person SET center_id=NULL ,ult_centro=(SELECT CASE  
 WHEN center_id IS NULL  THEN center_to_id
 ELSE center_id END 
 FROM prison_move WHERE ppl_id= 

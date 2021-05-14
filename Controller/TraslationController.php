@@ -19,8 +19,10 @@ if (isset($_POST['Traslation'])) {
         $userid = $_POST['user_id'];
         $crs_source_id = $_POST['crs_source_id'];
         $trasl_date_request = $_POST['trasl_date_request'];
-        $result = $traslation->create("VALUES($userid,$crs_source_id,'$trasl_date_request','START','t');");
-        if ($result[0]['success']) {
+        $profile=$_POST['profile'];
+        $result = $traslation->create("VALUES($userid,$crs_source_id,'$trasl_date_request','start','t');");
+       
+        if ((boolean)$result['success']) {
             echo json_encode($result);
         } else {
             echo json_encode($result);
