@@ -35,10 +35,10 @@ function loadComboboxTraslationType() {
 
 }
 function loadComboboxCrs() {
-    var usr_id_sgp = $('#usr_id_sgp').val();    
+    var usr_id_sgp = $('#usr_id_sgp').val();
     var dat = {
         "CenterCrs": 'listCenterCrs',
-        'usr_id_sgp':usr_id_sgp
+        'usr_id_sgp': usr_id_sgp
     };
 
     $.ajax({
@@ -292,13 +292,13 @@ function viewTraslationDirectorCrs(idTraslation, crs_id) {
 }
 function createAdnSendTraslation(user_id, crs_source_id, trasl_date_request) {
     //alert(  crs_source_id);
-    var profile_id=$('#txtPrfle_id').val()
+    var profile_id = $('#txtPrfle_id').val()
     var dat = {
         "Traslation": 'createTraslation',
         "user_id": user_id,
         "crs_source_id": crs_source_id,
         "trasl_date_request": trasl_date_request,
-        "profile":profile_id
+        "profile": profile_id
     };
 
     $.ajax({
@@ -307,7 +307,7 @@ function createAdnSendTraslation(user_id, crs_source_id, trasl_date_request) {
         type: 'POST',
         dataType: 'JSON',
         beforeSend: function () {
-             // alert('before');
+            // alert('before');
         }
         ,
         success: function (result) {
@@ -318,7 +318,7 @@ function createAdnSendTraslation(user_id, crs_source_id, trasl_date_request) {
         }
         ,
         error: function (jqXHR, exception) {
-                alert('Error: '+jqXHR.responseText);
+            alert('Error: ' + jqXHR.responseText);
         }
     })
 }
@@ -342,8 +342,8 @@ function lastRecord() {
                 //alert(result['trasl_id']);
                 $("#idTraslation").val(result['trasl_id']);
                 $("#tblppl tbody").empty();
-                var crs_id=$('#crs_id').val();
-               loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
+                var crs_id = $('#crs_id').val();
+                loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
 
             }
         }
@@ -501,7 +501,7 @@ function valid() {
 }
 
 function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, type) {
-   
+
     var txtPrfle_id = $('#txtPrfle_id').val();
     //alert(txtPrfle_id);
     if (bntMove == 'LastRecord') {
@@ -523,15 +523,15 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
 
             },
             success: function (result) {
-               
+
                 if (result[0]['success']) {
-                    
+
                     //alert(result[0]['success'])
                     statusBar(result);
                     $("#tblppl tbody").empty();
                     if (!(result[0]['prison_per_identification'] == ' ')) {
                         $.each(result, function (i, data) {
-                           
+
                             var body = "<tr>";
                             body += "<td>" + data.prison_per_identification + "</td>";
                             body += "<td>" + data.prison_per_name + "</td>";
@@ -576,12 +576,12 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
             },
             success: function (result) {
                 if (result[0]['success']) {
-                     alert(result[0]['prison_per_identification']);
+                    //alert(result[0]['prison_per_identification']);
                     //statusBar(result);
                     $("#tblppl tbody").empty();
                     if (!(result[0]['prison_per_identification'] == '')) {
                         $.each(result, function (i, data) {
-                            
+
                             var body = "<tr>";
                             body += "<td>" + data.prison_per_identification + "</td>";
                             body += "<td>" + data.prison_per_name + "</td>";
@@ -594,7 +594,7 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
                             $("#tblppl tbody").append(body);
                         });
                     }
-                   // enableDisableFields(result, formulario, txtPrfle_id, type);
+                    // enableDisableFields(result, formulario, txtPrfle_id, type);
 
                 } else {
                     alert('Hubo un error al cargar  Traslado');
@@ -633,7 +633,7 @@ function loadRecordTraslationEdit(bntMove, idTRaslation, status_proccess, id_crs
         },
         success: function (result) {
             if (result[0]['success']) {
-               //alert(result[0]['name_complete']);
+                //alert(result[0]['name_complete']);
 
                 statusBar(result);
                 $("#tblppl tbody").empty();
@@ -673,7 +673,7 @@ function loadRecordTraslationEdit(bntMove, idTRaslation, status_proccess, id_crs
 
 
 function enableDisableFields(result, formulario, prfl, type) {
-   
+
     /*Whether view director CRS*/
     if (result[0]['trasl_state_process'] != 'Inicio' && prfl == 3) {
         $("#btnAddIcon").show();
@@ -707,7 +707,7 @@ function enableDisableFields(result, formulario, prfl, type) {
 
     }
     if (result[0]['trasl_state_process'] == 'Inicio' && prfl == 3) {
- 
+
         $("#btnAddIcon").show();
         $("#btnNewTraslation").show();
 
@@ -733,7 +733,7 @@ function enableDisableFields(result, formulario, prfl, type) {
         formulario.find("#file_pdf").show();
         formulario.find("#pdf_download_dir").attr("href", result[0]['trasl_path']);
         formulario.find("#pdf_download_dir").hide();
-        formulario.find("#audit_usr").text('->'+result[0]['name_complete']);
+        formulario.find("#audit_usr").text('->' + result[0]['name_complete']);
         console.log(result[0]['name_complete']);
     }
     /*Whether view analyst profile*/
@@ -832,6 +832,46 @@ function reviewHistory(ppl_id, csr_id) {
 
     });
 
+}
+
+function readMovesPPL(prontuario) {
+    var dat = {
+        "PrisonMove": 'PrisonMove',
+        "prontuario":prontuario
+    };
+
+    $.ajax({
+        data: dat,
+        url: './Controller/PrisonMoveController.php',
+        type: 'POST',
+        dataType: 'JSON',
+        beforeSend: function () {
+            // alert('before');
+        }
+        ,
+        success: function (result) {
+            if (result[0]['success']) {
+                $("#tblHistoryMove tbody").empty();
+                $.each(result, function (i, data) {
+                     /* date	number	crs_source	ubi_source	crs_destination	ubi_destination	funcionario */
+                    var body = "<tr>";
+                    body += "<td>" + data.date + "</td>";
+                    body += "<td>" + data.number + "</td>";
+                    body += "<td>" + data.crs_source + "</td>";
+                    body += "<td>" + data.ubi_source + "</td>";
+                    body += "<td>" + data.crs_destination + "</td>";
+                    body += "<td>" + data.ubi_destination + "</td>";
+                    body += "<td>" + data.funcionario + "</td>";
+                    body += "</tr>";
+                    $("#tblHistoryMove tbody").append(body);
+                });
+            }
+        }
+        ,
+        error: function () {
+
+        }
+    })
 }
 
 

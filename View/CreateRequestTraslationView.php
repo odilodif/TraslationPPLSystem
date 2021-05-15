@@ -69,6 +69,7 @@
     #content-tbl{
         overflow-y: scroll;
         height: 350px;
+        width: 60%
     }
     #content-btn-tbl{
         margin: 10px auto;
@@ -80,7 +81,14 @@
         border: 1px solid #99cccc;
     }
     th { font-size: 8px; }
-    td { font-size: 8px; }    
+    td { font-size: 8px; }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }    
+    tr:hover {background-color:#4f7d7d;}
 </style>
 <!-- Page Heading -->
 
@@ -377,7 +385,6 @@
                 <th>Identificacion</th><th>Nombres</th><th>Apellidos</th><th>Sexo</th><th>Prontuario</th><th>Nro</th><th>Estado</th>
             </tr>
         </thead>
-
         <tbody >
 
         </tbody>
@@ -398,7 +405,7 @@
                 <!--<button id="addRow"  class="btn btn-info btn-xs" style="text-align: left;" >Añadir PPL</button> <div id="resultID"></div>-->
 
                 <div class="" id="content-tbl">                             
-                    <table id="tblPPLList" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
+                    <table id="tblPPLList" class="table table-striped table-bordered" style="width:96%;font-size: 10px">
                         <thead>
                             <tr>
                                 <th>&nbsp;&nbsp;&nbsp;</th>
@@ -408,8 +415,6 @@
                                 <th>Apellidos</th> 
                                 <th>Estado</th>
                                 <th>Centro</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -421,14 +426,17 @@
                 </div>
                 <div class="">
                     <!-- Historial-->
-                    <label>Historial</label>
-                    <table id="tblHistory" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
+                    <label>Historial Traslados SGP</label>
+                    <table id="tblHistoryMove" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
                         <thead>
-                            <tr>                           
-                                <th>Prontuario</th>
-                                <th>Cédula</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th> 
+                            <tr>                                  
+                                <th>Fecha</th>
+                                <th>Numero</th>
+                                <th>CentroOrigen</th>
+                                <th>Ubi.Origen</th>
+                                <th>CentroDestino</th> 
+                                <th>Ubi.Destino</th>
+                                <th>Funcionario</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -725,6 +733,16 @@
                 }
 
             });
+        });
+    });
+
+    $(document).ready(function () {
+
+        // code to read selected table row cell data (values).
+        $("#tblPPLList").on('click', 'tr', function (e) {
+           // e.preventDefault();
+            var col1 = $(this).find('td:eq(1)').text();
+           readMovesPPL(col1);
         });
     });
 </script>
