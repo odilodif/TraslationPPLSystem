@@ -597,7 +597,7 @@ if (isset($_FILES['file_pdf'])) {
                 $usr = new User();
 
                 $get_mail = $usr->getmailByTypTrasl($_POST['trasl_type_id']);
-                $to_address_asesor = 'victor.cozar@atencionintegral.gob.ec';
+                $to_address_asesor = 'edgar.villa@atencionintegral.gob.ec';
                 $get_rs_mail = $mailsnai->sendMailSnai($get_mail['usr_email'], $to_address_asesor);
                 //echo ''.$get_rs_mail;
                 $flag_mail = (boolean) $get_rs_mail;

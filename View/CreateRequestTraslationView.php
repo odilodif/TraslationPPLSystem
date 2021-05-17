@@ -415,6 +415,7 @@
                                 <th>Apellidos</th> 
                                 <th>Estado</th>
                                 <th>Centro</th>
+                                <th>Sexo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -476,13 +477,41 @@
         loadComboboxCrs();
 
         // loadCrsSgp();
-        var $table = $("#tblppl");
-        var $tableBody = $("tbody", $table);
-        $('#addRow').on('click', function () {
+        var tblppl = $("#tblppl");
+        var tblpplBody = $("tbody", tblppl);
+        $('#AddPPL').on('click', function () {
 
-            var newtr = $('<tr><td><input type="text" class="description" style="border: 0;" name="" /></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
-            $('.description', newtr).autocomplete(autocomp_opt);
-            $tableBody.append(newtr);
+            $("#tblPPLList tbody tr").each(function () {
+                var checked = $(this).find('td:eq(0) input');
+
+                if (checked.is(':checked')) {
+                    var prontuario = $(this).find('td:eq(1)').text();
+                    var cedula = $(this).find('td:eq(2)').text();
+                    var nombres = $(this).find('td:eq(3)').text();
+                    var apellidos = $(this).find('td:eq(4)').text();
+                    var stateppl = $(this).find('td:eq(5)').text();
+                    var crs = $(this).find('td:eq(6)').text();
+                    var sex = $(this).find('td:eq(7)').text();
+                    //alert(prontuario);
+                    /*Identificacion,Nombres,Apellidos,Sexo,Prontuario,Estado*/
+                    var bodyppl = "<tr>";
+                    bodyppl += "<td>" + prontuario + "</td>";
+                    bodyppl += "<td>" + cedula + "</td>";
+                    bodyppl += "<td>" + nombres + "</td>";
+                    bodyppl += "<td>" + apellidos + "</td>";
+                    bodyppl += "<td>" + stateppl + "</td>";
+                    bodyppl += "<td>" + sex + "</td>";
+                    bodyppl += "</tr>";
+                    $("#tblppl tbody").append(bodyppl);
+                }
+
+            });
+
+
+
+
+
+            modal.style.display = "none";
             //var id_traslation = $('#idTraslation').val();
         });//btnAddIcon
 
@@ -630,7 +659,7 @@
                             var rowCount = $('#tblppl tr').length;
                             var jsonObj = [];
                             $("#tblppl tbody tr").each(function () {
-                                var col0 = $(this).find("td").eq(0).find(":text").val();
+                                var col0 = $(this).find('td:eq(0)').text();;
                                 var col1 = $(this).find('td:eq(1)').text();
                                 var col2 = $(this).find('td:eq(2)').text();
                                 var col3 = $(this).find('td:eq(3)').text();
@@ -740,9 +769,9 @@
 
         // code to read selected table row cell data (values).
         $("#tblPPLList").on('click', 'tr', function (e) {
-           // e.preventDefault();
+            // e.preventDefault();
             var col1 = $(this).find('td:eq(1)').text();
-           readMovesPPL(col1);
+            readMovesPPL(col1);
         });
     });
 </script>

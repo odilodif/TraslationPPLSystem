@@ -85,7 +85,7 @@ $currentDateTime = date('Y-m-d');
                                                     <th>Apellidos</th> 
                                                     <th>Estado</th>
                                                     <th>Centro</th>
-                                                   
+                                                    <th>Sexo</th>
 
                                                 </tr>
                                             </thead>

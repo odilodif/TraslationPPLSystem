@@ -847,6 +847,7 @@ function readMovesPPL(prontuario) {
         dataType: 'JSON',
         beforeSend: function () {
             // alert('before');
+            $("#tblHistoryMove tbody").empty();
         }
         ,
         success: function (result) {
