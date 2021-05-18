@@ -601,7 +601,7 @@ if (isset($_FILES['file_pdf'])) {
                 $get_rs_mail = $mailsnai->sendMailSnai($get_mail['usr_email'], $to_address_asesor);
                 //echo ''.$get_rs_mail;
                 $flag_mail = (boolean) $get_rs_mail;
-                $response = array('success' => TRUE, 'message' => 'Datos Guardados Exitosamente', 'path' => $pathSave, 'sendmail' => $flag_mail);
+                $response = array('success' => TRUE, 'message' => 'Datos Guardados Exitosamente', 'path' => $pathSave, 'sendmail' => $flag_mail,'email'=>$get_mail['usr_email']);
                 echo json_encode($response);
             } else {
                 echo json_encode($info);

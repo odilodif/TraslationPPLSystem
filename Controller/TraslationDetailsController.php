@@ -11,15 +11,18 @@ if (isset($_POST['TraslationDetails'])) {
         if (isset($_POST['trasl_details'])) {
             $list = $_POST['trasl_details'];
             $result;
+            $values = "";
             $i = 0;
             foreach ($list as $key => $value) {
                 $trasl_id = $value['trasl_id'];
-                $prison_per_id = $value['prison_per_id'];
-                $result = $traslation_details->create("INSERT INTO traslation_details(trasl_id,prison_per_id,trasl_det_status)
-                        VALUES($trasl_id, $prison_per_id,'t');");
+                $prontuario = $value['prontuario'];                                
+                if ($i == 0) {
+                    $values = "VALUES($trasl_id, (SELECT \"id\" FROM prison_person WHERE prontuario='$prontuario'),'t')";
+                }
+                $values .= ",($trasl_id, (SELECT \"id\" FROM prison_person WHERE prontuario='$prontuario'),'t')";
                 $i++;
             }
-//echo 'resul'.$result['message'];
+            $result = $traslation_details->create($values);           
             if ($result['success']) {
                 $res = array('success' => TRUE, 'message' => 'Datos Guardados',
                     'nro' => $i
@@ -74,23 +77,23 @@ if (isset($_POST['TraslationDetails'])) {
         $where = ' ';
         $date_searching = '';
         $i = 0;
-        /*if ($_POST['crs_id'] != 57) {*/
-            $traslation_details = new TraslationDetails();
-            $list = $_POST['fields_search'];
-            $utils = new Utilitarian();
-            $query2=$utils->buildQuerySearchingReport3($list, $_POST['crs_id'] );
-           
+        /* if ($_POST['crs_id'] != 57) { */
+        $traslation_details = new TraslationDetails();
+        $list = $_POST['fields_search'];
+        $utils = new Utilitarian();
+        $query2 = $utils->buildQuerySearchingReport3($list, $_POST['crs_id']);
 
-            $result = $traslation_details->report3MultiSearching($query2);
-            if ($result[0]['success']) {
-                echo json_encode($result);
-            } else {
-                $res = array('success' => FALSE,
-                    'message' => 'No hay datos'
-                );
-                echo json_encode($res);
-            }
-       /* }*/
+
+        $result = $traslation_details->report3MultiSearching($query2);
+        if ($result[0]['success']) {
+            echo json_encode($result);
+        } else {
+            $res = array('success' => FALSE,
+                'message' => 'No hay datos'
+            );
+            echo json_encode($res);
+        }
+        /* } */
     }
 }
 

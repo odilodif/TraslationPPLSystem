@@ -385,7 +385,7 @@ function ifExistsPPL(trasl_details, id_traslation) {
     })
 
 }
-function createTraslationDetails(trasl_details, id_traslation) {
+function createTraslationDetails(trasl_details, id_traslation,obj_sent_mail) {
     var dat = {
         "TraslationDetails": 'createTraslationDetails',
         "trasl_details": trasl_details
@@ -404,7 +404,8 @@ function createTraslationDetails(trasl_details, id_traslation) {
             if (result['success']) {
                 $('#respuestaAjax').html('');
                 //var count = Object.keys(ppls).length;
-                alert('' + result['nro'] + ': PPLs guardados  en Traslado Número: ' + id_traslation);
+                
+                alert('' + result['nro'] + ': PPLs guardados en el Sistema de Traslados con Número: ' + id_traslation+'\n' + (obj_sent_mail.sendmail ? ' Y comunicado vía correo electrónico a '+obj_sent_mail.email : 'Problema al enviarel correo') );
                 location.reload();
 
 
@@ -426,7 +427,8 @@ function clearFields() {
 function validTablePPL(objtable) {
     var preparateinsertppl = false;
     objtable.each(function () {
-        var textval0 = $(this).find("td").eq(0).find(":text").val();
+        /*var textval0 = $(this).find("td").eq(0).find(":text").val();*/
+        var textval0=$(this).find('td:eq(0)').text();
         if ((textval0 != undefined && textval0 != '')) {
 
             preparateinsertppl = true;
@@ -537,8 +539,7 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
                             body += "<td>" + data.prison_per_name + "</td>";
                             body += "<td>" + data.prison_per_lastname + "</td>";
                             body += "<td>" + data.sex + "</td>";
-                            body += "<td>" + data.prontuario + "</td>";
-                            body += "<td>" + data.id_sgp + "</td>";
+                            body += "<td>" + data.prontuario + "</td>";                           
                             body += "<td>" + data.status_sgp + "</td>";
                             body += "</tr>";
                             $("#tblppl tbody").append(body);

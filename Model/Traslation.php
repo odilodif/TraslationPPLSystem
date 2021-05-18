@@ -314,17 +314,17 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
 
     public function sendUpdateTraslation() {
         if ($this->crs_id_destination != 0) {
-            $query = "UPDATE traslation_head SET  trasl_type_id=$this->trasl_type_id,crs_id_destination=$this->crs_id_destination,trasl_descripcion='$this->trasl_descripcion',trasl_date_request='$this->trasl_date_request',trasl_state_process='SENT',trasl_path='$this->trasl_path'  
+            $query = "UPDATE traslation_head SET  trasl_type_id=$this->trasl_type_id,crs_id_destination=$this->crs_id_destination,trasl_descripcion='$this->trasl_descripcion',trasl_date_request='$this->trasl_date_request',trasl_state_process='sent',trasl_path='$this->trasl_path'  
                             WHERE   trasl_id=$this->trasl_id;";
         } else {
-            $query = "UPDATE traslation_head SET  trasl_type_id=$this->trasl_type_id,trasl_descripcion='$this->trasl_descripcion',trasl_date_request='$this->trasl_date_request',trasl_state_process='SENT',trasl_path='$this->trasl_path'  
+            $query = "UPDATE traslation_head SET  trasl_type_id=$this->trasl_type_id,trasl_descripcion='$this->trasl_descripcion',trasl_date_request='$this->trasl_date_request',trasl_state_process='sent',trasl_path='$this->trasl_path'  
                             WHERE   trasl_id=$this->trasl_id;";
         }
 
         try {
 
             //echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Traslado Creado'); //User View
             } else {

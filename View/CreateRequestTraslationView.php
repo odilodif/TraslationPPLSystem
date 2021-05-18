@@ -382,7 +382,7 @@
     <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">
         <thead>
             <tr>
-                <th>Identificacion</th><th>Nombres</th><th>Apellidos</th><th>Sexo</th><th>Prontuario</th><th>Nro</th><th>Estado</th>
+                <th>Identificacion</th><th>Nombres</th><th>Apellidos</th><th>Sexo</th><th>Prontuario</th><th>Estado</th>
             </tr>
         </thead>
         <tbody >
@@ -495,12 +495,12 @@
                     //alert(prontuario);
                     /*Identificacion,Nombres,Apellidos,Sexo,Prontuario,Estado*/
                     var bodyppl = "<tr>";
-                    bodyppl += "<td>" + prontuario + "</td>";
                     bodyppl += "<td>" + cedula + "</td>";
                     bodyppl += "<td>" + nombres + "</td>";
                     bodyppl += "<td>" + apellidos + "</td>";
-                    bodyppl += "<td>" + stateppl + "</td>";
                     bodyppl += "<td>" + sex + "</td>";
+                    bodyppl += "<td>" + prontuario + "</td>";
+                    bodyppl += "<td>" + stateppl + "</td>";
                     bodyppl += "</tr>";
                     $("#tblppl tbody").append(bodyppl);
                 }
@@ -650,6 +650,7 @@
                     },
                     success: function (result) { //console.log(response);
                         $('#waiting').modal('hide');
+                        //alert();
                         var obj = JSON.parse(result);
                         if (obj.success) {
                             //alert();
@@ -659,7 +660,7 @@
                             var rowCount = $('#tblppl tr').length;
                             var jsonObj = [];
                             $("#tblppl tbody tr").each(function () {
-                                var col0 = $(this).find('td:eq(0)').text();;
+                                var col0 = $(this).find('td:eq(0)').text();                                
                                 var col1 = $(this).find('td:eq(1)').text();
                                 var col2 = $(this).find('td:eq(2)').text();
                                 var col3 = $(this).find('td:eq(3)').text();
@@ -668,7 +669,7 @@
                                 var col6 = $(this).find('td:eq(6)').text();
                                 /*trasl_id,prison_per_id,trasl_det_status*/
                                 if ((col0 != undefined && col0 != '')) {
-                                    jsonObj.push({"identification": col0, "trasl_id": id_traslation, "name": col1, "last_name": col2, "sex": col3, "prontuario": col4, "prison_per_id": col5, "status_sgp": col6});
+                                    jsonObj.push({"identification": col0, "trasl_id": id_traslation, "name": col1, "last_name": col2, "sex": col3, "prontuario": col4, "status_sgp": col6});
                                 }
                                 /*else {
                                  alert('Asegurese de que no exista campos vacios en la tabla de PPLs');
@@ -676,15 +677,20 @@
 
                                 i++;
                             });
-                            ifExistsPPL(jsonObj, id_traslation);
-                            /* createTraslationDetails(jsonObj, id_traslation);*/
+                            /*ifExistsPPL(jsonObj, id_traslation);*/
+                            createTraslationDetails(jsonObj, id_traslation,obj);
 
                         } else
                         {
                             alert(obj.message);
                         }
 
+                    },
+                    error: function(jqXHR, exception){
+                        alert('Error.\n' + jqXHR.responseText);
                     }
+                    
+                   
                 });
 
             }

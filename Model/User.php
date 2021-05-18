@@ -239,7 +239,7 @@ where u.usr_nick='$nick' and u.usr_password='$pass' order by psv.prfl_saved_id a
 INNER JOIN user_login usr ON typ.usr_id=usr.usr_id
 WHERE typ.trasl_type_id=$typ";
             //echo ''.$query;
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
