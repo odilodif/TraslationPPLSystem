@@ -44,7 +44,7 @@
         margin-left:242px;
         padding: 20px;
         border: 1px solid #888;
-        width: 82%;
+        width: 77%;
         height: 400px; 
 
 
@@ -69,7 +69,7 @@
     #content-tbl{
         overflow-y: scroll;
         height: 350px;
-        width: 60%
+        width: 100%
     }
     #content-btn-tbl{
         margin: 10px auto;

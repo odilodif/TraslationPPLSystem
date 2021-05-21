@@ -505,7 +505,7 @@ function valid() {
 function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, type) {
 
     var txtPrfle_id = $('#txtPrfle_id').val();
-      //alert(bntMove);
+     // alert(bntMove);
     if (bntMove == 'LastRecord') {
 
         var formulario = $('#fmrCreateTraslation');

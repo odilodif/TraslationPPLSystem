@@ -62,12 +62,15 @@ class TraslationDetails extends Connection implements ICrud {
 
     public function create($query) {
         $sql="INSERT INTO traslation_details(trasl_id,prison_per_id,trasl_det_status) ".$query;
+        /*$sql="INSERT INTO traslation_details(trasl_id,prison_per_id,trasl_det_status) VALUES(00740, (SELECT id FROM prison_person WHERE prontuario='MJDHC-A-00253234'),'t')
+,(00740, (SELECT id FROM prison_person WHERE prontuario='MJD*/
         try {
             // echo "" . $sql;
-           // Connection::getInstance()->getConnection();
+           Connection::getInstance()->getConnection();
            
-            $rs = parent::execute_sgp($query);
+            $rs = parent::execute_sgp($sql);
             if ($rs) {
+               // echo 'true...';
                 return $info[] = array('success' => TRUE, 'message' => 'PPL Creado');
             } else {
 
