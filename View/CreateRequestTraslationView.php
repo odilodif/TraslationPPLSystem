@@ -44,7 +44,7 @@
         margin-left:242px;
         padding: 20px;
         border: 1px solid #888;
-        width: 81%;
+        width: 82%;
         height: 400px; 
 
 
@@ -73,8 +73,7 @@
     }
     #content-btn-tbl{
         margin: 10px auto;
-        width: 100%;
-        display: flex;
+        width: 100%;        
         flex-direction: row;
         flex-wrap: wrap;
         background-color: #E7F6F6;
