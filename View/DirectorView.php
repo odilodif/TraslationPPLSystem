@@ -271,8 +271,8 @@
             });
 
 
-            loadComboboxTraslationType();
-            loadComboboxCrs();
+            //loadComboboxTraslationType();
+            //loadComboboxCrs();
             //loadCrsSgp();
             var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';
             loadTraslationList(crs_id);

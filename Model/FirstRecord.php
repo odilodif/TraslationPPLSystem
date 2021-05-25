@@ -20,7 +20,7 @@ class FirstRecord implements ISurfMove {
     
     public function FielsEmpty() {
         $query ="SELECT th.trasl_id,	prison_location.name as crs_source,' ' as crs_destination
-		,ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,' ' as trasl_descripcion,' ' as trasl_path,
+		,'' as trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,' ' as trasl_descripcion,' ' as trasl_path,
 		case
 when th.trasl_state_process ='start'  then 'Inicio'
 when th.trasl_state_process ='sent'  then 'Enviado'
@@ -33,12 +33,8 @@ end as trasl_state_process
 		,' ' as prison_per_id,' ' as prison_per_identification,' ' as prison_per_name,' ' as prison_per_lastname,' ' as id_sgp,' ' as sex,' ' as prontuario,' ' as status_sgp
 		from traslation_head  th
 		INNER JOIN prison_location   on th.crs_id_source=prison_location.id
-		INNER JOIN prison_location crsd  on th.crs_id_destination=crsd.id
-    INNER JOIN  traslation_type ty on th.trasl_type_id=ty.trasl_type_id
 		INNER JOIN  user_login u    on  th.usr_id=u.usr_id
-		INNER JOIN  traslation_details tdls    on  th.trasl_id=tdls.trasl_id
-		INNER JOIN prison_person pp  on  tdls.prison_per_id=pp.id
-		WHERE   th.trasl_id=(SELECT min(trasl_id) FROM traslation_head WHERE trasl_state = 't' and crs_id_source=$this->crs_id   ) and th.trasl_state='t';;";
+		WHERE   th.trasl_id=(SELECT min(trasl_id) FROM traslation_head WHERE trasl_state = 't' and crs_id_source=$this->crs_id) and th.trasl_state='t';";
          return $query;
     }
 

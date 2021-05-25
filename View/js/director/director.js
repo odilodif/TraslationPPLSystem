@@ -156,8 +156,8 @@ function loadTraslationList(crs_id) {
             }
         }
         ,
-        error: function () {
-
+        error: function (xhr, status, error) {
+            alert(xhr.responseText);
         }
 
 
@@ -576,8 +576,8 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
             },
             success: function (result) {
                 if (result[0]['success']) {
-                    //alert(result[0]['prison_per_identification']);
-                    //statusBar(result);
+                    //alert(result[0]['success']);
+                    statusBar(result);
                     $("#tblppl tbody").empty();
                     if (!(result[0]['prison_per_identification'] == '')) {
                         $.each(result, function (i, data) {
@@ -594,15 +594,15 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
                             $("#tblppl tbody").append(body);
                         });
                     }
-                    // enableDisableFields(result, formulario, txtPrfle_id, type);
+                   enableDisableFields(result, formulario, txtPrfle_id, type);
 
                 } else {
                     alert('Hubo un error al cargar  Traslado');
                 }
             },
-            error: function (result) {
-                alert('ERROR AL CONECTAR LA BASE DE DATOS"');
-            }
+            error: function (xhr, status, error) {
+            alert(xhr.responseText);
+        }
 
         });
 

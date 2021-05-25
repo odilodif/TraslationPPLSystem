@@ -394,8 +394,9 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
     }
 
     public function listAllByCrs($crs_id) {
+        $info=null;
         try {
-            $query = "SELECT th.trasl_id,th.trasl_date_request,ty.trasl_type_descripcion,crs.crs_description
+            $query = "SELECT th.trasl_id,th.trasl_date_request,ty.trasl_type_descripcion,crs.name
 , case
 when th.trasl_state_process ='start'  then 'Inicio'
 when th.trasl_state_process ='sent'  then 'Enviado'
@@ -408,9 +409,9 @@ end as trasl_state_process
 ,th.crs_id_source
 from traslation_head th
 left  join  traslation_type ty on th.trasl_type_id=ty.trasl_type_id  
-left  JOIN center_crs crs  		on th.crs_id_destination = crs.crs_id
+left  JOIN prison_location crs  		on th.crs_id_destination = crs.id
 where th.trasl_state='t' and th.crs_id_source=$crs_id ORDER BY trasl_id ASC;";
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
@@ -1242,7 +1243,7 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 $info = null;
-                ;
+                
                 while ($row = pg_fetch_row($this->rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Traslado  encontrado',
