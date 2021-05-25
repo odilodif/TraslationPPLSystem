@@ -30,10 +30,10 @@ function login(nick, pass) {
         type: "POST",
         dataType: 'json',
         beforeSend: function () {
-
+            $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
         },
         success: function (result) {
-
+            $('#respuestaAjax').html('');
             if (result[0]['success']) {
                 // alert();
 

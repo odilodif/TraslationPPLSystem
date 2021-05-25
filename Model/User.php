@@ -157,7 +157,9 @@ class User extends Connection implements ICrud {
     }
 
     public function getUserByNickPass($nick, $pass,$ldapname_complete) {
-        $query_if_exist = "SELECT if_exist_user('$nick','$pass','$ldapname_complete');";
+        $pass_encrypt= md5("".$pass);
+        $query_if_exist = "SELECT if_exist_user('$nick','$pass_encrypt','$ldapname_complete');";
+        //echo $query_if_exist;
         $rs_exist = parent::fetch_result_sgp($query_if_exist);
         if ((boolean) $rs_exist) {
             //echo "true...".$rs_exist;
@@ -169,7 +171,7 @@ from user_login u
 INNER JOIN  profile_saved psv on u.usr_id=psv.usr_id
 INNER JOIN  menu_objects mb on  mb.menu_description_id=psv.menu_description_id
 INNER JOIN  prison_location crs on u.crs_id =crs.id
-where u.usr_nick='$nick' and u.usr_password='$pass' order by psv.prfl_saved_id asc;";
+where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_saved_id asc;";
                //echo '' . $query;               
                 
                 $this->rs = parent::execute_sgp($query);
