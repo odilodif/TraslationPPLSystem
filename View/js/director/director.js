@@ -587,8 +587,7 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
                             body += "<td>" + data.prison_per_name + "</td>";
                             body += "<td>" + data.prison_per_lastname + "</td>";
                             body += "<td>" + data.sex + "</td>";
-                            body += "<td>" + data.prontuario + "</td>";
-                            body += "<td>" + data.id_sgp + "</td>";
+                            body += "<td>" + data.prontuario + "</td>";                           
                             body += "<td>" + data.status_sgp + "</td>";
                             body += "</tr>";
                             $("#tblppl tbody").append(body);
