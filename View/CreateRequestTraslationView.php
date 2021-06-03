@@ -604,7 +604,7 @@
             var crs_source_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';
             var id_traslation = $('#idTraslation').val();
             loadRecordTraslation('Forward', id_traslation, '', crs_source_id, type);
-        });//btnLastRecord
+        });
 
 
         $("#btnLastRecord").click(function () {

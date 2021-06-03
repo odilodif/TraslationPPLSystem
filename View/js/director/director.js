@@ -701,9 +701,6 @@ function enableDisableFields(result, formulario, prfl, type) {
         formulario.find("#pdf_download_dir").attr("href", result[0]['trasl_path']);
         formulario.find("#pdf_download_dir").show();
 
-
-
-
     }
     if (result[0]['trasl_state_process'] == 'Inicio' && prfl == 3) {
 

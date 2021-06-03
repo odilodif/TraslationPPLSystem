@@ -440,25 +440,25 @@ where th.trasl_state='t' and th.crs_id_source=$crs_id ORDER BY trasl_id ASC;";
     public function traslationListAnalyst($type) {
         $info = NULL;
         try {
-            $query = "SELECT th.trasl_id,	center_crs.crs_description as crs_source,crsd.crs_description as crs_destination,	trasl_date_request,typ.trasl_type_descripcion
+            $query = "SELECT th.trasl_id,	pl.name as crs_source,crsd.name as crs_destination,	trasl_date_request,typ.trasl_type_descripcion
 , case
-when th.trasl_state_process ='START'  then 'Inicio'
-when th.trasl_state_process ='SENT'  then 'Enviado'
-when th.trasl_state_process ='APPROVED'  then 'Aprobado'
-when th.trasl_state_process ='REVISION'  then 'Revision'
-when th.trasl_state_process ='EXECUTED'  then 'Finalizado'
-when th.trasl_state_process ='AUTHORIZED'  then 'Autorizado'
+when th.trasl_state_process ='start'  then 'Inicio'
+when th.trasl_state_process ='sent'  then 'Enviado'
+when th.trasl_state_process ='approved'  then 'Aprobado'
+when th.trasl_state_process ='revision'  then 'Revision'
+when th.trasl_state_process ='executed'  then 'Finalizado'
+when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as trasl_state_process
 from traslation_head  th
-INNER JOIN center_crs   on th.crs_id_source=center_crs.crs_id
-LEFT JOIN center_crs crsd  on th.crs_id_destination=crsd.crs_id
+INNER JOIN prison_location pl   on th.crs_id_source=pl.id
+LEFT JOIN prison_location crsd  on th.crs_id_destination=crsd.id
 INNER JOIN traslation_type typ  on th.trasl_type_id=typ.trasl_type_id
-WHERE  typ.trasl_type_id =$type and th.trasl_state_process='SENT'
+WHERE  typ.trasl_type_id = $type and th.trasl_state_process='sent'
 ORDER BY th.trasl_id ASC;";
 
             //echo ''.$query;
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
