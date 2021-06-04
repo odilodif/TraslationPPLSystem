@@ -36,6 +36,9 @@ function login(nick, pass) {
             $('#respuestaAjax').html('');
             if (result[0]['success']) {
                 // alert();
+                if (result[0]['messages']!=null) {
+                    alert(result[0]['messages'])
+                }
 
                 window.location = './index.php';
                 //$('#menu_items').append("<li>hello</li>");

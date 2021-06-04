@@ -214,7 +214,6 @@ class Traslation extends Connection implements ICrud {
             } else {
 
                 return $info = array('success' => FALSE, 'message' => 'No se pudo crear Traslado');
-                
             }
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
@@ -394,7 +393,7 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
     }
 
     public function listAllByCrs($crs_id) {
-        $info=null;
+        $info = null;
         try {
             $query = "SELECT th.trasl_id,th.trasl_date_request,ty.trasl_type_descripcion,crs.name
 , case
@@ -493,7 +492,7 @@ INNER JOIN traslation_type ty on th.trasl_type_id=ty.trasl_type_id
 INNER JOIN user_login u on th.usr_id=u.usr_id 
 INNER JOIN traslation_details tdls on th.trasl_id=tdls.trasl_id 
 INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this->trasl_id and th.trasl_state='t' and tdls.trasl_det_status='t'";
-           //echo ''.$query;
+            //echo ''.$query;
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 /*
@@ -550,9 +549,9 @@ INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this-
     }
 
     public function listTaslationPlantCtrl1() {
-
+        $info = null;
         try {
-            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.crs_description as crs_source ,crsd.crs_description as crs_destination,typ.trasl_type_descripcion
+            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.name as crs_source ,crsd.name as crs_destination,typ.trasl_type_descripcion
 ,th.tras_date_analyst_send
 ,concat(usranlyst.usr_name,' ', usranlyst.usr_lasname) as names_analyst
 ,
@@ -565,14 +564,14 @@ when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as status_proces
 from traslation_head th 
-INNER JOIN center_crs crss ON th.crs_id_source = crss.crs_id 
-INNER JOIN center_crs crsd ON th.crs_id_destination = crsd.crs_id 
+INNER JOIN prison_location crss ON th.crs_id_source = crss.id 
+INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id 
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this->trasl_director_assigned ;";
-            // echo ''.$query;
-            $this->rs = parent::execute($query);
+WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this->trasl_director_assigned;";
+            //echo ''.$query;
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
@@ -589,7 +588,12 @@ WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this
                         'status_proces' => $row[8]
                     );
                 }
-                return $info;
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    $info[] = array('success' => FALSE, 'message' => 'consulta no tiene datos');
+                    return $info;
+                }
             } else {
                 return $info;
             }
@@ -654,29 +658,29 @@ WHERE th.trasl_state_process in('APPROVED') AND th.trasl_direction_assigned=$dir
 
     public function listTaslationPlantCtrl1Approved($profile) {
         Connection::getInstance()->getConnection();
-
+        $info = null;
         try {
-            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.crs_description as crs_source ,crsd.crs_description as crs_destination,typ.trasl_type_descripcion
+            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.name as crs_source ,crsd.name as crs_destination,typ.trasl_type_descripcion
 ,th.tras_date_analyst_send
 ,concat(usranlyst.usr_name,' ', usranlyst.usr_lasname) as names_analyst
 ,
 case 
-when th.trasl_state_process ='START'  then 'Inicio' 
-when th.trasl_state_process ='APPROVED'  then 'Aprobado' 
-when th.trasl_state_process ='REVISION'  then 'Revision' 
-when th.trasl_state_process ='EXECUTED'  then 'Finalizado' 
-when th.trasl_state_process ='AUTHORIZED'  then 'Autorizado' 
+when th.trasl_state_process ='start'  then 'Inicio' 
+when th.trasl_state_process ='approved'  then 'Aprobado' 
+when th.trasl_state_process ='revision'  then 'Revision' 
+when th.trasl_state_process ='executed'  then 'Finalizado' 
+when th.trasl_state_process ='authorized'  then 'Autorizado' 
 else 'Sin Estado'
 end as status_proces
 from traslation_head th 
-INNER JOIN center_crs crss ON th.crs_id_source = crss.crs_id 
-INNER JOIN center_crs crsd ON th.crs_id_destination = crsd.crs_id 
+INNER JOIN prison_location crss ON th.crs_id_source = crss.id 
+INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id 
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('APPROVED')  AND th.trasl_approved_by= $this->trasl_approved_by";
+WHERE th.trasl_state_process in('approved')  AND th.trasl_approved_by=$this->trasl_approved_by;";
             //echo ''.$query;
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
@@ -693,7 +697,13 @@ WHERE th.trasl_state_process in('APPROVED')  AND th.trasl_approved_by= $this->tr
                         'status_proces' => $row[8]
                     );
                 }
-                return $info;
+
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    $info[] = array('success' => FALSE, 'message' => 'consulta no tiene datos');
+                    return $info;
+                }
             } else {
                 return $info;
             }
@@ -709,27 +719,27 @@ WHERE th.trasl_state_process in('APPROVED')  AND th.trasl_approved_by= $this->tr
         Connection::getInstance()->getConnection();
 
         try {
-            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.crs_description as crs_source ,crsd.crs_description as crs_destination,typ.trasl_type_descripcion
+            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.name as crs_source ,crsd.name as crs_destination,typ.trasl_type_descripcion
 ,th.tras_date_analyst_send
 ,concat(usranlyst.usr_name,' ', usranlyst.usr_lasname) as names_analyst
 ,
 case 
-when th.trasl_state_process ='START'  then 'Inicio' 
-when th.trasl_state_process ='APPROVED'  then 'Aprobado' 
-when th.trasl_state_process ='REVISION'  then 'Revision' 
-when th.trasl_state_process ='EXECUTED'  then 'Finalizado'
-when th.trasl_state_process ='AUTHORIZED'  then 'Autorizado'
+when th.trasl_state_process ='start'       then 'Inicio' 
+when th.trasl_state_process ='approved'    then 'Aprobado' 
+when th.trasl_state_process ='revision'    then 'Revision' 
+when th.trasl_state_process ='executed'    then 'Finalizado'
+when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as status_proces
 from traslation_head th 
-INNER JOIN center_crs crss ON th.crs_id_source = crss.crs_id 
-INNER JOIN center_crs crsd ON th.crs_id_destination = crsd.crs_id 
+INNER JOIN prison_location crss ON th.crs_id_source = crss.id 
+INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id 
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('EXECUTED') AND th.trasl_approved_by= $this->trasl_approved_by;";
+WHERE th.trasl_state_process in('executed') AND th.trasl_approved_by= $this->trasl_approved_by;";
             // echo ''.$query;
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
@@ -746,7 +756,13 @@ WHERE th.trasl_state_process in('EXECUTED') AND th.trasl_approved_by= $this->tra
                         'status_proces' => $row[8]
                     );
                 }
-                return $info;
+
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    $info[] = array('success' => FALSE, 'message' => 'consulta no tiene datos');
+                    return $info;
+                }
             } else {
                 return $info;
             }
@@ -762,27 +778,27 @@ WHERE th.trasl_state_process in('EXECUTED') AND th.trasl_approved_by= $this->tra
         Connection::getInstance()->getConnection();
 
         try {
-            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.crs_description as crs_source ,crsd.crs_description as crs_destination,typ.trasl_type_descripcion
+            $query = "SELECT th.trasl_id,th.trasl_date_request,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs ,crss.name as crs_source ,crsd.name as crs_destination,typ.trasl_type_descripcion
 ,th.tras_date_analyst_send
 ,concat(usranlyst.usr_name,' ', usranlyst.usr_lasname) as names_analyst
 ,
 case 
-when th.trasl_state_process ='START'  then 'Inicio' 
-when th.trasl_state_process ='APPROVED'  then 'Aprobado' 
-when th.trasl_state_process ='REVISION'  then 'Revision' 
-when th.trasl_state_process ='EXECUTED'  then 'Finalizado'
-when th.trasl_state_process ='AUTHORIZED'  then 'Autorizado'
+when th.trasl_state_process ='start'  then 'Inicio' 
+when th.trasl_state_process ='approved'  then 'Aprobado' 
+when th.trasl_state_process ='revision'  then 'Revision' 
+when th.trasl_state_process ='executed'  then 'Finalizado'
+when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as status_proces
 from traslation_head th 
-INNER JOIN center_crs crss ON th.crs_id_source = crss.crs_id 
-INNER JOIN center_crs crsd ON th.crs_id_destination = crsd.crs_id 
+INNER JOIN prison_location crss ON th.crs_id_source = crss.id 
+INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id 
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('AUTHORIZED') AND th.trasl_approved_by= $this->trasl_approved_by;";
+WHERE th.trasl_state_process in('authorized') AND th.trasl_approved_by= $this->trasl_approved_by;";
             // echo ''.$query;
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
@@ -799,7 +815,13 @@ WHERE th.trasl_state_process in('AUTHORIZED') AND th.trasl_approved_by= $this->t
                         'status_proces' => $row[8]
                     );
                 }
-                return $info;
+
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    $info[] = array('success' => FALSE, 'message' => 'consulta no tiene datos');
+                    return $info;
+                }
             } else {
                 return $info;
             }
@@ -1154,9 +1176,9 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
     public function saveTraslationApprobed($trasl_id, $usr_id_approved, $dirParent) {
         $dateapproved = date('Y-m-d');
         try {
-            $query = " UPDATE traslation_head SET trasl_state_process='APPROVED',trasl_date_approved='$dateapproved', trasl_approved_by=$usr_id_approved, trasl_direction_assigned= $dirParent WHERE trasl_id =$trasl_id ";
+            $query = " UPDATE traslation_head SET trasl_state_process='approved',trasl_date_approved='$dateapproved', trasl_approved_by=$usr_id_approved, trasl_direction_assigned= $dirParent WHERE trasl_id =$trasl_id ";
             //  echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Observaciones de Traslado Actualizadas');
             } else {
@@ -1233,14 +1255,14 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
     }
 
     // get Navegation Move 
-    public function getMove($query) {        
+    public function getMove($query) {
         //echo ''.$query;
         try {
             Connection::getInstance()->getConnection();
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 $info = null;
-                
+
                 while ($row = pg_fetch_row($this->rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Traslado  encontrado',

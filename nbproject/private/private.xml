@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/CreateRequestTraslationView.php</file>
+            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/js/DirectorPlantCtrl1/directorPlantCtrl1.js</file>
             <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/AnalysView.php</file>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/Model/User.php</file>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/index.php</file>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/Model/ForwardRecord.php</file>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/Model/BackwardRecord.php</file>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/DirectorView.php</file>
-            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/js/director/director.js</file>
+            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/Model/Traslation.php</file>
+            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/js/analyst/analyst.js</file>
+            <file>file:/C:/xampp/htdocs/TraslationPPLSystem/View/js/login.js</file>
         </group>
     </open-files>
 </project-private>
