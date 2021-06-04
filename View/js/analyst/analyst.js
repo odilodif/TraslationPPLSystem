@@ -314,6 +314,7 @@ function setDirectionAssigned(user_id) {
             var formulario = $('#fmrEditTraslationAnalyst');
             if (result['success']) {
                 formulario.find("#trasl_director_assigned").val(result['area_id']);
+                formulario.find("#area_desription").val(result['area_desription']);
                 formulario.find("#directorsPltaCtrl").val(result['usr_name'] + ' ' + result['usr_lasname']);
 
             }

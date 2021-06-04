@@ -485,19 +485,16 @@ ORDER BY th.trasl_id ASC;";
 
     public function editTraslationAnalyst() {
         try {
-            $query = "SELECT th.trasl_id,	center_crs.crs_description as crs_source,crsd.crs_description as crs_destination
-		,	ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_descripcion,th.trasl_path
-		,pp.prison_per_id,pp.prison_per_identification,pp.prison_per_name,pp.prison_per_lastname,pp.prison_per_observations
-		from traslation_head  th
-		INNER JOIN center_crs   on th.crs_id_source=center_crs.crs_id
-		INNER JOIN center_crs crsd  on th.crs_id_destination=crsd.crs_id
-    INNER JOIN  traslation_type ty on th.trasl_type_id=ty.trasl_type_id
-		INNER JOIN  user_login u    on  th.usr_id=u.usr_id
-		INNER JOIN  traslation_details tdls    on  th.trasl_id=tdls.trasl_id
-		INNER JOIN prison_person pp  on  tdls.prison_per_id=pp.id_sgp		
-		WHERE   th.trasl_id=$this->trasl_id and th.trasl_state='t' and tdls.trasl_det_status='t';";
-           // echo ''.$query;
-            $this->rs = parent::execute($query);
+            $query = "SELECT th.trasl_id, ploc.name as crs_source,crsd.name as crs_destination , ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_descripcion,th.trasl_path ,pp.id,pp.identificador,pp.name,pp.last_name,pp.prison_per_observations 
+from traslation_head th 
+INNER JOIN prison_location ploc on th.crs_id_source=ploc.id 
+INNER JOIN prison_location crsd on th.crs_id_destination=crsd.id 
+INNER JOIN traslation_type ty on th.trasl_type_id=ty.trasl_type_id 
+INNER JOIN user_login u on th.usr_id=u.usr_id 
+INNER JOIN traslation_details tdls on th.trasl_id=tdls.trasl_id 
+INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this->trasl_id and th.trasl_state='t' and tdls.trasl_det_status='t'";
+           //echo ''.$query;
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 /*
                  */
@@ -535,9 +532,9 @@ ORDER BY th.trasl_id ASC;";
     public function updateObservationsAnalyst() {
         $currentDateTime = date('Y-m-d');
         try {
-            $query = " UPDATE traslation_head SET trasl_observations_analyst='$this->trasl_observations', trasl_state_process='REVISION', trasl_director_assigned = $this->trasl_director_assigned,trasl_analyzed_by=$this->usr_id,tras_date_analyst_send='$currentDateTime' WHERE trasl_id =$this->trasl_id ";
+            $query = " UPDATE traslation_head SET trasl_observations_analyst='$this->trasl_observations', trasl_state_process='revision', trasl_director_assigned = $this->trasl_director_assigned,trasl_analyzed_by=$this->usr_id,tras_date_analyst_send='$currentDateTime' WHERE trasl_id =$this->trasl_id ";
             //echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Observaciones de Traslado Actualizadas');
             } else {
@@ -1434,15 +1431,16 @@ GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_
 
     public function report2Todos($from, $to) {
         try {
-            $query = "SELECT count(ppl.prison_per_id ) as numbers,concat(ppl.prison_per_name,' ',ppl.prison_per_lastname)as names FROM traslation_head th 
+            $query = "SELECT count(ppl.id ) as numbers,concat(ppl.name,' ',ppl.last_name)as names 
+ FROM traslation_head th 
                         INNER JOIN traslation_details td 		on th.trasl_id=td.trasl_id
-                        INNER JOIN  center_crs crs 					on th.crs_id_destination=crs.crs_id
+                        INNER JOIN  prison_location crs 					on th.crs_id_destination=crs.id
                         INNER JOIN  traslation_type typ 		on th.trasl_type_id = typ.trasl_type_id
-                        INNER JOIN prison_person ppl 				on td.prison_per_id=ppl.id_sgp
+                        INNER JOIN prison_person ppl 				on td.prison_per_id=ppl.id
                         WHERE   (th.trasl_date_request BETWEEN '$from' AND '$to' )
-                        GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_lastname ORDER BY names;";
+                        GROUP BY ppl.id,ppl.id,ppl.name,ppl.last_name ORDER BY names;";
             //echo '' . $query;
-            $result = parent::execute($query);
+            $result = parent::execute_sgp($query);
             if (pg_fetch_row($result)) {
                 $numrows = pg_numrows($result);
                 // Loop through rows in the result set

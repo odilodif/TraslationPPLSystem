@@ -112,7 +112,7 @@ class FileDocument extends Connection implements ICrud {
         try {
             $query = "INSERT  INTO file_document (prison_per_id,file_state,file_path,file_description_name)   VALUES( $this->prison_per_id,'t','$this->file_path','$this->file_description_name');";
             //echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Documento Guardado');
             } else {

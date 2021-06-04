@@ -97,7 +97,7 @@ end
 from  direction_area da
 		INNER JOIN 	 user_login u  on da.area_id=u.area_id
 		where u.usr_id=$user_id)";
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 /*
                  * area_id	area_desription	

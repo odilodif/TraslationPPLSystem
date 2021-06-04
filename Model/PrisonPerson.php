@@ -468,7 +468,7 @@ ORDER BY pp.last_name ASC ; ";
         $info=NULL;
         try {
             Connection::getInstance()->getConnection();
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             //echo ''.$rows;
             if ($rs) {
                 /*

@@ -175,8 +175,9 @@
                                         <label>Dirección Técnica</label>
                                     </div>
                                     <div class="item11">
-                                        <input type="text" id="trasl_director_assigned" hidden="">
-                                        <input type="text" id="directorsPltaCtrl" readonly="">
+                                        <input type="text" id="trasl_director_assigned" hidden="" >
+                                        <input type="text" id="area_desription" >
+                                        <input type="text" id="directorsPltaCtrl" >
                                     </div>
                                     <div class="item12">
                                         <label> Cometario Director CPL</label>
@@ -228,7 +229,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline" onclick="sendToDirector();">Enviar a Director</button>
+                                <button type="button" class="btn btn-primary" onclick="sendToDirector();">Enviar a Director</button>
                             </div>
                         </form>
                     </div>

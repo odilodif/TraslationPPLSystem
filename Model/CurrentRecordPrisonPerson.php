@@ -18,19 +18,19 @@ class CurrentRecordPrisonPerson implements ISurfMove {
         $this->id_ppl=$idppl;
     }
     public function FielsEmpty() {
-        $query="SELECT ppl.prison_per_id, ppl.prison_per_name, ppl.prison_per_lastname, ' ' as file_id 
+        $query="SELECT ppl.id, ppl.name, ppl.last_name, ' ' as file_id 
 	,	'' as file_path,' ' as file_description_name
-		from prison_person ppl  WHERE ppl.prison_per_id = $this->id_ppl;";
+		from prison_person ppl  WHERE ppl.id= $this->id_ppl;";
         
         return $query;
     }
 
     public function move1() {      
-        $query="SELECT ppl.prison_per_id, ppl.prison_per_name, ppl.prison_per_lastname,fd.file_id
+        $query="SELECT ppl.id, ppl.name, ppl.last_name,fd.file_id
 	,	fd.file_path,fd.file_description_name
 		from prison_person ppl 
-		INNER JOIN file_document fd ON ppl.prison_per_id=fd.prison_per_id
-		WHERE ppl.prison_per_id = $this->id_ppl and fd.file_state='t';";         
+		INNER JOIN file_document fd ON ppl.id=fd.prison_per_id
+		WHERE ppl.id = $this->id_ppl and fd.file_state='t';";         
         return $query;
     }
 

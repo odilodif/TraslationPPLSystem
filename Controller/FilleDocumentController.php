@@ -47,7 +47,7 @@ if ($_FILES['file_pdf_ppl']) {
             $file->setFile_description_name($final_image);
             $info = $file->savePathPdf();
             if ($info['success']) {
-                $response = array('success' => TRUE, 'message' => 'Documeto Guardado Exitosamente', 'path' => $pathSave);
+                $response = array('success' => TRUE, 'message' => 'Documento Guardado Exitosamente', 'path' => $pathSave);
                 echo json_encode($response);
             } else {
                 echo json_encode($info);

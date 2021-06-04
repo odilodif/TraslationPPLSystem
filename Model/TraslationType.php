@@ -57,7 +57,7 @@ class TraslationType extends Connection implements ICrud {
     public function listAll() {
                   try {
                     $query = " select * from traslation_type  where trasl_type_state='t'";
-                    $this->rs = parent::execute($query);
+                    $this->rs = parent::execute_sgp($query);
                    if ($this->rs) {
                             while ($row = pg_fetch_row($this->rs)) {
                                 $info[] = array('success'       => TRUE,
