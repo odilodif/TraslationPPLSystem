@@ -136,12 +136,14 @@ class PrisonPerson extends Connection implements ICrud {
         parent::__construct();
     }
 
-    public function listAll() {}
-    
+    public function listAll() {
+        
+    }
+
     /* funcion strategia
      *
      */
-    
+
     public function listAllWithCrs($crs_id) {
         try {
             $query = "SELECT DISTINCT pp.id, pp.name,pp.last_name,pp.identificador,'' as image_medium,' ' as prison_per_fingerprinter,pp.state,pp.prontuario , 
@@ -157,8 +159,8 @@ and pm1.state in ('draft','done')
 and pp.state<>'free' 
 and pp.center_id= $crs_id  
 ORDER BY pp.last_name ASC ; ";
-          //  echo ''.$query;
-            
+            //  echo ''.$query;
+
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 while ($row = pg_fetch_row($this->rs)) {
@@ -357,7 +359,7 @@ ORDER BY pp.last_name ASC ; ";
         try {
             $query = "UPDATE prison_person SET prison_per_name='$name'	, prison_per_lastname='$lastname' WHERE prison_per_id=$id";
             $rs = parent::execute($query);
-            echo ''.$query;
+            echo '' . $query;
             // $rows = pg_num_rows($rs);           
             if ($rs) {
 
@@ -436,13 +438,15 @@ ORDER BY pp.last_name ASC ; ";
     public function readPrisonPersonByFiles($id_ppl) {
         try {
             Connection::getInstance()->getConnection();
-            $query = "SELECT ppl.prison_per_id, ppl.prison_per_name, ppl.prison_per_lastname,f.file_path,f.file_description_name from prison_person ppl
- INNER JOIN file_document f on ppl.prison_per_id=f.prison_per_id
- WHERE ppl.prison_per_id = $id_ppl and f.file_state='t';";
-            $this->rs = parent::execute($query);
-            if ($this->rs) {
+            $query = "SELECT ppl.id, ppl.name, ppl.last_name,f.file_path,f.file_description_name 
+from prison_person ppl
+INNER JOIN file_document f on ppl.id=f.prison_per_id
+WHERE ppl.id = $id_ppl and f.file_state='t';";
+            //echo 'q '.$query;
+            $rs = parent::execute_sgp($query);
+            if ($rs) {
                 /*  , ,  */
-                while ($row = pg_fetch_row($this->rs)) {
+                while ($row = pg_fetch_row($rs)) {
                     $info[] = array('success' => TRUE,
                         'prison_per_id' => $row[0],
                         'prison_per_name' => $row[1],
@@ -451,7 +455,11 @@ ORDER BY pp.last_name ASC ; ";
                         'file_description_name' => $row[4]
                     );
                 }
-                return $info;
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, 'message' => 'No existen certificados!!!'));
+                }
             } else {
 
                 return array('success' => FALSE, 'message' => 'error al consultar lista PPLs con Certificados');
@@ -465,7 +473,7 @@ ORDER BY pp.last_name ASC ; ";
 
     public function getMove($query) {
         //echo ''.$query;
-        $info=NULL;
+        $info = NULL;
         try {
             Connection::getInstance()->getConnection();
             $rs = parent::execute_sgp($query);
@@ -497,7 +505,7 @@ ORDER BY pp.last_name ASC ; ";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar Traslado' . $exc->getMessage());
         } finally {
-           // parent::closeConnection();
+            // parent::closeConnection();
         }
     }
 
@@ -556,12 +564,12 @@ WHERE ppl.prison_per_id = $id_ppl ;";
             parent::closeConnection();
         }
     }
-    
+
     public function deleteBolleanPPL($id) {
         try {
             $query = "UPDATE prison_person SET prison_per_state='f'  WHERE prison_per_id=$id";
             $rs = parent::execute($query);
-           // echo ''.$query;
+            // echo ''.$query;
             // $rows = pg_num_rows($rs);           
             if ($rs) {
 

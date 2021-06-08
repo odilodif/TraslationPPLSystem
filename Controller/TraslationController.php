@@ -403,6 +403,19 @@ if (isset($_POST['Traslation'])) {
         }
     }
 
+    
+      if ($_POST['Traslation'] === 'refusedAprobed') {
+        $traslation = new Traslation();
+        $result = $traslation->updateRefusedAprobed( $_POST['idTraslation']);
+
+        if ($result['success']) {
+            echo json_encode($result);
+        } else {
+            echo json_encode($result);
+        }
+    }
+    
+    
 
     if ($_POST['Traslation'] === 'saveTraslationApprobed') {
         $traslation = new Traslation();

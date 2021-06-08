@@ -1048,18 +1048,18 @@ WHERE th.trasl_state_process in('AUTHORIZED') ;";
     public function reviewTraslation($trasl_id) {
 
         try {
-            $query = "Select th.trasl_id,	center_crs.crs_description as crs_source,crsd.crs_description as crs_destination
+            $query = "select th.trasl_id,	crs.name as crs_source,crsd.name as crs_destination
 		,	th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_observations_analyst,th.trasl_path
-		,pp.prison_per_id,pp.prison_per_identification,pp.prison_per_name,pp.prison_per_lastname,pp.prison_per_observations,th.trasl_descripcion,th.trasl_commentary_dir_pltactral from traslation_head  th
-		INNER JOIN center_crs   on th.crs_id_source=center_crs.crs_id
-		INNER JOIN center_crs crsd  on th.crs_id_destination=crsd.crs_id
+		,pp.id,pp.identificador,pp.name,pp.last_name,pp.prison_per_observations,th.trasl_descripcion,th.trasl_commentary_dir_pltactral from traslation_head  th
+		INNER JOIN prison_location crs   on th.crs_id_source=crs.id
+		INNER JOIN prison_location crsd  on th.crs_id_destination=crsd.id
 		INNER JOIN  user_login u    on  th.usr_id=u.usr_id
 		INNER JOIN  traslation_details td on th.trasl_id=td.trasl_id
-		INNER JOIN prison_person pp  on  td.prison_per_id=pp.id_sgp
+		INNER JOIN prison_person pp  on  td.prison_per_id=pp.id
 		WHERE    th.trasl_id=$trasl_id";
 
             //echo ''.$query;
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 /* trasl_id	
                  * crs_source	
@@ -1158,7 +1158,7 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
         try {
             $query = " UPDATE traslation_head SET trasl_commentary_dir_pltactral='$commentary' WHERE trasl_id =$trasl_id ";
             //echo "string".$query_local;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Observaciones de Traslado Actualizadas');
             } else {
@@ -1172,6 +1172,27 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
             parent::closeConnection();
         }
     }
+    
+    
+        public function updateRefusedAprobed($trasl_id) {
+        try {
+            $query = " UPDATE traslation_head SET trasl_state_process='sent' WHERE trasl_id =$trasl_id ";
+            //echo "string".$query_local;
+            $rs = parent::execute_sgp($query);
+            if ($rs) {
+                return $info = array('success' => TRUE, 'message' => 'El traslado fue devuelto');
+            } else {
+
+                return $info = array('success' => FALSE, 'message' => 'No se pudo actualizar las Observaciones del Traslado');
+                ;
+            }
+        } catch (Exception $exc) {
+            //echo 'error exception al crear Traslados' . $exc->getMessage();
+        } finally {
+            parent::closeConnection();
+        }
+    }
+    
 
     public function saveTraslationApprobed($trasl_id, $usr_id_approved, $dirParent) {
         $dateapproved = date('Y-m-d');

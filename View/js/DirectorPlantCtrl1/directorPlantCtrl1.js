@@ -38,7 +38,7 @@ function listTraslationByApprobePltanCtrl1(usr_id) {
                     body += "<td>" + data.names_analyst + "</td>";
                     body += "<td>" + data.status_proces + "</td>";
                     body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + "   );'> Revisión </button></td>";
-
+                    body += "<td>" + "<button type='button' class='btn btn-warning btn-xs'  onclick='javascript:refusedAprobed(" + data.trasl_id + "   );'> Rechazar </button></td>";
                     body += "</tr>";
 
                     $("#tblAprobed_to_approved tbody").append(body);
@@ -60,12 +60,45 @@ function listTraslationByApprobePltanCtrl1(usr_id) {
     })
 
 }
+
+function refusedAprobed(trasl_id) {  
+    
+    var dat = {
+        "Traslation": 'refusedAprobed',
+        "idTraslation": trasl_id
+    };
+    $.ajax({
+        data: dat,
+        url: './Controller/TraslationController.php',
+        type: "POST",
+        dataType: 'JSON',
+        beforeSend: function () {
+            $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
+        },
+        success: function (result) {
+            $('#respuestaAjax').html('');
+            if (result['success']) {
+                alert(result['message']);
+                $('#traslationAnalystNearFmly').modal('hide');
+
+            } else {
+                alert('Hubo un error al aporbar  los Traslados');
+            }
+        },
+        error: function (result) {
+            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        }
+
+    }); 
+
+}
+
 function listTraslationApprobedPltanCtrl1(usr_id) {
     //alert(trasl_type_id);
     var dat = {
         "Traslation": 'TraslationListByApprobe',
         "usr_id": usr_id,
-       "list_tral_approbed_aut": 'approved'
+        "list_tral_approbed_aut": 'approved'
 
     };
 
@@ -120,9 +153,9 @@ function listTraslationApprobedPltanCtrl1(usr_id) {
 function listTraslationExecutedPltanCtrl1(usr_id) {
     //alert(trasl_type_id);
     var dat = {
-        "Traslation": 'TraslationListByApprobe',//profile_id
+        "Traslation": 'TraslationListByApprobe', //profile_id
         "usr_id": usr_id,
-       "list_tral_approbed_aut": 'executed'
+        "list_tral_approbed_aut": 'executed'
 
     };
 
@@ -178,9 +211,9 @@ function listTraslationExecutedPltanCtrl1(usr_id) {
 function listTraslationAuthorizedPltanCtrl1(usr_id) {
     //alert(trasl_type_id);
     var dat = {
-        "Traslation": 'TraslationListByApprobe',//profile_id
+        "Traslation": 'TraslationListByApprobe', //profile_id
         "usr_id": usr_id,
-       "list_tral_approbed_aut": 'authorized'
+        "list_tral_approbed_aut": 'authorized'
 
     };
 
@@ -321,11 +354,11 @@ function reviewLoadPfPPL(id_ppl) {
                 $('#modal_ppl_load_pdf').modal('show');
 
             } else {
-                alert('Hubo un error al buscar PPL');
+                alert(result[0]['message']);
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        error: function (jqXHR, error, errorThrown) {
+            alert(jqXHR.responseText);
         }
 
     });
@@ -350,18 +383,18 @@ function btnApprobed() {
          * 
          **/
         var usr_id_approbed = $('#txtIdUser').val();
-         var dirParent = $('#id_DirectionParent').text();
+        var dirParent = $('#id_DirectionParent').text();
         if (textval0.is(':checked')) {
             //alert(textval1);
-            jsonObj.push({"trasl_id": textval1, "usr_id_approbed": usr_id_approbed,"dirParent":dirParent});
-           
+            jsonObj.push({"trasl_id": textval1, "usr_id_approbed": usr_id_approbed, "dirParent": dirParent});
+
         }
-     
-         
+
+
     });
     traslationSaveApprobed(jsonObj);
     //alert('Datos  actualizados');
-    
+
 }
 
 
@@ -431,10 +464,10 @@ function saveCommentary() {
     });
 }
 
-function loadDirectionParent(usr_id) { 
-  
-    var dat = {       
-       "DirectionArea": 'loadDirectionParent',
+function loadDirectionParent(usr_id) {
+
+    var dat = {
+        "DirectionArea": 'loadDirectionParent',
         "usr_id": usr_id
     };
     $.ajax({
@@ -448,8 +481,8 @@ function loadDirectionParent(usr_id) {
         success: function (result) {
             $('#respuestaAjax').html('');
             if (result['success']) {
-               jQuery('#id_DirectionParent').text(result['area_parent']);
-               jQuery('#directionParentDesc').text(result['area_desription']);
+                jQuery('#id_DirectionParent').text(result['area_parent']);
+                jQuery('#directionParentDesc').text(result['area_desription']);
 
             } else {
                 alert('No hay Dirección Padre');

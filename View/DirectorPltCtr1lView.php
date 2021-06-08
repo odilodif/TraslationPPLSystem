@@ -339,7 +339,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline" onclick="saveCommentary();">Guardar</button>
+                                    <button type="button" class="btn-primary " onclick="saveCommentary();">Guardar</button>
                                 </div>
                             </form>
                         </div>
@@ -363,7 +363,7 @@
                                     </div>
                                     <div>   
                                         <label>Nombres Completos del PPL</label>
-                                        <input type="text" id="ppl_name_lastname" value=""/> <br>
+                                        <input type="text" id="ppl_name_lastname"  style="width: 250px;"value=""/> <br>
                                         <lavel>Adjuntos</lavel>
                                         <div style=" height: 200px; overflow-y: scroll;">
                                             <table id="listCertificatesPPLS" class="table table-striped table-bordered" style="width:70%">
