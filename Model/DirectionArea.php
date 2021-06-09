@@ -158,7 +158,7 @@ WHERE u.usr_id=$usr_id;";
             $query = "SELECT da.area_id,da.area_desription  from  direction_area da
 INNER JOIN user_login u   on da.area_id=u.area_id
 WHERE u.usr_id=$usr_id;";
-            $this->rs = parent::execute($query);
+            $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
                 /*
                  * area_parent	area_desription
