@@ -125,6 +125,7 @@ from  direction_area da
     }
 
     public function loadDirectionParent($usr_id) {
+        $info;
         try {
             $query = "SELECT da.area_parent,da.area_desription  from  direction_area da
 INNER JOIN user_login u   on da.area_id=u.area_id
@@ -141,9 +142,13 @@ WHERE u.usr_id=$usr_id;";
                         'area_desription' => $row[1]
                     );
                 }
-                return $info;
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array('success'=>FALSE,'message'=>'No Tiene Privilegios en esta area');
+                }
             } else {
-                return $info;
+                return array('success'=>FALSE,'message'=>'Hay problemas DDBB');
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */

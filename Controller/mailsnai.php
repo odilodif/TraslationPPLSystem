@@ -11,7 +11,7 @@ private $mail;
         $this->mail = new PHPMailer(true);
     }
 
-    public function sendMailSnai($toaddress,$to_address_asesor) {
+    public function sendMailSnai($toaddress,$to_address_asesor,$idTraslado) {
         try {
            
             //Server settings
@@ -21,7 +21,7 @@ private $mail;
             $this->mail->Host = 'smtp.gmail.com;';
             $this->mail->SMTPAuth = true;
             $this->mail->Username = 'dario.buk@gmail.com';
-            $this->mail->Password = 'odilodif123';
+            $this->mail->Password = 'Odilodif123';
             $this->mail->SMTPSecure = 'ssl'; /* tls */
             $this->mail->Port = 465; /* 587 */
 
@@ -38,7 +38,7 @@ private $mail;
             //Content
             $this->mail->isHTML(true);
             $this->mail->Subject = 'Tiene un Traslado!';
-            $this->mail->Body = 'Estimad@ tiene un Traslado por Atender';
+            $this->mail->Body = 'Estimad@ tiene el  Traslado Nro.'.$idTraslado.' por Atender';
  
             $this->mail->send();
            

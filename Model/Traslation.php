@@ -1053,10 +1053,10 @@ WHERE th.trasl_state_process in('authorized') ;";
                 if (!empty($info)) {
                     return $info;
                 } else {
-                    return array(array('success'=>FALSE,'message'=>'No hay datos que mostrar'));
+                    return array(array('success' => FALSE, 'message' => 'No hay datos que mostrar'));
                 }
             } else {
-                return array(array('success'=>FALSE,'message'=>'Problemas conla Base de datos'));
+                return array(array('success' => FALSE, 'message' => 'Problemas conla Base de datos'));
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */
@@ -1297,11 +1297,12 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
     // get Navegation Move 
     public function getMove($query) {
         //echo ''.$query;
+        $info;
         try {
             Connection::getInstance()->getConnection();
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
-                $info = null;
+
 
                 while ($row = pg_fetch_row($this->rs)) {
                     $info[] = array('success' => TRUE,
@@ -1326,9 +1327,13 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
                         'status_sgp' => $row[17]
                     );
                 }
-                return $info;
+                if(!empty($info)) {
+                    return $info;;
+                } else {
+                    return array(array('success'=>FALSE,'message'=>'No hay datos que mostrar'));
+                }                
             } else {
-                return array('success' => FALSE, 'message' => 'No hay resultado');
+                return array('success' => FALSE, 'message' => 'Problema con la base de datos');
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */

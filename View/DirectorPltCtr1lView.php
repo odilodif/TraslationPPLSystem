@@ -1,5 +1,10 @@
+<?php
 
-
+date_default_timezone_set('America/Guayaquil');
+if (isset($_SESSION['_USU']) && isset($_SESSION)) {    
+    
+    ?>
+    
 <script src="./View/js/DirectorPlantCtrl1/directorPlantCtrl1.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="./View/css/datatables/dataTables.bootstrap.min.css">
 
@@ -496,3 +501,12 @@
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="./View/dist/js/demo.js" type="text/javascript"></script>
+
+    <?php    
+}
+ else {
+    header("Location:../index.php");
+}
+
+?>
+

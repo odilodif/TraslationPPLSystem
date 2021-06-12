@@ -156,8 +156,8 @@ class User extends Connection implements ICrud {
         
     }
 
-    public function getUserByNickPass($nick, $pass,$ldapname_complete) {
-        $pass_encrypt= md5("".$pass);
+    public function getUserByNickPass($nick, $pass, $ldapname_complete) {
+        $pass_encrypt = md5("" . $pass);
         $query_if_exist = "SELECT if_exist_user('$nick','$pass_encrypt','$ldapname_complete');";
         //echo $query_if_exist;
         $rs_exist = parent::fetch_result_sgp($query_if_exist);
@@ -172,8 +172,8 @@ INNER JOIN  profile_saved psv on u.usr_id=psv.usr_id
 INNER JOIN  menu_objects mb on  mb.menu_description_id=psv.menu_description_id
 INNER JOIN  prison_location crs on u.crs_id =crs.id
 where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_saved_id asc;";
-               //echo '' . $query;               
-                
+                //echo '' . $query;               
+
                 $this->rs = parent::execute_sgp($query);
                 if ($this->rs) {
 
@@ -249,6 +249,11 @@ WHERE typ.trasl_type_id=$typ";
                         'message' => 'mail encontrado',
                         'usr_email' => $row[0]
                     );
+                }
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array('success'=>FALSE,'message'=>'No hay email');
                 }
                 return $info;
             } else {

@@ -54,15 +54,15 @@ function listTraslationByApprobePltanCtrl1(usr_id) {
             }
         }
         ,
-        error: function () {
-
+         error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
     })
 
 }
 
-function refusedAprobed(trasl_id) {  
-    
+function refusedAprobed(trasl_id) {
+
     var dat = {
         "Traslation": 'refusedAprobed',
         "idTraslation": trasl_id
@@ -85,11 +85,11 @@ function refusedAprobed(trasl_id) {
                 alert('Hubo un error al aporbar  los Traslados');
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+         error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
 
-    }); 
+    });
 
 }
 
@@ -143,8 +143,8 @@ function listTraslationApprobedPltanCtrl1(usr_id) {
             }
         }
         ,
-        error: function () {
-
+         error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
     })
 
@@ -200,8 +200,8 @@ function listTraslationExecutedPltanCtrl1(usr_id) {
             }
         }
         ,
-        error: function () {
-
+        error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
     })
 
@@ -258,8 +258,8 @@ function listTraslationAuthorizedPltanCtrl1(usr_id) {
             }
         }
         ,
-        error: function () {
-
+         error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
     })
 
@@ -316,8 +316,8 @@ function reviewTraslation(trasl_id) {
                 alert('Hubo un error al Editar  el Traslado');
             }
         },
-        error: function (result) {
-            alert('RESULTADO NULO O ERROR AL CONECTAR LA BASE DE DATOS');
+        error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
 
     });
@@ -422,8 +422,8 @@ function traslationSaveApprobed(listApproved) {
                 alert(result['nro'] + '  ' + result['message']);
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        error: function (jqXHR, exception) {
+            alert('ERROR: '+jqXHR.responseText);
         }
 
     });
@@ -457,8 +457,8 @@ function saveCommentary() {
                 alert('Hubo un error al aporbar  los Traslados');
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
 
     });
@@ -488,8 +488,8 @@ function loadDirectionParent(usr_id) {
                 alert('No hay Dirección Padre');
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
 
     });

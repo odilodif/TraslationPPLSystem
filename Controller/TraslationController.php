@@ -611,7 +611,7 @@ if (isset($_FILES['file_pdf'])) {
 
                 $get_mail = $usr->getmailByTypTrasl($_POST['trasl_type_id']);
                 $to_address_asesor = 'edgar.villa@atencionintegral.gob.ec';
-                $get_rs_mail = $mailsnai->sendMailSnai($get_mail['usr_email'], $to_address_asesor);
+                $get_rs_mail = $mailsnai->sendMailSnai($get_mail['usr_email'], $to_address_asesor,$_POST['idTraslation']);
                 //echo ''.$get_rs_mail;
                 $flag_mail = (boolean) $get_rs_mail;
                 $response = array('success' => TRUE, 'message' => 'Datos Guardados Exitosamente', 'path' => $pathSave, 'sendmail' => $flag_mail,'email'=>$get_mail['usr_email']);
