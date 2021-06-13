@@ -405,7 +405,7 @@ function createTraslationDetails(trasl_details, id_traslation,obj_sent_mail) {
                 $('#respuestaAjax').html('');
                 //var count = Object.keys(ppls).length;
                 
-                alert('' + result['nro'] + ': PPLs guardados en el Sistema de Traslados con Número: ' + id_traslation+'\n' + (obj_sent_mail.sendmail ? ' Y comunicado vía correo electrónico a '+obj_sent_mail.email : 'Problema al enviarel correo') );
+                alert('' + result['nro'] + ': PPLs guardados en el Sistema de Traslados con Número: ' + id_traslation+'\n' + (obj_sent_mail.sendmail ? ' Y comunicado vía correo electrónico a '+obj_sent_mail.email : 'Problema al enviar el correo') );
                 //location.reload();
 
 
