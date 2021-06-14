@@ -15,7 +15,8 @@ if (isset($_POST['TraslationDetails'])) {
             $i = 0;
             foreach ($list as $key => $value) {
                 $trasl_id = $value['trasl_id'];
-                $prontuario = $value['prontuario'];                                
+                $prontuario = $value['prontuario']; 
+                
                 if ($i == 0) {
                     $values = "VALUES($trasl_id, (SELECT \"id\" FROM prison_person WHERE prontuario='$prontuario'),'t')";
                 }
