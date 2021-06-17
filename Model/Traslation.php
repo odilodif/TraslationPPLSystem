@@ -1258,7 +1258,7 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
         try {
             $query = " UPDATE traslation_head SET trasl_state_process='AUTHORIZED',trasl_date_authorized='$dateauthorized', trasl_authorized_by=$usr_id_authorized WHERE trasl_id =$trasl_id ";
             //  echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Observaciones de Traslado Actualizadas');
             } else {

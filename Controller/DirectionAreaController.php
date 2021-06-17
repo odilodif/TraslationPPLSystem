@@ -12,11 +12,7 @@ if (isset($_POST['DirectionArea'])) {
     if ($_POST['DirectionArea'] === 'loadDirecctionAssigned') {
         $direction = new DirectionArea();
         $result = $direction->loadDirecctionAssigned($_POST['user_id']);
-        if ($result['success']) {
-            echo json_encode($result);
-        } else {
-            echo json_encode($result);
-        }
+        echo json_encode($result);
     }
     if ($_POST['DirectionArea'] === 'loadDirectionParent') {
         $direction = new DirectionArea();
@@ -27,7 +23,7 @@ if (isset($_POST['DirectionArea'])) {
             echo json_encode($result);
         }
     }
-     if ($_POST['DirectionArea'] === 'loadDirection') {
+    if ($_POST['DirectionArea'] === 'loadDirection') {
         $direction = new DirectionArea();
         $result = $direction->loadDirection($_POST['usr_id']);
         if ($result['success']) {

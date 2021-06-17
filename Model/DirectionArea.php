@@ -85,8 +85,9 @@ class DirectionArea extends Connection implements ICrud {
     }
 
     public function loadDirecctionAssigned($user_id) {
+        $info;
         try {
-            $query = "	SELECT u.usr_id,da.area_desription,u.usr_name,u.usr_lasname from  direction_area da
+            $query = "SELECT u.usr_id,da.area_desription,u.name_complete from  direction_area da
 		INNER JOIN 	 user_login u  on da.area_id=u.area_id
 		where da.area_id=(SELECT 
 case 
@@ -108,11 +109,14 @@ from  direction_area da
                         'message' => 'Direccción Encontrada',
                         'area_id' => $row[0],
                         'area_desription' => $row[1],
-                        'usr_name' => $row[2],
-                        'usr_lasname' => $row[3]
+                        'name_complete' => $row[2]
                     );
                 }
-                return $info;
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array('success' => FALSE, '' => 'No existe datos de Director Técnico');
+                }
             } else {
                 return $info;
             }
@@ -145,10 +149,10 @@ WHERE u.usr_id=$usr_id;";
                 if (!empty($info)) {
                     return $info;
                 } else {
-                    return array('success'=>FALSE,'message'=>'No Tiene Privilegios en esta area');
+                    return array('success' => FALSE, 'message' => 'No Tiene Privilegios en esta area');
                 }
             } else {
-                return array('success'=>FALSE,'message'=>'Hay problemas DDBB');
+                return array('success' => FALSE, 'message' => 'Hay problemas DDBB');
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */

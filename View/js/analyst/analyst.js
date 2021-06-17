@@ -2,12 +2,12 @@
  * Global List Traslation Analist List
  */
 
-function traslationListAnalyst(usr_id,type) {
+function traslationListAnalyst(usr_id, type) {
 //alert(crs_id);
     var dat = {
         "Traslation": 'TraslationListAnalyst',
         "usr_id": usr_id,
-        "type":type
+        "type": type
     };
 
     $.ajax({
@@ -27,7 +27,7 @@ function traslationListAnalyst(usr_id,type) {
             if (result[0]['success']) {
                 $.each(result, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><a href='./?page=CreateRequestTraslationView&type="+type+"&idTraslation="+ data.trasl_id +"'>"+data.trasl_id+"</a></td>";
+                    body += "<td><a href='./?page=CreateRequestTraslationView&type=" + type + "&idTraslation=" + data.trasl_id + "'>" + data.trasl_id + "</a></td>";
                     body += "<td>" + data.crs_source + "</td>";
                     body += "<td>" + data.crs_destination + "</td>";
                     body += "<td>" + data.trasl_date_request + "</td>";
@@ -127,8 +127,7 @@ function editTraslationAnalystNearFmly(trasl_id, usr_id, status_process) {
             }
 
         });
-    }
-    else
+    } else
     {
         alert('El Traslado debe estar en Estado de Revisión ');
     }
@@ -178,7 +177,7 @@ function loadPfPPL(id_ppl) {
                         body += "<td hidden><input type ='text' value='" + data.file_id + "' /></td>";
                         body += "<td>" + data.file_description_name + "</td>";
                         body += "<td><a id=\"pdf_download_dir\" href=\"" + data.file_path + "\" download=\"certificado-desde-crs.pdf\">Documento.pdf [66kb]<img src=\"./View/images/icons/internet-download-symbol.png\"></a></td>";
-                        body += "<td>" + "<a href='javascript:deleteDocument(" + data.file_id + ","+ id_ppl+ ");' class='glyphicon glyphicon-edit'>Eliminar</a>" + "</td>";
+                        body += "<td>" + "<a href='javascript:deleteDocument(" + data.file_id + "," + id_ppl + ");' class='glyphicon glyphicon-edit'>Eliminar</a>" + "</td>";
                         /*body += "<td>" + "<a href='javascript:deletePPLDialog(" + data.prison_per_id + ", \"" + data.prison_per_lastname + "\" );' class = 'glyphicon glyphicon-remove-circle' > </a>" + "</td>";*/
                         body += "</tr>";
                         $("#tblpplDocument tbody").append(body);
@@ -241,8 +240,7 @@ function sendToDirector() {
                 $('#traslationAnalystNearFmly').modal('hide');
                 location.reload();
 
-            }
-            else {
+            } else {
                 alert('Hubo un error al Guardar  el Traslado');
             }
 
@@ -298,7 +296,7 @@ function setDirectionAssigned(user_id) {
 
     var dat = {
         "DirectionArea": 'loadDirecctionAssigned',
-        "user_id":user_id
+        "user_id": user_id
     };
 
     $.ajax({
@@ -315,22 +313,21 @@ function setDirectionAssigned(user_id) {
             if (result['success']) {
                 formulario.find("#trasl_director_assigned").val(result['area_id']);
                 formulario.find("#area_desription").val(result['area_desription']);
-                formulario.find("#directorsPltaCtrl").val(result['usr_name'] + ' ' + result['usr_lasname']);
+                formulario.find("#directorsPltaCtrl").val(result['name_complete']);
 
-            }
-            else
+            } else
             {
                 alert('Hay Un problema con la Dirección');
             }
         }
         ,
-        error: function () {
-
+        error: function (jqXHR, exception) {
+            alert('Error' + jqXHR.responseText);
         }
     })
 }
 
-function deleteDocument(idDoc,idPPL) {
+function deleteDocument(idDoc, idPPL) {
     var r = confirm("Está Seguro que desea eliminar este Documento! ");
     if (r == true) {
         var dat = {
