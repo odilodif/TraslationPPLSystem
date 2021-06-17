@@ -9,22 +9,19 @@
 date_default_timezone_set('America/Guayaquil');
 if (isset($_POST['FileDocument'])) {
     include_once ('./../Model/FileDocument.php');
-     if ($_POST['FileDocument'] === 'DeleteDocument') {
+    if ($_POST['FileDocument'] === 'DeleteDocument') {
         $document = new FileDocument();
         $document->setFile_id($_POST['idDoc']);
+        $parametro=$_POST['idDoc'];/*obligado por el Crud*/
         $result = $document->update($parametro);
-        if ($result['success']) {
-            echo json_encode($result);
-        } else {
-            echo json_encode($result);
-        }
+        echo json_encode($result);
     }
 }
 
 
 
-if ($_FILES['file_pdf_ppl']) {
-    $valid_extensions = array( 'pdf'); // valid extensions
+if (isset($_FILES['file_pdf_ppl'])) {
+    $valid_extensions = array('pdf'); // valid extensions
     $pathUpload = './../View/documents/PPL/'; // upload directory
     $pathSave = "View/documents/PPL/";
     $img = $_FILES['file_pdf_ppl']['name'];
@@ -33,11 +30,11 @@ if ($_FILES['file_pdf_ppl']) {
     $ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
     // can upload same image using rand function    
     $final_image = $img;
-    
+
     // check's valid format
     if (in_array($ext, $valid_extensions)) {
         $pathUpload = $pathUpload . strtolower($final_image);
-        $pathSave = $pathSave . strtolower($final_image);        
+        $pathSave = $pathSave . strtolower($final_image);
         if (move_uploaded_file($tmp, $pathUpload)) {
             //echo 'test';
             include_once ('./../Model/FileDocument.php');

@@ -19,10 +19,10 @@ if (isset($_POST['Traslation'])) {
         $userid = $_POST['user_id'];
         $crs_source_id = $_POST['crs_source_id'];
         $trasl_date_request = $_POST['trasl_date_request'];
-        $profile=$_POST['profile'];
+        $profile = $_POST['profile'];
         $result = $traslation->create("VALUES($userid,$crs_source_id,'$trasl_date_request','start','t');");
-       
-        if ((boolean)$result['success']) {
+
+        if ((boolean) $result['success']) {
             echo json_encode($result);
         } else {
             echo json_encode($result);
@@ -208,11 +208,7 @@ if (isset($_POST['Traslation'])) {
         $traslation->setTrasl_id($_POST['idTraslation']);
         $traslation->setUsr_id($_POST['usr_id']);
         $result = $traslation->editTraslationAnalyst();
-        if ($result[0]['success']) {
-            echo json_encode($result);
-        } else {
-            echo json_encode($result);
-        }
+        echo json_encode($result);
     }
 
     if ($_POST['Traslation'] === 'updateTraslationAnalyst') {
@@ -403,10 +399,10 @@ if (isset($_POST['Traslation'])) {
         }
     }
 
-    
-      if ($_POST['Traslation'] === 'refusedAprobed') {
+
+    if ($_POST['Traslation'] === 'refusedAprobed') {
         $traslation = new Traslation();
-        $result = $traslation->updateRefusedAprobed( $_POST['idTraslation']);
+        $result = $traslation->updateRefusedAprobed($_POST['idTraslation']);
 
         if ($result['success']) {
             echo json_encode($result);
@@ -414,8 +410,8 @@ if (isset($_POST['Traslation'])) {
             echo json_encode($result);
         }
     }
-    
-    
+
+
 
     if ($_POST['Traslation'] === 'saveTraslationApprobed') {
         $traslation = new Traslation();
@@ -611,10 +607,10 @@ if (isset($_FILES['file_pdf'])) {
 
                 $get_mail = $usr->getmailByTypTrasl($_POST['trasl_type_id']);
                 $to_address_asesor = 'edgar.villa@atencionintegral.gob.ec';
-                $get_rs_mail = $mailsnai->sendMailSnai($get_mail['usr_email'], $to_address_asesor,$_POST['idTraslation']);
+                $get_rs_mail = $mailsnai->sendMailSnai($get_mail['usr_email'], $to_address_asesor, $_POST['idTraslation']);
                 //echo ''.$get_rs_mail;
                 $flag_mail = (boolean) $get_rs_mail;
-                $response = array('success' => TRUE, 'message' => 'Datos Guardados Exitosamente', 'path' => $pathSave, 'sendmail' => $flag_mail,'email'=>$get_mail['usr_email']);
+                $response = array('success' => TRUE, 'message' => 'Datos Guardados Exitosamente', 'path' => $pathSave, 'sendmail' => $flag_mail, 'email' => $get_mail['usr_email']);
                 echo json_encode($response);
             } else {
                 echo json_encode($info);

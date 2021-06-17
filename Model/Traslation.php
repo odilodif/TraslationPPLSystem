@@ -483,8 +483,9 @@ ORDER BY th.trasl_id ASC;";
     }
 
     public function editTraslationAnalyst() {
+        $info;
         try {
-            $query = "SELECT th.trasl_id, ploc.name as crs_source,crsd.name as crs_destination , ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_descripcion,th.trasl_path ,pp.id,pp.identificador,pp.name,pp.last_name,pp.prison_per_observations 
+            $query = "SELECT th.trasl_id, ploc.name as crs_source,crsd.name as crs_destination , ty.trasl_type_descripcion,th.trasl_date_request,u.name_complete,th.trasl_descripcion,th.trasl_path ,pp.id,pp.identificador,pp.name,pp.last_name,pp.prison_per_observations 
 from traslation_head th 
 INNER JOIN prison_location ploc on th.crs_id_source=ploc.id 
 INNER JOIN prison_location crsd on th.crs_id_destination=crsd.id 
@@ -505,20 +506,23 @@ INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this-
                         'crs_destination' => $row[2],
                         'trasl_type_descripcion' => $row[3],
                         'trasl_date_request' => $row[4],
-                        'usr_name' => $row[5],
-                        'usr_lasname' => $row[6],
-                        'trasl_descripcion' => $row[7],
+                        'usr_name_complete' => $row[5],                        
+                        'trasl_descripcion' => $row[6],
                         'trasl_path' => $row[8],
-                        'prison_per_id' => $row[9],
-                        'prison_per_identification' => $row[10],
-                        'prison_per_name' => $row[11],
-                        'prison_per_lastname' => $row[12],
-                        'prison_per_observations' => $row[13]
+                        'prison_per_id' => $row[8],
+                        'prison_per_identification' => $row[9],
+                        'prison_per_name' => $row[10],
+                        'prison_per_lastname' => $row[11],
+                        'prison_per_observations' => $row[12]
                     );
                 }
-                return $info;
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success'=>FALSE,'message'=>'No hay registros '));
+                }
             } else {
-                return $info;
+                return array(array('success'=>FALSE,'message'=>'Problemas con la base de datos'));
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */
@@ -1327,11 +1331,12 @@ WHERE th.trasl_state_process in('APPROVED','EXECUTED')";
                         'status_sgp' => $row[17]
                     );
                 }
-                if(!empty($info)) {
-                    return $info;;
+                if (!empty($info)) {
+                    return $info;
+                    ;
                 } else {
-                    return array(array('success'=>FALSE,'message'=>'No hay datos que mostrar'));
-                }                
+                    return array(array('success' => FALSE, 'message' => 'No hay datos que mostrar'));
+                }
             } else {
                 return array('success' => FALSE, 'message' => 'Problema con la base de datos');
             }

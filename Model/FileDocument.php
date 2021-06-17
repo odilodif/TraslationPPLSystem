@@ -90,7 +90,7 @@ class FileDocument extends Connection implements ICrud {
         try {
             $query = "UPDATE  file_document  SET file_state='f' WHERE file_id= $this->file_id;";
             //echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'Documento Eliminado');
             } else {

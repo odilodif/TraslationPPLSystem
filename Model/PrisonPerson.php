@@ -497,7 +497,11 @@ WHERE ppl.id = $id_ppl and f.file_state='t';";
                         'file_description_name' => $row[5]
                     );
                 }
-                return $info;
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, '' => 'No hay PPL para revisar'));
+                }
             } else {
                 return array('success' => FALSE, 'message' => 'No hay resultado');
             }

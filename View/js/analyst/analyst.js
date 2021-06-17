@@ -93,7 +93,7 @@ function editTraslationAnalystNearFmly(trasl_id, usr_id, status_process) {
                     formulario.find("#idTraslation").val(result[0]['trasl_id']);
                     formulario.find("#CplSource").val(result[0]['crs_source']);
                     formulario.find("#CplDestination").val(result[0]['crs_destination']);
-                    formulario.find("#DirectorName").val(result[0]['usr_name'] + ' ' + result[0]['usr_lasname']);
+                    formulario.find("#DirectorName").val(result[0]['usr_name_complete'] );
                     formulario.find("#obsevationAbalyst").val(result[0]['trasl_observations']);
                     formulario.find("#pdf_download_dir").attr("href", result[0]['trasl_path']);
                     formulario.find("#trasl_date_request").val(result[0]['trasl_date_request']);
@@ -122,8 +122,8 @@ function editTraslationAnalystNearFmly(trasl_id, usr_id, status_process) {
                     alert('Hubo un error al Editar  el Traslado');
                 }
             },
-            error: function (result) {
-                alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+            error: function (jqXHR, exception) {
+                alert('ERROR: '+ jqXHR.responseText);
             }
 
         });
@@ -190,8 +190,8 @@ function loadPfPPL(id_ppl) {
                 alert('Hubo un error al buscar PPL');
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
 
     });
@@ -354,8 +354,8 @@ function deleteDocument(idDoc, idPPL) {
                 }
             }
             ,
-            error: function () {
-
+            error: function (jqXHR, exception) {
+                alert('ERROR: ' + jqXHR.responseText);
             }
         })
 
