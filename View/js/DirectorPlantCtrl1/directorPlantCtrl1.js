@@ -54,8 +54,8 @@ function listTraslationByApprobePltanCtrl1(usr_id) {
             }
         }
         ,
-         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
     })
 
@@ -85,8 +85,8 @@ function refusedAprobed(trasl_id) {
                 alert('Hubo un error al aporbar  los Traslados');
             }
         },
-         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
 
     });
@@ -128,7 +128,8 @@ function listTraslationApprobedPltanCtrl1(usr_id) {
                     body += "<td>" + data.crs_destination + "</td>";
                     body += "<td>" + data.trasl_type_descripcion + "</td>";
                     body += "<td>" + data.tras_date_analyst_send + "</td>";
-                    body += "<td>" + data.names_analyst + "</td>";
+                    body += "<td>" + data.names_analyst + "</td>"; 
+                    body += "<td>" + data.trasl_approved_by + "</td>"; 
                     body += "<td>" + data.status_proces + "</td>";
                     body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + ");'> Revisión </button></td>";
                     body += "</tr>";
@@ -143,8 +144,8 @@ function listTraslationApprobedPltanCtrl1(usr_id) {
             }
         }
         ,
-         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
     })
 
@@ -201,7 +202,7 @@ function listTraslationExecutedPltanCtrl1(usr_id) {
         }
         ,
         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+            alert('ERROR: ' + jqXHR.responseText);
         }
     })
 
@@ -244,6 +245,8 @@ function listTraslationAuthorizedPltanCtrl1(usr_id) {
                     body += "<td>" + data.trasl_type_descripcion + "</td>";
                     body += "<td>" + data.tras_date_analyst_send + "</td>";
                     body += "<td>" + data.names_analyst + "</td>";
+                    body += "<td>" + data.trasl_approved_by + "</td>";
+                    body += "<td>" + data.trasl_authorized_by + "</td>";
                     body += "<td>" + data.status_proces + "</td>";
                     body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + ");'> Revisión </button></td>";
                     body += "</tr>";
@@ -258,8 +261,8 @@ function listTraslationAuthorizedPltanCtrl1(usr_id) {
             }
         }
         ,
-         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
         }
     })
 
@@ -287,7 +290,7 @@ function reviewTraslation(trasl_id) {
                 formulario.find("#idTraslation").val(result[0]['trasl_id']);
                 formulario.find("#CplSource").val(result[0]['crs_source']);
                 formulario.find("#CplDestination").val(result[0]['crs_destination']);
-                formulario.find("#DirectorName").val(result[0]['usr_name'] + ' ' + result[0]['usr_lasname']);
+                formulario.find("#DirectorName").val(result[0]['usr_name_complete']);
                 formulario.find("#obsevationAbalyst").val(result[0]['trasl_observations']);
                 formulario.find("#txtCommentaryDirCrs").val(result[0]['trasl_descripcion']);
                 formulario.find("#commentarytDirPltaCtrl").val(result[0]['trasl_commentary_dir_pltactral']);
@@ -317,7 +320,7 @@ function reviewTraslation(trasl_id) {
             }
         },
         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+            alert('ERROR: ' + jqXHR.responseText);
         }
 
     });
@@ -423,7 +426,7 @@ function traslationSaveApprobed(listApproved) {
             }
         },
         error: function (jqXHR, exception) {
-            alert('ERROR: '+jqXHR.responseText);
+            alert('ERROR: ' + jqXHR.responseText);
         }
 
     });
@@ -452,7 +455,7 @@ function saveCommentary() {
             if (result['success']) {
                 alert('Datos guardados Satisfactoriamente');
                 $('#traslationAnalystNearFmly').modal('hide');
-
+                location.reload();
             } else {
                 alert('Hubo un error al aporbar  los Traslados');
             }

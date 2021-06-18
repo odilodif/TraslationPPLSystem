@@ -138,7 +138,7 @@ if (isset($_SESSION['_USU']) && isset($_SESSION)) {
                                                             <th>CrsDestino</th>
                                                             <th>TipoTraslado</th>
                                                             <th>FechaEnvíoParaAprb.</th>
-                                                            <th>Analista</th>
+                                                            <th>Analizado.Por</th>
                                                             <th>Estado</th>
                                                             <th>Revisar</th>
                                                         </tr>
@@ -171,7 +171,8 @@ if (isset($_SESSION['_USU']) && isset($_SESSION)) {
                                         <th>CrsDestino</th>
                                         <th>TipoTraslado</th>
                                         <th>FechaEnvíoParaAprb.</th>
-                                        <th>Analista</th>
+                                        <th>Analizado.Por</th> 
+                                        <th>Aprobado.Por</th> 
                                         <th>Estado</th>
                                         <th>Revisar</th>
                                     </tr>
@@ -197,7 +198,9 @@ if (isset($_SESSION['_USU']) && isset($_SESSION)) {
                                         <th>CrsDestino</th>
                                         <th>TipoTraslado</th>
                                         <th>FechaEnvíoParaAprb.</th>
-                                        <th>Analista</th>
+                                        <th>Analizado.Por</th>
+                                        <th>Aprobado.Por</th>
+                                        <th>Autorizado.Por</th>
                                         <th>Estado</th>
                                         <th>Revisar</th>
                                     </tr>
@@ -421,8 +424,9 @@ if (isset($_SESSION['_USU']) && isset($_SESSION)) {
         loadDirectionParent(usr_id);
         listTraslationByApprobePltanCtrl1(usr_id);
         listTraslationApprobedPltanCtrl1(usr_id);
-        listTraslationExecutedPltanCtrl1(usr_id);
         listTraslationAuthorizedPltanCtrl1(usr_id);
+        listTraslationExecutedPltanCtrl1(usr_id);
+       
         $(".nav-tabs a").click(function () {
             $(this).tab('show');
         });

@@ -418,9 +418,9 @@ ORDER BY pp.last_name ASC ; ";
 
     public function updateObservatios() {
         try {
-            $lquery = "UPDATE prison_person SET prison_per_observations ='$this->prison_per_observations' WHERE prison_per_id=$this->prison_per_id ;";
+            $lquery = "UPDATE prison_person SET prison_per_observations ='$this->prison_per_observations' WHERE id=$this->prison_per_id ;";
             //echo "string".$query_local;
-            $rs = parent::execute($lquery);
+            $rs = parent::execute_sgp($lquery);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => 'PPL Actualizado');
             } else {
