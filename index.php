@@ -92,7 +92,7 @@ if (isset($_SESSION['_USU'])) {
                 <!-- /.navbar-collapse -->
             </nav>
 
-            <div id="page-wrapper" style="width: 130%;">
+            <div id="page-wrapper" style="width: 119%;">
                 <div class="container-fluid" style="font-size: 12px; " >
                     <?php
                     if ($login) {

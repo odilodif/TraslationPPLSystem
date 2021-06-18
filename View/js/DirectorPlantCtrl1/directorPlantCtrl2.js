@@ -190,6 +190,8 @@ function listAuthorized(user_id) {
                     body += "<td>" + data.trasl_type_descripcion + "</td>";
                     body += "<td>" + data.tras_date_analyst_send + "</td>";
                     body += "<td>" + data.names_analyst + "</td>";
+                    body += "<td>" + data.trasl_approved_by + "</td>";
+                    body += "<td>" + data.trasl_authorized_by + "</td>";
                     body += "<td>" + data.status_proces + "</td>";
                     body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + "   );'> Revisión </button></td>";
 
@@ -251,6 +253,9 @@ function listExecuted(user_id) {
                     body += "<td>" + data.trasl_type_descripcion + "</td>";
                     body += "<td>" + data.tras_date_analyst_send + "</td>";
                     body += "<td>" + data.names_analyst + "</td>";
+                    body += "<td>" + data.trasl_approved_by + "</td>";
+                    body += "<td>" + data.trasl_authorized_by + "</td>";
+                    body += "<td>" + data.trasl_executed_by + "</td>";
                     body += "<td>" + data.status_proces + "</td>";
                     body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + "   );'> Revisión </button></td>";
 

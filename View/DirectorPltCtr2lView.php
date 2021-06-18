@@ -1,5 +1,5 @@
-<script src="./View/js/DirectorPlantCtrl1/directorPlantCtrl2.js" type="text/javascript"></script>
 <script src="./View/js/DirectorPlantCtrl1/directorPlantCtrl1.js" type="text/javascript"></script>
+<script src="./View/js/DirectorPlantCtrl1/directorPlantCtrl2.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="./View/css/datatables/dataTables.bootstrap.min.css">
 
 <script src="./View/css/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -190,7 +190,9 @@
                                         <th>CrsDestino</th>
                                         <th>TipoTraslado</th>
                                         <th>FechaEnvíoParaAprb.</th>
-                                        <th>Analista</th>
+                                        <th>Analizado.Por</th>
+                                        <th>Aprobado.Por</th>
+                                        <th>Autorizado.Por</th>
                                         <th>Estado</th>
                                         <th>Revisar</th>
                                     </tr>
@@ -219,7 +221,10 @@
                                         <th>CrsDestino</th>
                                         <th>TipoTraslado</th>
                                         <th>FechaEnvíoParaAprb.</th>
-                                        <th>Analista</th>
+                                        <th>Analizado.Por</th>
+                                        <th>Aprobado.Por</th>
+                                        <th>Autorizado.Por</th>
+                                        <th>Finalizado.Por</th>
                                         <th>Estado</th>
                                         <th>Revisar</th>
                                     </tr>
@@ -411,8 +416,7 @@
     $(document).ready(function () {
         /*LoadTables ByApproved Approved And Executed*/
         var usr_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';       
-        loadDirection(usr_id);    
-       
+        loadDirection(usr_id);
         listAuthorized(usr_id);
         listExecuted(usr_id);
         

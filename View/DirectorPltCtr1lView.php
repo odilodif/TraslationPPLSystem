@@ -229,7 +229,10 @@ if (isset($_SESSION['_USU']) && isset($_SESSION)) {
                                         <th>CrsDestino</th>
                                         <th>TipoTraslado</th>
                                         <th>FechaEnvíoParaAprb.</th>
-                                        <th>Analista</th>
+                                        <th>Analizado.Por</th>
+                                        <th>Aprobado.Por</th>
+                                        <th>Autorizado.Por</th>
+                                        <th>Finalizado.Por</th>
                                         <th>Estado</th>
                                         <th>Revisar</th>
                                     </tr>
