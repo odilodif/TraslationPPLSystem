@@ -170,13 +170,13 @@ function traslationSaveExecuted(listExecuted) {
 
             if (result['success']) {
                 alert(result['nro'] + '  ' + result['message']);
-                location.reload();
+               location.reload();
             } else {
                 alert(result['nro'] + '  ' + result['message']);
             }
         },
-        error: function (result) {
-            alert('ERROR AL CONECTAR LA BASE DE DATOS"');
+        error: function (jqXHR, exception) {
+            alert('ERROR: '+ jqXHR.responseText);
         }
 
     });

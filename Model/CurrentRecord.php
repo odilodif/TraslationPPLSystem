@@ -57,12 +57,12 @@ end as trasl_state_process
         $query = "		SELECT th.trasl_id,	center_crs.crs_description as crs_source,crsd.crs_description as crs_destination
 		,	ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_descripcion,th.trasl_path,
 		case
-when th.trasl_state_process ='START'  then 'Inicio'
-when th.trasl_state_process ='SENT'  then 'Enviado'
-when th.trasl_state_process ='APPROVED'  then 'Aprobado'
-when th.trasl_state_process ='REVISION'  then 'Revision'
-when th.trasl_state_process ='EXECUTED'  then 'Finalizado'
-when th.trasl_state_process ='AUTHORIZED'  then 'Autorizado'
+when th.trasl_state_process ='start'  then 'Inicio'
+when th.trasl_state_process ='sent'  then 'Enviado'
+when th.trasl_state_process ='approved'  then 'Aprobado'
+when th.trasl_state_process ='revision'  then 'Revision'
+when th.trasl_state_process ='executed'  then 'Finalizado'
+when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as trasl_state_process
 		,pp.prison_per_id,pp.prison_per_identification,pp.prison_per_name,pp.prison_per_lastname,pp.id_sgp,	pp.sex,	pp.prontuario,	pp.status_sgp

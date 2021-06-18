@@ -226,7 +226,7 @@
                         <label></label>
                     </div>
                     <div>
-                        <label class="input col-md-4" style="margin-left: -41px;" >
+                        <label class=""  >
                             <a id="pdf_download_dir" href="" download="certificado-desde-crs.pdf" hidden="" class="btn btn-primary pull-right" >Certificado Enviado desde Crs PDF<img src="./View/images/icons/internet-download-symbol.png" alt=""></a>
                             <input  type="file" id="file_pdf"  name="file_pdf" required="" style="margin-left: 44px;"/>
                         </label>
@@ -259,8 +259,8 @@
 
         <br />
         <div id="contenidoRegistro"></div>
-        <div class="" style="text-align: right;">
-            <input type="submit" name="btnSent" id="btnSent" class="btn btn-success btn-xs" value="Enviar"/>
+        <div class="" >
+            <input type="submit" name="btnSent" id="btnSent" class="btn btn-success btn-xs" value="Enviar" style="font-size: 20px;"/>
         </div>
     </div>
 </form>
@@ -290,7 +290,7 @@
                     <div class="col-md-1" >
                         <label>Nro. Solicitud</label>
                     </div>
-                    <label class="input col-md-4" style="margin-left: 5px;"   >
+                    <label class="" style="margin-left: 5px;"   >
 
                         <td><input type="text" id="idTraslation"  name="idTraslationEdit"  readonly="" style="color:red"/></td>
                     </label>
