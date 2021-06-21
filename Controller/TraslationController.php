@@ -440,25 +440,31 @@ if (isset($_POST['Traslation'])) {
     }
 
     if ($_POST['Traslation'] === 'saveTraslationExecuted') {
+        $result1;
+        $result;
         $traslation = new Traslation();
         $list = $_POST['listExecuted'];
         $i = 0;
         foreach ($list as $key => $value) {
             $trasl_id = $value['trasl_id'];
             $usr_id_executed = $value['usr_id_executed'];
-
-            $result = $traslation->saveTraslationExecuted($trasl_id, $usr_id_executed);
+            $result1 = $traslation->saveTraslationExecuted($trasl_id, $usr_id_executed);
             $i++;
         }
+        
+         foreach ($list as $key => $value) {
+            $trasl_id = $value['trasl_id'];
+            $result = $traslation->executeMoveSystraSgp($trasl_id);           
+        }
 
-        if ($result['success']) {
-            $res = array('success' => TRUE, 'message' => 'Traslados Ejecutados',
+        if ($result['success'] && $result1['success']) {
+            $res = array('success' => TRUE, 'message' => 'Traslados Ejecutados '.$result['message'],
                 'nro' => $i
             );
             echo json_encode($res);
         } else {
             $res = array('success' => FALSE,
-                'message' => 'No se pudo Aprobar',
+                'message' => 'No se pudo Finalizar el Traslado'.$result['message'],
                 'nro' => '0'
             );
             echo json_encode($res);
@@ -473,6 +479,12 @@ if (isset($_POST['Traslation'])) {
         foreach ($list as $key => $value) {
             $trasl_id = $value['trasl_id'];
             $usr_id_approbed = $value['usr_id_authorized'];
+            $result = $traslation->saveTraslationAuthorized($trasl_id, $usr_id_approbed);
+            $i++;
+        }
+        
+         foreach ($list as $key => $value) {
+            $trasl_id = $value['trasl_id'];            
             $result = $traslation->saveTraslationAuthorized($trasl_id, $usr_id_approbed);
             $i++;
         }

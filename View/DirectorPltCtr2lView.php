@@ -308,13 +308,13 @@
 
                                     </div>
                                     <br>
-                                    <labe>Añadir Archivos de Respaldo </labe>
+                                    <labe> </labe>
                                     <div style="width:auto; height: 100px; overflow-y: scroll;">
                                         <table border="1" id="tblpplAnalyst" class="display" style="width:100%">
                                             <thead style="background: grey;">
                                                 <tr>
                                                     <th >
-                                                        Identificación
+                                                        Prontuario
                                                     </th>
                                                     <th >
                                                         Nombres

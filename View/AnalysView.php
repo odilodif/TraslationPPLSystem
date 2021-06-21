@@ -201,7 +201,7 @@
                                         <thead style="background: grey;">
                                             <tr>
                                                 <th >
-                                                    Identificación
+                                                    Prontuario
                                                 </th>
                                                 <th >
                                                     Nombres

@@ -485,7 +485,7 @@ ORDER BY th.trasl_id ASC;";
     public function editTraslationAnalyst() {
         $info;
         try {
-            $query = "SELECT th.trasl_id, ploc.name as crs_source,crsd.name as crs_destination , ty.trasl_type_descripcion,th.trasl_date_request,u.name_complete,th.trasl_descripcion,th.trasl_path ,pp.id,pp.identificador,pp.name,pp.last_name,pp.prison_per_observations 
+            $query = "SELECT th.trasl_id, ploc.name as crs_source,crsd.name as crs_destination , ty.trasl_type_descripcion,th.trasl_date_request,u.name_complete,th.trasl_descripcion,th.trasl_path ,pp.id,pp.prontuario,pp.name,pp.last_name,pp.prison_per_observations 
 from traslation_head th 
 INNER JOIN prison_location ploc on th.crs_id_source=ploc.id 
 INNER JOIN prison_location crsd on th.crs_id_destination=crsd.id 
@@ -1115,7 +1115,7 @@ WHERE th.trasl_state_process in('authorized') ;";
         try {
             $query = "select th.trasl_id,	crs.name as crs_source,crsd.name as crs_destination
 		,	th.trasl_date_request,u.name_complete,th.trasl_observations_analyst,th.trasl_path
-		,pp.id,pp.identificador,pp.name,pp.last_name,pp.prison_per_observations,th.trasl_descripcion,th.trasl_commentary_dir_pltactral from traslation_head  th
+		,pp.id,pp.prontuario,pp.name,pp.last_name,pp.prison_per_observations,th.trasl_descripcion,th.trasl_commentary_dir_pltactral from traslation_head  th
 		INNER JOIN prison_location crs   on th.crs_id_source=crs.id
 		INNER JOIN prison_location crsd  on th.crs_id_destination=crsd.id
 		INNER JOIN  user_login u    on  th.usr_id=u.usr_id
@@ -1312,6 +1312,25 @@ WHERE th.trasl_state_process in('approved','executed')";
 
                 return $info = array('success' => FALSE, 'message' => 'No se pudo actualizar las Observaciones del Traslado');
                 ;
+            }
+        } catch (Exception $exc) {
+            //echo 'error exception al crear Traslados' . $exc->getMessage();
+        } /* finally {
+          parent::closeConnection();
+          } */
+    }
+    
+    public function executeMoveSystraSgp($trasl_id) {        
+        try {
+            $query = "SELECT execute_move_systra_sgp($trasl_id);";
+            //  echo "string".$query;
+            $rs = parent::execute_sgp($query);
+            if ($rs) {
+                return $info = array('success' => TRUE, 'message' => 'Traslado ejecutado en el SGP');
+            } else {
+
+                return $info = array('success' => FALSE, 'message' => 'No se pudo realizar el Traslado en el SGP');
+                
             }
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();

@@ -11,20 +11,13 @@ function btnExecute() {
         var textval0 = $(this).find('td:eq(0) input');
         var textval1 = $(this).find('td:eq(1)').text();
         /*
-         *  var col1 = $(this).find('td:eq(1)').text();
-         var col2 = $(this).find('td:eq(2) input').val();
-         * 
-         * 
-         * 
+         var col1 = $(this).find('td:eq(1)').text();
+         var col2 = $(this).find('td:eq(2) input').val();        
          **/
         var usr_id_executed = $('#txtIdUser').val();        
-        if (textval0.is(':checked')) {
-            //alert(textval1);
-            jsonObj.push({"trasl_id": textval1, "usr_id_executed": usr_id_executed});
-           
+        if (textval0.is(':checked')) {           
+            jsonObj.push({"trasl_id": textval1, "usr_id_executed": usr_id_executed});           
         }
-       
-         
     });
     traslationSaveExecuted(jsonObj);
     //alert('Datos  actualizados');
@@ -169,7 +162,7 @@ function traslationSaveExecuted(listExecuted) {
         success: function (result) {
 
             if (result['success']) {
-                alert(result['nro'] + '  ' + result['message']);
+                alert(result['nro'] + '  ' + result['message']);                
                location.reload();
             } else {
                 alert(result['nro'] + '  ' + result['message']);
