@@ -9,10 +9,6 @@ $currentDateTime = date('Y-m-d');
     $(document).ready(function () {        
       listPPL();
     });
-
-
-
-
 </script>
 
 

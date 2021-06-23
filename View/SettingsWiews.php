@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <style media="screen">
-        .objets-container, .type-traslation-container, .roles-acctions-container  {
-            width: 30%;
-            height:400px;
-            border: solid 1px #555;
-            float: left;
-            margin-left: 10px;
-            padding: 16px;
-        }
+
+<style media="screen">
+    .objets-container, .type-traslation-container, .roles-acctions-container  {
+        width: 30%;
+        height:400px;
+        border: solid 1px #555;
+        float: left;
+        margin-left: 10px;
+        padding: 16px;
+    }
 
 
 
-    </style>
-    <body>
+</style>
+<div id="form-container">
+    <form action="/action_page.php">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
         <div class="container-settings">
             <div class="objets-container">
+
+
+
                 <h2>Menus- Objetos</h2>
                 <table >
                     <tr>
@@ -105,5 +110,19 @@
             </div>
 
         </div>
-    </body>
-</html>
+    </form> 
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var idSgp = '<?php echo"" . (isset($_GET['idSgp'])) ? $_GET['idSgp'] : " " ?>';
+        if (idSgp) {
+            loadUserForm(idSgp);
+        } else {
+            alert(idSgp);
+        }
+    });
+
+</script>

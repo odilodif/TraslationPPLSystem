@@ -36,12 +36,11 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
                 $_SESSION['_USU'] = $roles;
                 echo json_encode($roles);
             }
-            
         } else if ($autentication['autentication'] && empty($autentication['profiles'])) {/* Wheather no roles then only autentication */
             if (!isset($_SESSION['_USU'])) {
                 session_start();
             }
-            $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete'],'messages'=>'El usuario no tiene asisgnado centro, perfiles,roles');
+            $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete'], 'messages' => 'El usuario no tiene asisgnado centro, perfiles,roles');
             $_SESSION['_USU'] = $autentication_user;
             echo json_encode($autentication_user);
         } else {/* autentication no valid */
@@ -61,4 +60,13 @@ if ($_POST['User'] === 'listDirectorsPlntCtral') {
         echo json_encode($usr);
     }
 }
+
+if ($_POST['User'] === 'listUsers') {
+    include_once ('./../Model/User.php');
+    $user = new User();
+   
+    $usrList = $user->listAll();
+    echo json_encode($usrList);
+}
+
     

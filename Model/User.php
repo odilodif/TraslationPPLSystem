@@ -136,8 +136,45 @@ class User extends Connection implements ICrud {
         
     }
 
-    public function listAll() {
-        
+    public function listAll() {        
+        $info;
+        try {
+            $query = "SELECT usr.usr_id_sgp, usr.name_complete,usr.usr_nick,typ.trasl_type_descripcion,prfl.prfle_description, pl.\"name\"	as crs,	dir.area_desription,	usr.usr_email, usr.usr_state FROM user_login usr
+INNER JOIN profile prfl ON usr.prfle_id=prfl.prfle_id
+INNER JOIN  traslation_type typ ON usr.trasl_type_id=typ.trasl_type_id
+INNER JOIN prison_location pl ON usr.crs_id = pl.id
+LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t'";
+            //echo '' . $query;  
+            $this->rs = parent::execute_sgp($query);
+            if ($this->rs) {                								
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info[] = array('success' => TRUE,
+                        'message' => 'Lista de Usuario Encontrados',
+                        'usr_id_sgp' => $row[0],
+                        'name_complete' => $row[1],
+                        'usr_nick' => $row[2],
+                        'trasl_type_descripcion' => $row[3],
+                        'prfle_description' => $row[4],
+                        'crs' => $row[5],
+                        'area_desription' => $row[6],
+                        'usr_email' => $row[7],
+                        'usr_state' => $row[8]
+                    );
+                }
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, 'message' => 'Lista de Usuarios no Encontrados',));
+                }
+            } else {
+                return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos',));
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
+        } finally {
+            parent::closeConnection();
+        }
     }
 
     public function listByParameter($id, $name, $path) {
@@ -253,7 +290,7 @@ WHERE typ.trasl_type_id=$typ";
                 if (!empty($info)) {
                     return $info;
                 } else {
-                    return array('success'=>FALSE,'message'=>'No hay email');
+                    return array('success' => FALSE, 'message' => 'No hay email');
                 }
                 return $info;
             } else {
