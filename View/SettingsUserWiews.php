@@ -8,55 +8,68 @@
         float: left;
         margin-left: 10px;
         padding: 16px;
+        background-color: lightblue;
+        overflow-y: scroll;
+
+    }
+    #form-container{
+        margin-top: 243px;
+
     }
 
 
-
 </style>
+<script src="./View/js/Menu/Menu.js" type="text/javascript"></script>
+
 <div id="form-container">
+
     <form action="/action_page.php">
+        <img src="./View/images/avatar_4830521.png" alt="Girl in a jacket" width="100" height="100">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" value="John"><br>
         <label for="lname">Last name:</label><br>
         <input type="text" id="lname" name="lname" value="Doe"><br><br>
         <input type="submit" value="Submit">
+
         <div class="container-settings">
             <div class="objets-container">
 
 
 
                 <h2>Menus- Objetos</h2>
-                <table >
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Inicio</td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>CrearSolicitud de Traslado</td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Lista de Traslados </td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Vista-Analista</td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Vista Director Planta Central</td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Vista Subdirector Técnico </td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Vista Operativos Seguridad Penitenciaria </td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Reportes 1</td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Reportes 2 </td>
-                    </tr>
-                    <tr>
-                        <td> <input type="checkbox" name="" value=""> </td> <td>Configuraciones</td>
-                    </tr>
+                <table id="menus_objetos">
+                    <tbody></tbody>
+
+                    <!--tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Inicio</td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>CrearSolicitud de Traslado</td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Lista de Traslados </td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Vista-Analista</td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Vista Director Planta Central</td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Vista Subdirector Técnico </td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Vista Operativos Seguridad Penitenciaria </td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Reportes 1</td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Reportes 2 </td>
+                     </tr>
+                     <tr>
+                         <td> <input type="checkbox" name="" value=""> </td> <td>Configuraciones</td>
+                     </tr-->
 
                 </table>
             </div>
@@ -117,12 +130,11 @@
 <script>
     $(document).ready(function () {
 
-        var idSgp = '<?php echo"" . (isset($_GET['idSgp'])) ? $_GET['idSgp'] : " " ?>';
-        if (idSgp) {
-            loadUserForm(idSgp);
-        } else {
-            alert(idSgp);
-        }
+        /*var idSgp = '<?php echo"" . (isset($_GET['idSgp'])) ? $_GET['idSgp'] : " " ?>';
+         if (idSgp) {
+         loadUserForm(idSgp);
+         } */
+        loadListMenu();
     });
 
 </script>

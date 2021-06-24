@@ -16,7 +16,7 @@ include_once './../Model/ICrud.php';
 
 class User extends Connection implements ICrud {
 
-//Fileds
+//Fields
     private $usr_id;
     private $usr_name;
     private $usr_lastname;

@@ -82,14 +82,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        listUsers();
-
-        var idSgp = '<?php echo"" . (isset($_GET['idSgp'])) ? $_GET['idSgp'] : " " ?>';
-        if (idSgp) {
-loadUserForm();
-        } else {
-            alert(idSgp);
-        }
+        listUsers();        
     });
 
 </script>
