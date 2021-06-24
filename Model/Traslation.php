@@ -453,7 +453,7 @@ from traslation_head  th
 INNER JOIN prison_location pl   on th.crs_id_source=pl.id
 LEFT JOIN prison_location crsd  on th.crs_id_destination=crsd.id
 INNER JOIN traslation_type typ  on th.trasl_type_id=typ.trasl_type_id
-WHERE  typ.trasl_type_id = $type and th.trasl_state_process='sent'
+WHERE  typ.trasl_type_id = $type and th.trasl_state_process='sent' AND th.trasl_state='t'
 ORDER BY th.trasl_id ASC;";
 
             //echo ''.$query;

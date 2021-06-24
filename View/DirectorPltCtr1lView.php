@@ -26,7 +26,7 @@ if (isset($_SESSION['_USU']) && isset($_SESSION)) {
 <!-- Page Heading -->
 <br>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="">
         <ol class="breadcrumb">
             <li class="active">
                 <i class="fa fa-dashboard"></i>

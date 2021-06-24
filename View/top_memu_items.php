@@ -53,7 +53,7 @@
         </ul>
     </li>-->
     <div class="navbar-header">
-        <a class="" href="?pagina=home"><?php echo "" . isset($_SESSION['_USU'][0]['crs_description']) ? $_SESSION['_USU'][0]['crs_description'] :""; ?></a>
+        <a class="" style=" color: #FFFF;" href="?pagina=home"><?php echo "" . isset($_SESSION['_USU'][0]['crs_description']) ? $_SESSION['_USU'][0]['crs_description'] :""; ?></a>
     </div>
     <!--<div class="navbar-header">
         <a class="navbar-brand" href="?pagina=home"><img class="user-login" src="./View/images/Snai.png" style=""  ></a>
