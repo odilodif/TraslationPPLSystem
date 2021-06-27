@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-function loadListRoles() {
+function loadListRoles(idSGP) {
     var dat = {
-        "Roles": 'ListRoles'
+        "Roles": 'ListRoles',
+        "idSGP": idSGP
     };
 
     $.ajax({
@@ -22,7 +23,10 @@ function loadListRoles() {
             if (data[0]['success']) {
                 $.each(data, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><input type='radio' name='rol' value='"+ data.rol_id+"'></td>";
+                    if (data.check)
+                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' checked ></td>";
+                    else
+                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "'></td>";
                     body += "<td>" + data.rol_description + "</td>";
                     body += "<tdtype='checkbox' name='' value=''hidden=''>" + data.rol_id + "</td>";
                     body += "</tr>";

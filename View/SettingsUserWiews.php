@@ -36,12 +36,13 @@
     <form action="" id="frmUsuer">
         <img id="usr_img" src="./View/images/avatar_4830521.png" alt="Girl in a jacket" width="100" height="100">
         <label for="fname">Nombres Completos:</label><br>
-        <input type="text" id="name_complete" name="name_complete" value=""style="width:191px"><br>
+        <input type="text" id="name_complete" name="name_complete" value=""style="width:300px" readonly=""><br>
         <label for="lname">Perfil:</label><br>
-         <select>
+        <input type="text" id="txt_profile" name="txt_profile" value=""style="width:300px" readonly=""><br><br>
+         <!--select>
             <option>Administrador</option>
              <option>Analista</option>
-        </select><br><br>
+        </select><br><br-->
 
 
         <div class="container-settings">
@@ -64,7 +65,7 @@
 
             </div>
             <div class="roles-acctions-container">
-                <h2>Roles-Perfiles y Acciones </h2>
+                <h2>Roles y Acciones </h2>
                 <table id="tbl_roles">
                     <tbody></tbody>
                    
@@ -84,8 +85,8 @@
             //console.log('->'+idUsrSgp);
             loadUserForm(idUsrSgp);
             loadListMenu(idUsrSgp);
-            loadTraslationType();
-            loadListRoles();
+            loadTraslationType(idUsrSgp);
+            loadListRoles(idUsrSgp);
         }
 
     });

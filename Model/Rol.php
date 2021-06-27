@@ -120,7 +120,8 @@ class Rol extends Connection implements ICrud {
                         'message' => 'Lista de Menus',
                         'rol_id' => $row[0],
                         'rol_description' => $row[1],
-                        'rol_state' => $row[2]
+                        'rol_state' => $row[2],
+                        'check' => FALSE
                     );
                 }
                 if (!empty($info)) {
@@ -135,7 +136,7 @@ class Rol extends Connection implements ICrud {
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            //parent::closeConnection();
         }
     }
 

@@ -15,13 +15,16 @@ if ($_POST['Menu'] === 'ListMenu') {
     $profile_saved = new ProfileSaved();
     $menu_list_usr = $profile_saved->readByUser($idUsrSgp);
     $menu_list = $menu->listAll();
-    foreach ($menu_list as $key1 => $row_nenu) {
-        foreach ($menu_list_usr as $key2 => $row_menu_profile) {
-            if ($row_nenu['menu_description_id'] == $row_menu_profile['menu_description_id']) {               
-                 $menu_list[$key1]['check'] =TRUE;
-                 break;
-            } 
+    if ($menu_list_usr[0]['success']) {
+        foreach ($menu_list as $key1 => $row_nenu) {
+            foreach ($menu_list_usr as $key2 => $row_menu_profile) {
+                if ($row_nenu['menu_description_id'] == $row_menu_profile['menu_description_id']) {
+                    $menu_list[$key1]['check'] = TRUE;
+                    break;
+                }
+            }
         }
     }
+
     echo json_encode($menu_list);
 }

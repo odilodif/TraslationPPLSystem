@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-function loadTraslationType() {
+function loadTraslationType(idUsrSgp) {
     var dat = {
-        "TraslationType": 'listTraslationType'
+        "TraslationType": 'listTraslationType',
+        "idUsrSgp": idUsrSgp
     };
 
     $.ajax({
@@ -22,7 +23,10 @@ function loadTraslationType() {
             if (data[0]['success']) {
                 $.each(data, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><input type='checkbox' name='' value='"+data.trasl_type_id+"'></td>";
+                    if (data.check)
+                        body += "<td><input type='checkbox' name='' value='" + data.trasl_type_id + "' checked disabled ></td>";
+                    else
+                        body += "<td><input type='checkbox' name='' value='" + data.trasl_type_id + "' disabled ></td>";
                     body += "<td>" + data.trasl_type_descripcion + "</td>";
                     body += "<tdtype='checkbox' name='' >" + data.trasl_type_id + "</td>";
                     body += "</tr>";

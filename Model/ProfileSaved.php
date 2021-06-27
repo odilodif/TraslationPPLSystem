@@ -98,7 +98,7 @@ class ProfileSaved extends Connection implements ICrud {
     public function readByUser($idUser) {
         $info;
         try {
-            $query = "SELECT * from profile_saved WHERE usr_id=(SELECT usr_id from user_login  WHERE usr_id_sgp= $idUser);";
+            $query = "SELECT prfl_saved_id,usr_id,menu_description_id,prfl_saved_state from profile_saved WHERE usr_id=(SELECT usr_id from user_login  WHERE usr_id_sgp= $idUser);";
             //echo '' . $query;            
             $this->rs = $this->conn->execute_sgp($query);
             if ($this->rs) {

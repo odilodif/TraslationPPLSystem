@@ -28,6 +28,7 @@ class User extends Connection implements ICrud {
     private $write_idu;
     private $create_idu;
     private $prfle_id;
+    private $conn;
 
     function getUsr_id() {
         return $this->usr_id;
@@ -120,7 +121,8 @@ class User extends Connection implements ICrud {
 //The Contructor
 
     function __construct() {
-        parent::__construct();
+        //parent::__construct();
+        $this->conn= Connection::getInstance();
     }
 
 //Methods
@@ -140,14 +142,14 @@ class User extends Connection implements ICrud {
         $info;
         try {
             $query = "SELECT usr.usr_id_sgp, usr.name_complete,usr.usr_nick,typ.trasl_type_descripcion,prfl.prfle_description, pl.\"name\"	as crs,	dir.area_desription,	usr.usr_email, usr.usr_state FROM user_login usr
-INNER JOIN profile prfl ON usr.prfle_id=prfl.prfle_id
-INNER JOIN  traslation_type typ ON usr.trasl_type_id=typ.trasl_type_id
-INNER JOIN prison_location pl ON usr.crs_id = pl.id
-LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t'";
+LEFT JOIN profile prfl ON usr.prfle_id=prfl.prfle_id
+LEFT JOIN  traslation_type typ ON usr.trasl_type_id=typ.trasl_type_id
+LEFT JOIN prison_location pl ON usr.crs_id = pl.id
+LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t';";
             //echo '' . $query;  
-            $this->rs = parent::execute_sgp($query);
-            if ($this->rs) {
-                while ($row = pg_fetch_row($this->rs)) {
+            $rs = $this->conn->execute_sgp($query);
+            if ($rs) {
+                while ($row = pg_fetch_row($rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Lista de Usuario Encontrados',
                         'usr_id_sgp' => $row[0],
@@ -173,7 +175,7 @@ LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            //parent::closeConnection();
         }
     }
 
@@ -197,7 +199,7 @@ LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t
         $pass_encrypt = md5("" . $pass);
         $query_if_exist = "SELECT if_exist_user('$nick','$pass_encrypt','$ldapname_complete');";
         //echo $query_if_exist;
-        $rs_exist = parent::fetch_result_sgp($query_if_exist);
+        $rs_exist = $this->conn->fetch_result_sgp($query_if_exist);
         if ((boolean) $rs_exist) {
             //echo "true...".$rs_exist;
             $info = NULL;
@@ -211,10 +213,10 @@ INNER JOIN  prison_location crs on u.crs_id =crs.id
 where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_saved_id asc;";
                 //echo '' . $query;               
 
-                $this->rs = parent::execute_sgp($query);
-                if ($this->rs) {
+                $rs = $this->conn->execute_sgp($query);
+                if ($rs) {
 
-                    while ($row = pg_fetch_row($this->rs)) {
+                    while ($row = pg_fetch_row($rs)) {
                         $info[] = array('success' => TRUE,
                             'message' => 'Usuario encontrado',
                             'usr_id' => $row[0],
@@ -231,15 +233,19 @@ where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_sa
                             'crs_description' => $row[11]
                         );
                     }
-                    return $info;
+                    if(!empty($info)) {
+                       return $info; 
+                    } else {
+                       return array(array('success' => FALSE, 'message' => 'Error No hay Usuario y/o Perfiles')); 
+                    }
                 } else {
-                    return $info;
+                    return array(array('success' => FALSE, 'message' => 'Error Algun Problema con la base de datos')); 
                 }
             } catch (Exception $exc) {
                 /* echo $exc->getTraceAsString(); */
                 return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
             } finally {
-                parent::closeConnection();
+                //parent::closeConnection();
             }
         }
     }
@@ -248,9 +254,8 @@ where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_sa
         try {
             $query = "SELECT usr_id, usr_name,	usr_lasname from user_login WHERE prfle_id=4;";
 
-            $this->rs = parent::execute($query);
+            $this->rs = $this->conn->execute_sgp($query);
             if ($this->rs) {
-
                 while ($row = pg_fetch_row($this->rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Lista de directores PlantCtrl encontrada',
@@ -278,7 +283,7 @@ where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_sa
 INNER JOIN user_login usr ON typ.usr_id=usr.usr_id
 WHERE typ.trasl_type_id=$typ";
             //echo ''.$query;
-            $this->rs = parent::execute_sgp($query);
+            $this->rs = $this->conn->execute_sgp($query);
             if ($this->rs) {
 
                 while ($row = pg_fetch_row($this->rs)) {
@@ -308,12 +313,13 @@ WHERE typ.trasl_type_id=$typ";
         $info;
         try {
             $query = "select
-u.usr_id, u.crs_id, u.name_complete, u.usr_nick, crs.name,u.usr_id_sgp
+u.usr_id, u.crs_id, u.name_complete, u.usr_nick, crs.name,u.usr_id_sgp,prfl.prfle_description
 from user_login u
-INNER JOIN  prison_location crs on u.crs_id =crs.id
+INNER JOIN  prison_location crs ON u.crs_id =crs.id
+LEFT JOIN  profile prfl        ON u.prfle_id=prfl.prfle_id
 where u.usr_id_sgp=$idSgp;";
             //echo '' . $query; 
-            $this->rs = parent::execute_sgp($query);
+            $this->rs = $this->conn->execute_sgp($query);
             if ($this->rs) {
                 while ($row = pg_fetch_row($this->rs)) {
                     $info = array('success' => TRUE,
@@ -323,17 +329,17 @@ where u.usr_id_sgp=$idSgp;";
                         'name_complete' => $row[2],
                         'usr_nick' => $row[3],
                         'crs_name' => $row[4],
-                        'usr_id_sgp' => $row[5]
+                        'usr_id_sgp' => $row[5],
+                        'prfle_description' => $row[6]
                     );
                 }
-                if(!empty($info)) {
-                    return $info; 
+                if (!empty($info)) {
+                    return $info;
                 } else {
-                    return array('success' => FALSE,'message' => 'Usuario No encontrado');
+                    return array('success' => FALSE, 'message' => 'Usuario No encontrado');
                 }
-               
             } else {
-                return array('success' => FALSE,'message' => 'Hubo problemas con la base de Datos');
+                return array('success' => FALSE, 'message' => 'Hubo problemas con la base de Datos');
             }
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */
