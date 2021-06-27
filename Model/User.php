@@ -136,7 +136,7 @@ class User extends Connection implements ICrud {
         
     }
 
-    public function listAll() {        
+    public function listAll() {
         $info;
         try {
             $query = "SELECT usr.usr_id_sgp, usr.name_complete,usr.usr_nick,typ.trasl_type_descripcion,prfl.prfle_description, pl.\"name\"	as crs,	dir.area_desription,	usr.usr_email, usr.usr_state FROM user_login usr
@@ -146,7 +146,7 @@ INNER JOIN prison_location pl ON usr.crs_id = pl.id
 LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t'";
             //echo '' . $query;  
             $this->rs = parent::execute_sgp($query);
-            if ($this->rs) {                								
+            if ($this->rs) {
                 while ($row = pg_fetch_row($this->rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Lista de Usuario Encontrados',
@@ -301,6 +301,45 @@ WHERE typ.trasl_type_id=$typ";
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
             parent::closeConnection();
+        }
+    }
+
+    public function getUserByIdSgp($idSgp) {
+        $info;
+        try {
+            $query = "select
+u.usr_id, u.crs_id, u.name_complete, u.usr_nick, crs.name,u.usr_id_sgp
+from user_login u
+INNER JOIN  prison_location crs on u.crs_id =crs.id
+where u.usr_id_sgp=$idSgp;";
+            //echo '' . $query; 
+            $this->rs = parent::execute_sgp($query);
+            if ($this->rs) {
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info = array('success' => TRUE,
+                        'message' => 'Usuario encontrado',
+                        'usr_id' => $row[0],
+                        'crs_id' => $row[1],
+                        'name_complete' => $row[2],
+                        'usr_nick' => $row[3],
+                        'crs_name' => $row[4],
+                        'usr_id_sgp' => $row[5]
+                    );
+                }
+                if(!empty($info)) {
+                    return $info; 
+                } else {
+                    return array('success' => FALSE,'message' => 'Usuario No encontrado');
+                }
+               
+            } else {
+                return array('success' => FALSE,'message' => 'Hubo problemas con la base de Datos');
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar ' . $exc->getMessage());
+        } finally {
+            // parent::closeConnection();
         }
     }
 

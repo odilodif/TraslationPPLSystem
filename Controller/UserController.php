@@ -69,4 +69,13 @@ if ($_POST['User'] === 'listUsers') {
     echo json_encode($usrList);
 }
 
+
+if ($_POST['User'] === 'loadUserForm') {
+    include_once ('./../Model/User.php');
+    $user = new User();
+   $id_Sgp=$_POST['id_Sgp'];
+    $usr = $user->getUserByIdSgp($id_Sgp);
+    echo json_encode($usr);
+}
+
     

@@ -23,6 +23,7 @@ class Menu extends Connection implements ICrud {
     private $menu_description_state;
     private $menu_traslation_path_img;
     private $menu_parent;
+    private $conn;
 
     function getMenu_description_id() {
         return $this->menu_description_id;
@@ -75,7 +76,8 @@ class Menu extends Connection implements ICrud {
     //The Contructor
 
     function __construct() {
-        parent::__construct();
+        //parent::__construct();
+        $this->conn=Connection::getInstance();
     }
 
 //Methods
@@ -92,17 +94,19 @@ class Menu extends Connection implements ICrud {
     }
 
     public function listAll() {
-       $info;
+        $info;
         try {
-            $query = "SELECT menu_description_id, menu_description_description FROM menu_objects WHERE menu_description_state='t' ORDER BY 1;";
+            $query = "SELECT menu_description_id, menu_description_description, menu_description_state FROM menu_objects WHERE menu_description_state='t' ORDER BY 1;";
             //echo '' . $query;
-            $this->rs = parent::execute_sgp($query);
-            if ($this->rs) {                								
-                while ($row = pg_fetch_row($this->rs)) {
+            $rs = $this->conn->execute_sgp($query);
+            if ($rs) {
+                while ($row = pg_fetch_row($rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Lista de Menus',
+                        'check' => FALSE,
                         'menu_description_id' => $row[0],
-                        'menu_description_description' => $row[1]                        
+                        'menu_description_description' => $row[1],
+                        'menu_description_state' => $row[2]
                     );
                 }
                 if (!empty($info)) {
@@ -117,8 +121,8 @@ class Menu extends Connection implements ICrud {
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
-        } 
+           // $this->conn->closeConnectionSgp();
+        }
     }
 
     public function listByParameter($id, $name, $path) {

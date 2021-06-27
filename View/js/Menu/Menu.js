@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-function loadListMenu() {
+function loadListMenu(idUsrSgp) {
     var dat = {
-        "Menu": 'ListMenu'
+        "Menu": 'ListMenu',
+        "idUsrSgp":idUsrSgp
     };
 
     $.ajax({
@@ -24,7 +25,10 @@ function loadListMenu() {
             if (result[0]['success']) {
                 $.each(result, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><input type='checkbox' name='' value=''></td>";
+                    if(data.check)
+                        body += "<td><input type='checkbox' name='' value='"+data.menu_description_id+"' checked></td>";
+                     else
+                         body += "<td><input type='checkbox' name='' value='"+data.menu_description_id+"'></td>";
                     body += "<td>" + data.menu_description_description + "</td>";
                     body += "<tdtype='checkbox' name='' value=''hidden=''>" + data.menu_description_id + "</td>";
                     body += "</tr>";

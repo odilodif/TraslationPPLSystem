@@ -164,7 +164,6 @@ if (isset($_SESSION['_USU'])) {
                         }
                     } else {
                         include_once("./View/login.php");
-
                     }
                     ?>
                 </div>

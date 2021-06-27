@@ -22,8 +22,8 @@ function listUsers() {
             $('#respuestaAjax').html('');
 
             if (result[0]['success']) {
-                $.each(result, function (i, data) {                   
-                    var body = "<tr>"; 
+                $.each(result, function (i, data) {
+                    var body = "<tr>";
                     body += "<td><a href='./?page=SettingsUserWiews&idSgp=" + data.usr_id_sgp + "'>" + data.usr_id_sgp + "</a></td>";
                     body += "<td>" + data.name_complete + "</td>";
                     body += "<td>" + data.usr_nick + "</td>";
@@ -32,7 +32,7 @@ function listUsers() {
                     body += "<td>" + data.area_desription + "</td>";
                     body += "<td>" + data.usr_email + "</td>";
                     body += "<td>" + data.usr_state + "</td>";
-                    body += "<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:viewTraslationDirectorCrs(" + data.usr_id_sgp +");' class='fa fa-eye'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:deleteTraslationDialog(" + data.usr_id_sgp + "\");' class = 'glyphicon glyphicon-remove-circle' > </a></td>";
+                    body += "<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:viewTraslationDirectorCrs(" + data.usr_id_sgp + ");' class='fa fa-eye'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:deleteTraslationDialog(" + data.usr_id_sgp + "\");' class = 'glyphicon glyphicon-remove-circle' > </a></td>";
                     body += "</tr>";
                     $("#tblUserList tbody").append(body);
                 });
@@ -46,7 +46,7 @@ function listUsers() {
         }
         ,
         error: function (jqXHR, exception) {
-            alert('Error: ' + jqXHR.responseText+'!!!');
+            alert('Error: ' + jqXHR.responseText + '!!!');
         }
     })
 
@@ -54,7 +54,8 @@ function listUsers() {
 
 function loadUserForm(id_Sgp) {
     var dat = {
-        "User": 'id_Sgp'
+        "User": 'loadUserForm',
+        "id_Sgp": id_Sgp
     };
 
     $.ajax({
@@ -68,16 +69,15 @@ function loadUserForm(id_Sgp) {
         ,
         success: function (result) {
             $('#respuestaAjax').html('');
-
             if (result['success']) {
-               
-
-
+                console.log(result['name_complete']);
+                var fomulary = $('#frmUsuer')
+                fomulary.find("#name_complete").val(result['name_complete']);
             }
         }
         ,
         error: function (jqXHR, exception) {
-            alert('Error: ' + jqXHR.responseText+'!!!');
+            alert('Error: ' + jqXHR.responseText + '!!!');
         }
     })
 

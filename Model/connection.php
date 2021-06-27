@@ -57,7 +57,7 @@ class Connection {
         pg_close($this->dbcon);
     }
 
-    public function closeConnectionSgp() {
+    public  function closeConnectionSgp() {
         pg_close($this->dbconsgp);
     }
     
@@ -68,6 +68,13 @@ class Connection {
             self::$instance = new self;
         }
         return self::$instance;
+    }
+    public function __clone() { 
+        throw new Exception("Can't clone a singleton");
+    }
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
     }
 
 }

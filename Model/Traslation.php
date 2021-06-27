@@ -508,7 +508,7 @@ INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this-
                         'trasl_date_request' => $row[4],
                         'usr_name_complete' => $row[5],
                         'trasl_descripcion' => $row[6],
-                        'trasl_path' => $row[8],
+                        'trasl_path' => $row[7],
                         'prison_per_id' => $row[8],
                         'prison_per_identification' => $row[9],
                         'prison_per_name' => $row[10],

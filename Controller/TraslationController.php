@@ -599,7 +599,7 @@ if (isset($_FILES['file_pdf'])) {
     // check's valid format
     if (in_array($ext, $valid_extensions)) {
         $pathUpload = $pathUpload . strtolower($final_image);
-        $pathSave = $pathSave . strtolower($final_image);
+        $pathSave = $pathSave . strtolower(trim($final_image));
         if (move_uploaded_file($tmp, $pathUpload)) {
             include_once ('./../Model/Traslation.php');
             $traslation = new Traslation();
