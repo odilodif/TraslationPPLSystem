@@ -63,8 +63,8 @@
 <script src="./View/js/Roles/Roles.js" type="text/javascript"></script>
 <script src="./View/js/User/User.js" type="text/javascript"></script>
 <div id="form-container"> 
-    <input type="submit"   class="btn btn-primary btn-sm" value="Editar" style="    margin-left: 199px;   margin-bottom: 4px;" >
-    <input type="submit"   class="btn-save" value="Guardar" hidden="" >
+    <input type="submit" id="btn-edit"  class="btn btn-primary btn-sm" value="Editar" style="    margin-left: 199px;   margin-bottom: 4px;" >
+    <input type="submit"  id="btn-save"  class="btn-save" value="Guardar"  >
     <form  id="fmrUser">
         <div class="section-fileds-global">
             <img id="usr_img" src="./View/images/avatar_4830521.png" alt="Girl in a jacket" width="100" height="100">
@@ -73,7 +73,7 @@
                 <input type="text" id="name_complete" name="name_complete" value=""style="width:300px" readonly=""><br>
                 <label for="lname">Perfil:</label><br>
                 <input type="text" id="txt_profile" name="txt_profile" value=""style="width:300px" readonly="">
-                <select hidden="">
+                <select id="slect-profile">
                     <option>Administrador</option>
                     <option>Analista</option>
                 </select>
@@ -122,6 +122,10 @@
 </div>
 
 <script>
+    var btnSave = document.getElementById("btn-save");
+    var btnEdit = document.getElementById("btn-edit");
+    var select = document.getElementById("slect-profile");
+    var txt_profile = document.getElementById("txt_profile");
     $(document).ready(function () {
 
         var idUsrSgp = '<?php echo"" . (isset($_GET['idSgp'])) ? $_GET['idSgp'] : " " ?>';
@@ -133,6 +137,22 @@
             loadListRoles(idUsrSgp);
         }
 
+
+        btnSave.style.display = "none";
+        select.style.display = "none";
+        btnEdit.addEventListener("click", showBtnSave);
+        btnSave.addEventListener("click", showBtnEdit);
+
     });
 
+    function showBtnSave() {
+        btnSave.style.display = "block";
+        btnEdit.style.display = "none";
+        select.style.display = "block";
+        txt_profile.style.display="none";
+    }
+    function showBtnEdit() {
+        btnEdit.style.display = "block";
+        btnSave.style.display = "none";
+    }
 </script>
