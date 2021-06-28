@@ -26,9 +26,9 @@ function loadListMenu(idUsrSgp) {
                 $.each(result, function (i, data) {
                     var body = "<tr>";
                     if(data.check)
-                        body += "<td><input type='checkbox' name='' value='"+data.menu_description_id+"' checked disabled ></td>";
+                        body += "<td><input type='checkbox' name='' value='"+data.menu_description_id+"' checked  ></td>";
                      else
-                         body += "<td><input type='checkbox' name='' value='"+data.menu_description_id+"' disabled ></td>";
+                         body += "<td><input type='checkbox' name='' value='"+data.menu_description_id+"'  ></td>";
                     body += "<td>" + data.menu_description_description + "</td>";
                     body += "<tdtype='checkbox' name='' value=''hidden=''>" + data.menu_description_id + "</td>";
                     body += "</tr>";

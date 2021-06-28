@@ -69,10 +69,12 @@ function loadUserForm(id_Sgp) {
         ,
         success: function (result) {
             $('#respuestaAjax').html('');
-            if (result['success']) {                
-                var fomulary = $('#frmUsuer')
+            if (result['success']) {
+                var fomulary = $('#fmrUser')
                 fomulary.find("#name_complete").val(result['name_complete']);
-                fomulary.find("#txt_profile").val(result['prfle_description']);
+                fomulary.find("#txt_profile").val(result['prfle_description']);                
+                fomulary.find("#crs_name").val(result['crs_name']);
+                fomulary.find("#user_nick").val(result['usr_nick']);
             }
         }
         ,

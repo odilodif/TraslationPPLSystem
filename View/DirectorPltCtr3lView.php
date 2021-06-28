@@ -410,10 +410,11 @@
     $(document).ready(function () {
         var usr_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';
         listToExecute(usr_id);       
-        listExecuted3(usr_id);
+       
 
         $(".nav-tabs a").click(function () {
             $(this).tab('show');
+             listExecuted3(usr_id);
         });
 
 

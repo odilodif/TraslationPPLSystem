@@ -24,9 +24,9 @@ function loadTraslationType(idUsrSgp) {
                 $.each(data, function (i, data) {
                     var body = "<tr>";
                     if (data.check)
-                        body += "<td><input type='checkbox' name='' value='" + data.trasl_type_id + "' checked disabled ></td>";
+                        body += "<td><input type='checkbox' name='' value='" + data.trasl_type_id + "' checked  ></td>";
                     else
-                        body += "<td><input type='checkbox' name='' value='" + data.trasl_type_id + "' disabled ></td>";
+                        body += "<td><input type='checkbox' name='' value='" + data.trasl_type_id + "'  ></td>";
                     body += "<td>" + data.trasl_type_descripcion + "</td>";
                     body += "<tdtype='checkbox' name='' >" + data.trasl_type_id + "</td>";
                     body += "</tr>";

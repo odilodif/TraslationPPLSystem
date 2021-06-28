@@ -71,13 +71,6 @@
 
 </div>
 
-
-
-
-
-
-
-
 <div class="wrapper">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -213,7 +206,7 @@
 
                                 <thead>
                                     <tr>
-                                        
+
                                         <th>Nro</th>
                                         <th>FechaSolicitud</th>
                                         <th>SolicitadoPor</th>
@@ -241,10 +234,6 @@
                     </div>
 
                 </div>
-
-
-
-
 
                 <!---Modals Section-->
                 <div class="modal fade" id="traslationAnalystNearFmly" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
@@ -403,7 +392,7 @@
                     <!-- /.modal-dialog -->
                 </div>
 
-
+            </div>
         </section>
         <!-- /.content -->
     </div>
@@ -412,16 +401,16 @@
 
 <script>
 
-
     $(document).ready(function () {
         /*LoadTables ByApproved Approved And Executed*/
-        var usr_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';       
+        var usr_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';
         loadDirection(usr_id);
-        listAuthorized(usr_id);
-        listExecuted(usr_id);
-        
+
+    /*When user client click on tabs load tables Authorized and Executed*/
         $(".nav-tabs a").click(function () {
             $(this).tab('show');
+            listAuthorized(usr_id);
+            listExecuted(usr_id);
         });
 
 
@@ -437,18 +426,6 @@
     });
 
 </script>
-
-
-<!-- Slimscroll -->
-<script src="./View/bower_components/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<!-- FastClick -->
-
-<script src="./View/bower_components/fastclick/lib/fastclick.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="./View/dist/js/adminlte.min.js" type="text/javascript"></script>
-<!-- iCheck -->
-<script src="./View/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-<!-- Page Script -->
 <script>
     $(function () {
         //Enable iCheck plugin for checkboxes
@@ -495,5 +472,17 @@
 
     });
 </script>
+
+<!-- Slimscroll -->
+<script src="./View/bower_components/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<!-- FastClick -->
+
+<script src="./View/bower_components/fastclick/lib/fastclick.js" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<script src="./View/dist/js/adminlte.min.js" type="text/javascript"></script>
+<!-- iCheck -->
+<script src="./View/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<!-- Page Script -->
+
 <!-- AdminLTE for demo purposes -->
 <script src="./View/dist/js/demo.js" type="text/javascript"></script>
