@@ -346,12 +346,12 @@
 <script>
     $(document).ready(function () {
         var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';//Get Crs from Variable Sesion        
-        var type = '<?php echo"" . (isset($_GET['type'])) ? $_GET['type'] : " " ?>';        
+        var type = '<?php echo"" . (isset($_GET['type'])) ? $_GET['type'] : " " ?>';
         var getIdTraslation = '<?php echo"" . (isset($_GET['idTraslation'])) ? $_GET['idTraslation'] : " " ?>';//Edit Taslation from table with $_GET              
         if (getIdTraslation != ' ') {
-                   
+
             var id_traslation = getIdTraslation;
-            loadRecordTraslation('current', id_traslation, '',crs_id , type);
+            loadRecordTraslation('current', id_traslation, '', crs_id, type);
         } else
         {
             loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
@@ -369,7 +369,6 @@
 
             $("#tblPPLList tbody tr").each(function () {
                 var checked = $(this).find('td:eq(0) input');
-
                 if (checked.is(':checked')) {
                     var prontuario = $(this).find('td:eq(1)').text();
                     var cedula = $(this).find('td:eq(2)').text();
@@ -393,15 +392,11 @@
 
             });
 
-
-
-
-
             modal.style.display = "none";
             //var id_traslation = $('#idTraslation').val();
         });
 
-       
+
         var autocomp_opt = {
             source: function (request, response) {
                 $.ajax({
@@ -539,25 +534,26 @@
                             var rowCount = $('#tblppl tr').length;
                             var jsonObj = [];
                             $("#tblppl tbody tr").each(function () {
-                                var col0 = $(this).find('td:eq(0)').text();                                
+                                var col0 = $(this).find('td:eq(0)').text();
                                 var col1 = $(this).find('td:eq(1)').text();
                                 var col2 = $(this).find('td:eq(2)').text();
                                 var col3 = $(this).find('td:eq(3)').text();
                                 var col4 = $(this).find('td:eq(4)').text();
                                 var col5 = $(this).find('td:eq(5)').text();
                                 var col6 = $(this).find('td:eq(6)').text();
-                                /*trasl_id,prison_per_id,trasl_det_status*/
+
                                 if ((col0 != undefined && col0 != '')) {
                                     jsonObj.push({"identification": col0, "trasl_id": id_traslation, "name": col1, "last_name": col2, "sex": col3, "prontuario": col4, "status_sgp": col6});
+                                } else {
+                                    alert('Asegurese de que no exista campos vacios en la tabla de PPLs');
                                 }
-                                /*else {
-                                 alert('Asegurese de que no exista campos vacios en la tabla de PPLs');
-                                 }*/
 
                                 i++;
                             });
                             /*ifExistsPPL(jsonObj, id_traslation);*/
-                            createTraslationDetails(jsonObj, id_traslation,obj);
+                           /* var count = Object.keys(jsonObj).length;
+                            console.log(count);*/
+                            createTraslationDetails(jsonObj, id_traslation, obj);
 
                         } else
                         {
@@ -565,11 +561,11 @@
                         }
 
                     },
-                    error: function(jqXHR, exception){
+                    error: function (jqXHR, exception) {
                         alert('Error.\n' + jqXHR.responseText);
                     }
-                    
-                   
+
+
                 });
 
             }
@@ -673,6 +669,7 @@
 
 // When the user clicks the button, open the modal
     btnSearch.onclick = function () {
+
         modal.style.display = "block";
         listPPL();
     }

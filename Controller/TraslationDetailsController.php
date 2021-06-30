@@ -15,15 +15,17 @@ if (isset($_POST['TraslationDetails'])) {
             $i = 0;
             foreach ($list as $key => $value) {
                 $trasl_id = $value['trasl_id'];
-                $prontuario = $value['prontuario']; 
-                
+                $prontuario = $value['prontuario'];
+
                 if ($i == 0) {
                     $values = "VALUES($trasl_id, (SELECT \"id\" FROM prison_person WHERE prontuario='$prontuario'),'t')";
+                    $i++;
+                    continue;
                 }
                 $values .= ",($trasl_id, (SELECT \"id\" FROM prison_person WHERE prontuario='$prontuario'),'t')";
-                $i++;
+                
             }
-            $result = $traslation_details->create($values);           
+            $result = $traslation_details->create($values);
             if ($result['success']) {
                 $res = array('success' => TRUE, 'message' => 'Datos Guardados',
                     'nro' => $i

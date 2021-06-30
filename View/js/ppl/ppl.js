@@ -11,18 +11,18 @@ function listPPL() {
         type: 'POST',
         dataType: 'JSON',
         beforeSend: function () {
-            $('#tblPPLList tbody').empty();
+            $('#tblPPLList tbody').html("");
             $("#tblHistoryMove tbody").empty();
             $('#waiting').modal('show');
         }
         ,
         success: function (data) {
-            $('#waiting').modal('hide');
-            if (data[0]['success']) {
-                $('#tblPPLList tbody').empty();
+            $('#waiting').modal('hide');           
+                      
+            if (data[0]['success']) {                
                 $.each(data, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><input type=\"checkbox\"></td>";
+                    body += "<td><input type='checkbox'></td>";
                     body += "<td>" + data.prontuario + "</td>";
                     body += "<td>" + data.prison_per_identification + "</td>";
                     body += "<td>" + data.prison_per_name + "</td>";

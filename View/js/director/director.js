@@ -205,6 +205,7 @@ function editTraslationDirectorCrs(idTraslation, status_proccess) {
                     formulario.find("#txt_date_request_traslation-edit").val(result[0]['trasl_date_request']);
                     formulario.find("#trasl_descripcion_edit").val(result[0]['trasl_observations']);
                     $("#tblpplEdit tbody").empty();
+
                     if (!(result[0]['prison_per_identification'] == '')) {
                         $.each(result, function (i, data) {
                             var body = "<tr>";
@@ -386,6 +387,7 @@ function ifExistsPPL(trasl_details, id_traslation) {
 
 }
 function createTraslationDetails(trasl_details, id_traslation, obj_sent_mail) {
+   
     var dat = {
         "TraslationDetails": 'createTraslationDetails',
         "trasl_details": trasl_details
@@ -525,7 +527,7 @@ function loadRecordTraslation(bntMove, idTRaslation, status_proccess, id_crs, ty
                 $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
             },
             success: function (result) {
-                 $('#respuestaAjax').html('');
+                $('#respuestaAjax').html('');
                 if (result[0]['success']) {
 
                     //alert(result[0]['success'])
