@@ -329,12 +329,12 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
             } else {
 
                 return $info = array('success' => FALSE, 'message' => 'Traslado no fue Creado'); //User View
-                ;
+               
             }
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+           // parent::closeConnection();
         }
     }
 

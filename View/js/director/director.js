@@ -1,7 +1,7 @@
 
 function loadComboboxTraslationType() {
     var dat = {
-        "TraslationType": 'listTraslationType'
+        "listTraslTypeRequest": 'listTraslTypeRequest'
     };
 
     $.ajax({
