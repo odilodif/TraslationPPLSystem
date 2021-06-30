@@ -130,11 +130,7 @@ if (isset($_POST['Traslation'])) {
                     } else {
                         $traslation->executeEmpty();
                         $info_empty = $traslation->getMove($traslation->getQuery());
-                        if ($info_empty[0]['success']) {
-                            echo json_encode($info_empty);
-                        } else {
-                            echo json_encode($info_empty);
-                        }
+                        echo json_encode($info_empty);
                     }
                 }
 
@@ -163,8 +159,6 @@ if (isset($_POST['Traslation'])) {
                         }
                     }
                 }
-
-
                 break;
             case 'current':
                 include_once ('./../Model/CurrentRecord.php');
@@ -174,19 +168,9 @@ if (isset($_POST['Traslation'])) {
                 if ($info[0]['success']) {
                     echo json_encode($info);
                 } else {
-                    $traslation->executeMove2();
-                    $info2 = $traslation->getMove($traslation->getQuery());
-                    if ($info2[0]['success']) {
-                        echo json_encode($info2);
-                    } else {
-                        $traslation->executeEmpty();
-                        $info_empty = $traslation->getMove($traslation->getQuery());
-                        if ($info_empty[0]['success']) {
-                            echo json_encode($info_empty);
-                        } else {
-                            echo json_encode($info_empty);
-                        }
-                    }
+                    $traslation->executeEmpty();
+                    $info_empty = $traslation->getMove($traslation->getQuery());
+                    echo json_encode($info_empty);
                 }
                 break;
         }
@@ -451,20 +435,20 @@ if (isset($_POST['Traslation'])) {
             $result1 = $traslation->saveTraslationExecuted($trasl_id, $usr_id_executed);
             $i++;
         }
-        
-         foreach ($list as $key => $value) {
+
+        foreach ($list as $key => $value) {
             $trasl_id = $value['trasl_id'];
-            $result = $traslation->executeMoveSystraSgp($trasl_id);           
+            $result = $traslation->executeMoveSystraSgp($trasl_id);
         }
 
         if ($result['success'] && $result1['success']) {
-            $res = array('success' => TRUE, 'message' => 'Traslados Ejecutados '.$result['message'],
+            $res = array('success' => TRUE, 'message' => 'Traslados Ejecutados ' . $result['message'],
                 'nro' => $i
             );
             echo json_encode($res);
         } else {
             $res = array('success' => FALSE,
-                'message' => 'No se pudo Finalizar el Traslado'.$result['message'],
+                'message' => 'No se pudo Finalizar el Traslado' . $result['message'],
                 'nro' => '0'
             );
             echo json_encode($res);
@@ -482,9 +466,9 @@ if (isset($_POST['Traslation'])) {
             $result = $traslation->saveTraslationAuthorized($trasl_id, $usr_id_approbed);
             $i++;
         }
-        
-         foreach ($list as $key => $value) {
-            $trasl_id = $value['trasl_id'];            
+
+        foreach ($list as $key => $value) {
+            $trasl_id = $value['trasl_id'];
             $result = $traslation->saveTraslationAuthorized($trasl_id, $usr_id_approbed);
             $i++;
         }

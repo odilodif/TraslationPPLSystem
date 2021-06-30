@@ -1395,7 +1395,7 @@ WHERE th.trasl_state_process in('approved','executed')";
                 }
                 if (!empty($info)) {
                     return $info;
-                    ;
+                    
                 } else {
                     return array(array('success' => FALSE, 'message' => 'No hay datos que mostrar'));
                 }

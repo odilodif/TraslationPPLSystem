@@ -129,8 +129,7 @@
                 <!-- <button type="button" class="btn btn-info btn-xs" id="btnSaveTraslation">Guardar</button>  -->
                 <i class="fa fa-dashboard"></i> <img src="./View/images/auction.png"  style="height:2%;width: 2%" /> Crear Solicitud de Traslado PPL <small>Sistema de Traslados   </small>
                 <a href='javascript:clearFields();' class='glyphicon glyphicon-search' id="btnSearch"  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b>Buscar</b></a>
-                <a href='#' class='glyphicon glyphicon-search' id="btnSearch2" style="display: none"><span class="glyphicon glyphicon-search" ></span><b>Buscando</b></a>
-                <a href='javascript:show_form_income();' class='glyphicon glyphicon-plus' id="btnAddIcon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><b>Añadir</b></a>
+                <a href='#' class='glyphicon glyphicon-search' id="btnSearch2" style="display: none"><span class="glyphicon glyphicon-search" ></span><b>Buscando</b></a>                
                 <a href="" class='glyphicon glyphicon-new-window' id="btnNewTraslation" ><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span><b>Nuevo</b></a>
 
             </li>
@@ -264,115 +263,7 @@
         </div>
     </div>
 </form>
-<form id="fmrEditTraslation" action="" method="POST" enctype="multipart/form-data" style="margin: 2% auto;" hidden="" class="scaled">
 
-    <div class="" id="">
-        <div class="modal-body">
-            <div class="">
-                <div align="center">
-                    <div class="">
-                        <div id="nav-bar">
-                            <ul id="bar-status">
-                                <li><a href="#" id="status_start" value="Inicio">Inicio</a></li>
-                                <li><a href="#" id="status_sent" value="Enviado">Enviado</a></li>
-                                <li><a href="#" id="status_revision" value="Revisión">Revision</a></li>
-                                <li><a href="#" id="status_approved" value="Aprobado">Aprobado</a></li>
-                                <li><a href="#" id="status_executed" value="Autorizado">Autorizado</a></li>
-                                <li><a href="#" id="status_closed" value="Ejecutado">Finalizado</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row no-padding" style="margin-left: 5px;">
-                <div class="col col-lg-12" style="margin-left: 5px;" id="idTxtNombreEdit">
-                    <div class="col-md-1" >
-                        <label>Nro. Solicitud</label>
-                    </div>
-                    <label class="" style="margin-left: 5px;"   >
-
-                        <td><input type="text" id="idTraslation"  name="idTraslationEdit"  readonly="" style="color:red"/></td>
-                    </label>
-
-                    <div class="col-md-1" >
-
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 5px;" >
-
-                    </label>
-                </div>
-            </div>
-            <div class="row no-padding" style="margin-left: 5px;">
-                <div class="col col-lg-12" style="margin-left: 5px;" id="idTxtNombre">
-                    <div class="col-md-1" >
-                        <label>Tipo de Traslado</label>
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 5px;"   >
-                        <input type="text" id="txt_trasl_typeEdit"  name="trasl_type_iew" readonly />
-
-                    </label>
-
-                    <div class="col-md-1" >
-                        <label>Fecha</label>
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 5px;" >
-                        <input  id="txt_date_request_traslEdit" name="txt_date_request_traslEdit" type="date" readonly="">
-                    </label>
-                </div>
-            </div>
-            <div class="row no-padding" style="margin-left: 5px;">
-                <div class="col col-lg-12" style="margin-left: 5px;">
-                    <div class="col-md-1" >
-                        <label>CPL Destino</label>
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 5px;" >
-                        <input  id="txt_crs_id_destinationEdit" name="txt_crs_id_destinationEdit" type="text" value="" readonly="" hidden="">
-                        <select id="crs_id_destinationEdit" name="crs_id_destinationEdit" required="" >
-                            <option value="0">Selecionar Crs </option>
-                        </select>
-                    </label>
-
-                    <div class="col-md-1" >
-                        <label>Comentario</label>
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 15px;" >
-                        <input type="text" id="trasl_descripcionEdit" name="trasl_descripcionEdit" style="width: 300px;" readonly="" />
-
-                    </label>
-
-
-                </div>
-            </div>
-            <div class="row no-padding" style="margin-left: 5px;">
-                <div class="col col-lg-12" style="margin-left: 5px;">
-                    <div class="col-md-1" >
-                        <label>Archivos Adjuntos</label>
-                    </div>
-                    <label class="input col-md-4" style="margin-left: -41px;" >
-                        <a id="pdf_download_dir" href="" download="certificado-desde-crs.pdf" hidden="" class="btn btn-primary pull-right" >Certificado Enviado desde Crs PDF<img src="./View/images/icons/internet-download-symbol.png" alt=""></a>
-
-                    </label>
-
-                    <div class="col-md-1" >
-                        <label></label>
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 5px;" >
-
-                    </label>
-                </div>
-            </div>
-
-        </div>
-        <div id="mensaje"></div>
-
-        <br />
-        <div id="contenidoRegistro"></div>
-        <div class="" style="text-align: right;">
-            <input type="submit" name="btnEdit" id="btnEdit" class="btn btn-success btn-xs" value="Guardar"/>
-        </div>
-    </div>
-</form>
 
 <!-- Trigger/Open The Modal -->
 <button id="btnSearching">Buscar PPL</button>
@@ -454,17 +345,13 @@
 <!--Ready Document Load make functions-->
 <script>
     $(document).ready(function () {
-        var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';
-        console.log(crs_id);
-        var type = '<?php echo"" . (isset($_GET['type'])) ? $_GET['type'] : " " ?>';
-        /*Edit Taslation from table with $_GET*/
-        var getIdTraslation = '<?php echo"" . (isset($_GET['idTraslation'])) ? $_GET['idTraslation'] : " " ?>';
-        //alert(getIdTraslation);
+        var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';//Get Crs from Variable Sesion        
+        var type = '<?php echo"" . (isset($_GET['type'])) ? $_GET['type'] : " " ?>';        
+        var getIdTraslation = '<?php echo"" . (isset($_GET['idTraslation'])) ? $_GET['idTraslation'] : " " ?>';//Edit Taslation from table with $_GET              
         if (getIdTraslation != ' ') {
-            $('#fmrEditTraslation').show();
-            $('#fmrCreateTraslation').hide();
+                   
             var id_traslation = getIdTraslation;
-            //loadRecordTraslationEdit('out_crs', id_traslation, '', '', type);
+            loadRecordTraslation('current', id_traslation, '',crs_id , type);
         } else
         {
             loadRecordTraslation('LastRecord', '', '', crs_id, '', type);
@@ -512,16 +399,9 @@
 
             modal.style.display = "none";
             //var id_traslation = $('#idTraslation').val();
-        });//btnAddIcon
-
-        $('#btnAddIcon').on('click', function () {
-
-            var newtr = $('<tr><td><input type="text" class="description" style="border: 0;" name="" /></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
-            $('.description', newtr).autocomplete(autocomp_opt);
-            $tableBody.append(newtr);
-            //var id_traslation = $('#idTraslation').val();
         });
 
+       
         var autocomp_opt = {
             source: function (request, response) {
                 $.ajax({
