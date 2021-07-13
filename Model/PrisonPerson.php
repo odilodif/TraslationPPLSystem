@@ -146,7 +146,8 @@ class PrisonPerson extends Connection implements ICrud {
 
     public function listAllWithCrs($crs_id) {
         try {
-            $query = "SELECT DISTINCT pp.id, pp.name,pp.last_name,pp.identificador,'' as image_medium,' ' as prison_per_fingerprinter,pp.state,pp.prontuario , 
+            $query = "SELECT DISTINCT pp.id, pp.name,pp.last_name,pp.identificador,'<img src=\"data:image/jpeg;base64,' || encode(image0, 'escape') || '\"name=\"Imagen1\" align=\"left\" width=\"86\"
+height=\"99\" border=\"0\" />' as image_medium,' ' as prison_per_fingerprinter,pp.state,pp.prontuario , 
                 (SELECT prison_location.name FROM prison_location WHERE id=pp.center_id)  AS crs_name, pp.sex
 from prison_person pp 
 INNER JOIN prison_move pm on  pp.id=pm.ppl_id

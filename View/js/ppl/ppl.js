@@ -22,7 +22,7 @@ function listPPL() {
             if (data[0]['success']) {                
                 $.each(data, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><input type='checkbox'></td>";
+                    body += "<td>" + data.prison_per_photo+"</td>";
                     body += "<td>" + data.prontuario + "</td>";
                     body += "<td>" + data.prison_per_identification + "</td>";
                     body += "<td>" + data.prison_per_name + "</td>";
