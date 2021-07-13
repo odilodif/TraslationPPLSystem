@@ -24,7 +24,7 @@ function listUsers() {
             if (result[0]['success']) {
                 $.each(result, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><a href='./?page=SettingsUserWiews&idSgp=" + data.usr_id_sgp + "'>" + data.usr_id_sgp + "</a></td>";
+                    body += "<td><a href='./?page=SettingsUserViews&idSgp=" + data.usr_id_sgp + "'>" + data.usr_id_sgp + "</a></td>";
                     body += "<td>" + data.name_complete + "</td>";
                     body += "<td>" + data.usr_nick + "</td>";
                     body += "<td>" + data.trasl_type_descripcion + "</td>";

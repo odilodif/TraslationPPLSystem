@@ -24,9 +24,9 @@ function loadListRoles(idSGP) {
                 $.each(data, function (i, data) {
                     var body = "<tr>";
                     if (data.check)
-                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' checked ></td>";
+                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' checked disabled ></td>";
                     else
-                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "'></td>";
+                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' disabled ></td>";
                     body += "<td>" + data.rol_description + "</td>";
                     body += "<tdtype='checkbox' name='' value=''hidden=''>" + data.rol_id + "</td>";
                     body += "</tr>";

@@ -28,3 +28,12 @@ if ($_POST['Menu'] === 'ListMenu') {
 
     echo json_encode($menu_list);
 }
+
+if ($_POST['Menu'] === 'SettingsMenuUser') {
+    $menu = new Menu();
+    $listSettingsMenu = $_POST['listSettingsMenu'];
+    $idUsrSgp = $_POST['idUsrSgp'];
+    foreach ($listSettingsMenu as $key => $value) {
+        
+    }
+}

@@ -20,75 +20,8 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 
 <!--Style Modal-->
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+<link href="./View/css/CreateResquestTraslationView/CreateRequestTraslationView.css" rel="stylesheet" type="text/css"/>
 
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 64px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin-left:242px;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 77%;
-        height: 400px; 
-
-
-
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    #content-tbl{
-        overflow-y: scroll;
-        height: 350px;
-        width: 100%
-    }
-    #content-btn-tbl{
-        margin: 10px auto;
-        width: 100%;        
-        flex-direction: row;
-        flex-wrap: wrap;
-        background-color: #E7F6F6;
-        border: 1px solid #99cccc;
-    }
-    th { font-size: 8px; }
-    td { font-size: 8px; }
-
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }    
-    tr:hover {background-color:#4f7d7d;}
-</style>
 <!-- Page Heading -->
 
 <div align="center" id="navegation-bar">
