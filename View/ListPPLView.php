@@ -75,6 +75,7 @@ $currentDateTime = date('Y-m-d');
                                             <thead>
                                                 <tr>
                                                     <th>&nbsp;&nbsp;&nbsp;</th>
+                                                    <th>Foto</th>
                                                     <th>Prontuario</th>
                                                     <th>Cédula</th>
                                                     <th>Nombres</th>

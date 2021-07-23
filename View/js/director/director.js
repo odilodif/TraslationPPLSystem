@@ -183,23 +183,7 @@ function editTraslationDirectorCrs(idTraslation, status_proccess) {
 
             },
             success: function (result) {
-                /********
-                 * trasl_id
-                 * crs_source
-                 * crs_destination
-                 * trasl_date_request
-                 * usr_name
-                 * usr_lasname
-                 * trasl_observations
-                 * trasl_path
-                 * prison_per_id
-                 * prison_per_identification
-                 * prison_per_name
-                 * prison_per_lastname
-                 * prison_per_observations
-                 *
-                 *
-                 */
+      
                 if (result[0]['success']) {
                     formulario.find("#idTraslationEdit").val(result[0]['trasl_id']);
                     formulario.find("#txt_date_request_traslation-edit").val(result[0]['trasl_date_request']);

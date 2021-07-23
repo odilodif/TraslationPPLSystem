@@ -232,6 +232,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;&nbsp;&nbsp;</th>
+                                <th>Foto</th>
                                 <th>Prontuario</th>
                                 <th>Cédula</th>
                                 <th>Nombres</th>
@@ -303,13 +304,13 @@
             $("#tblPPLList tbody tr").each(function () {
                 var checked = $(this).find('td:eq(0) input');
                 if (checked.is(':checked')) {
-                    var prontuario = $(this).find('td:eq(1)').text();
-                    var cedula = $(this).find('td:eq(2)').text();
-                    var nombres = $(this).find('td:eq(3)').text();
-                    var apellidos = $(this).find('td:eq(4)').text();
-                    var stateppl = $(this).find('td:eq(5)').text();
-                    var crs = $(this).find('td:eq(6)').text();
-                    var sex = $(this).find('td:eq(7)').text();
+                    var prontuario = $(this).find('td:eq(2)').text();
+                    var cedula = $(this).find('td:eq(3)').text();
+                    var nombres = $(this).find('td:eq(4)').text();
+                    var apellidos = $(this).find('td:eq(5)').text();
+                    var stateppl = $(this).find('td:eq(6)').text();
+                    var crs = $(this).find('td:eq(7)').text();
+                    var sex = $(this).find('td:eq(8)').text();
                     //alert(prontuario);
                     /*Identificacion,Nombres,Apellidos,Sexo,Prontuario,Estado*/
                     var bodyppl = "<tr>";
@@ -584,7 +585,7 @@
         // code to read selected table row cell data (values).
         $("#tblPPLList").on('click', 'tr', function (e) {
             // e.preventDefault();
-            var col1 = $(this).find('td:eq(1)').text();
+            var col1 = $(this).find('td:eq(2)').text();
             readMovesPPL(col1);
         });
     });
