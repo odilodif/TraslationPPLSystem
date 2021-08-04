@@ -224,7 +224,7 @@
 
         $(document).ready(function () {
             var crs_id = '<?php echo "" . $_SESSION['_USU'][0]['crs_id']; ?>';
-            loadTraslationDetailsList(crs_id);
+            //loadTraslationDetailsList(crs_id);
 
         });
         
