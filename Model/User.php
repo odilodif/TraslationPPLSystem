@@ -208,7 +208,7 @@ from user_login u
 INNER JOIN  profile_saved psv on u.usr_id=psv.usr_id
 INNER JOIN  menu_objects mb on  mb.menu_description_id=psv.menu_description_id
 INNER JOIN  prison_location crs on u.crs_id =crs.id
-where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' order by psv.prfl_saved_id asc;";
+where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' AND psv.prfl_saved_state='t' order by psv.prfl_saved_id asc;";
                 //echo '' . $query;               
 
                 $rs = $this->conn->execute_sgp($query);
