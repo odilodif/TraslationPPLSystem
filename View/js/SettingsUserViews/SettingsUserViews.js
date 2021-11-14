@@ -7,10 +7,15 @@ function saveSettingsUser(idUsrSgp) {
     //console.log(idUsrSgp)
     var jsonObj = [];
     $('#menus_objetos tbody tr').each(function () {
-        var col0 = $(this).find('td:eq(0) input');       
-        /*var textval1 = $(this).find('td:eq(1)').text();*/
+        var col0 = $(this).find('td:eq(0) input');
+        /*var profilsv_id=$(this).find('td:eq(2) input');
+        var textval1 = $(this).find('td:eq(1)').text();*/
         if (col0.is(':checked')) {             
-            jsonObj.push({"idMenu": col0.val()});
+            jsonObj.push({"idMenu": col0.val(),"checked":"t"});
+        }
+        else
+        {
+            jsonObj.push({"idMenu": col0.val(),"checked":"f"});
         }
     });
      var dat = {
@@ -30,9 +35,12 @@ function saveSettingsUser(idUsrSgp) {
         ,
         success: function (result) {
             $('#respuestaAjax').html('');
-            if (result[0]['success']) {
+            if (result['success']) {
                 loadListMenu(idUsrSgp);
+                alert(result['message']);                
             }
+            else
+                alert(result['message']);
         }
         ,
         error: function (jqXHR, exception) {

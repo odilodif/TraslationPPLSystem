@@ -21,7 +21,7 @@
         margin: 1% auto;
         width: 70%;
     }
-    #usr_img{        
+    #usr_img{
         float:left;
     }
     .section-fileds-global{
@@ -34,7 +34,7 @@
     .section-fileds-uno, .section-fileds-dos{
         padding-top: 9px;
         heigth:300px;
-        width:400px; 
+        width:400px;
 
     }
 
@@ -48,7 +48,7 @@
         color: #fff;
         background-color: #337ab7;
         border-color: #2e6da4;
-        margin-left: 199px; 
+        margin-left: 199px;
         margin-bottom: 4px;
         padding: 5px 10px;
         font-size: 12px;
@@ -145,7 +145,7 @@
         btnEdit.addEventListener("click", showBtnSave);
         btnSave.addEventListener("click", showBtnEdit);
 
-       
+
 
 
 
@@ -161,10 +161,17 @@
         btnEdit.style.display = "block";
         btnSave.style.display = "none";
     }
-    
-     $('#menus_objetos').on('dblclick', 'tr', function (e) {
-         e.preventDefault();
-            alert('row');
-        });
-    
+
+    $('#menus_objetos').on('dblclick', 'tr', function (e) {
+        e.preventDefault();
+        if ($(this).find('#menu_check').is(":checked")) {
+            alert('checked..' + $(this).find('#menu_check').val()+'...->'+idUsrSgp);
+            
+            
+        } else
+        {
+            alert('Por favor ponga un check en el cuadro ...')
+        }
+    });
+
 </script>

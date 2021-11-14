@@ -23,7 +23,6 @@
 <script src="./View/js/Reports/Report1.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="./View/DataTables-1.10.19/media/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="./View/DataTables-1.10.19/examples/resources/syntax/shCore.css">
-jquery-ui-1.10.3.minimal.min.js
 <script type="text/javascript" language="javascript" src="./View/DataTables-1.10.19/media/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript" src="./View/DataTables-1.10.19/examples/resources/syntax/shCore.js"></script>
 <script type="text/javascript" language="javascript" src="./View/DataTables-1.10.19/examples/resources/demo.js"></script>
@@ -144,7 +143,7 @@ jquery-ui-1.10.3.minimal.min.js
                                                             <th>Apellidos.PPL</th>                                                            
                                                             <th>Número.de.Detención</th>
                                                             <th>Centro</th>
-                                                            <th>Fecha.Ingreso</th>
+                                                            <th>Fecha.Perd.Libertad</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -176,7 +175,7 @@ jquery-ui-1.10.3.minimal.min.js
                                         <th>Apellidos.PPL</th>                                                            
                                         <th>Número.de.Detención</th>
                                         <th>Centro</th>
-                                        <th>Fecha.Ingreso</th>
+                                        <th>Fecha.Perd.Libertad</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -189,7 +188,7 @@ jquery-ui-1.10.3.minimal.min.js
                         <div id="ochenta" class="tab-pane fade">
                             <h3>Porcentaje.Cumplido.80%</h3>
                             <p>Lista de las Personas Privadas de la Libertad con el 80% de pena Cumplida</p>
-                            <table id="tblAuthorized" class="table table-striped table-bordered table table-hover" style="width:100%">
+                            <table id="tbl80Porcent" class="table table-striped table-bordered table table-hover" style="width:100%">
 
                                 <thead>
                                     <tr>
@@ -201,7 +200,7 @@ jquery-ui-1.10.3.minimal.min.js
                                         <th>Apellidos.PPL</th>                                                            
                                         <th>Número.de.Detención</th>
                                         <th>Centro</th>
-                                        <th>Fecha.Ingreso</th>
+                                        <th>Fecha.Perd.Libertad</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -213,10 +212,10 @@ jquery-ui-1.10.3.minimal.min.js
                         </div>
                         <div id="noventa" class="tab-pane fade">
                             <h3>Porcentaje.Cumplido.90%</h3>
-                            <p>Lista de las Personas Privadas de la Libertad con el 80% de pena Cumplida</p>
+                            <p>Lista de las Personas Privadas de la Libertad con el 90% de pena Cumplida</p>
 
 
-                            <table id="tblAprobedExecuted" class="table table-striped table-bordered table table-hover" style="width:100%">
+                            <table id="tbl90Porcent" class="table table-striped table-bordered table table-hover" style="width:100%">
 
                                 <thead>
                                     <tr>
@@ -228,7 +227,7 @@ jquery-ui-1.10.3.minimal.min.js
                                         <th>Apellidos.PPL</th>                                                            
                                         <th>Número.de.Detención</th>
                                         <th>Centro</th>
-                                        <th>Fecha.Ingreso</th>
+                                        <th>Fecha.Perd.Libertad</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -423,9 +422,11 @@ jquery-ui-1.10.3.minimal.min.js
                 get70Prcentage();
             } else if (option == 'ochenta') {
                 console.log('->' + $(this).attr('name'));
+                get80Prcentage();
             } else if (option == 'noventa')
             {
                 console.log('->' + $(this).attr('name'));
+                get90Prcentage();
             }
 
         });

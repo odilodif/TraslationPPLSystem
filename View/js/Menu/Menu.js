@@ -26,11 +26,11 @@ function loadListMenu(idUsrSgp) {
                 $.each(result, function (i, data) {
                     var body = "<tr>";
                     if (data.check)
-                        body += "<td><input type='checkbox' name='' value='" + data.menu_description_id + "' checked disabled ></td>";
+                        body += "<td><input id='menu_check' type='checkbox' name='' value='" + data.menu_description_id + "' checked disabled ></td>";
                     else
-                        body += "<td><input type='checkbox' name='' value='" + data.menu_description_id + "' disabled  ></td>";
+                        body += "<td><input id='menu_check' type='checkbox' name='' value='" + data.menu_description_id + "' disabled  ></td>";
                     body += "<td>" + data.menu_description_description + "</td>";
-                    body += "<tdtype='checkbox' name='' value=''hidden=''>" + data.menu_description_id + "</td>";
+                    body += "<td><input id='prfl_saved_id' type='text' name='' value='" + data.menu_description_id + "' disabled hidden  ></td>";
                     body += "</tr>";
                     $("#menus_objetos tbody").append(body);
                 });

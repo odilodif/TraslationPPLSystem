@@ -174,9 +174,7 @@ LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
-        } finally {
-            //parent::closeConnection();
-        }
+        } 
     }
 
     public function listByParameter($id, $name, $path) {

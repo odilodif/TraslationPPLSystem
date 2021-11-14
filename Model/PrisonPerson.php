@@ -159,7 +159,7 @@ and pm1.state in ('draft','done')
 )
 and pp.state<>'free' 
 and pp.center_id= $crs_id  
-ORDER BY pp.last_name ASC ; ";
+ORDER BY pp.last_name ASC limit 1; ";
             //  echo ''.$query;
 
             $this->rs = parent::execute_sgp($query);

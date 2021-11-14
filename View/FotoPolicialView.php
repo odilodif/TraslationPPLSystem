@@ -82,6 +82,7 @@
         </table>
 
     </div> 
+    <span id="errorMsg"></span>
 </div>
 
 <script>
@@ -93,7 +94,7 @@
     const cnvsFront = document.getElementById('cnvsFront');
     const cnvsLeft = document.getElementById('cnvsLeft');
     const cnvsRight = document.getElementById('cnvsRight');
-    const errorMsgElement = document.querySelector('span#errorMsg');
+    const errorMsgElement = document.getElementById('errorMsg');
 
     const constraints = {
         audio: false,
@@ -108,7 +109,7 @@
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
             handleSuccess(stream);
         } catch (e) {
-            errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+             console.error(e);
         }
     }
     // Correcto!

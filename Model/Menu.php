@@ -77,7 +77,7 @@ class Menu extends Connection implements ICrud {
 
     function __construct() {
         //parent::__construct();
-        $this->conn=Connection::getInstance();
+        $this->conn = Connection::getInstance();
     }
 
 //Methods
@@ -121,7 +121,7 @@ class Menu extends Connection implements ICrud {
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-           // $this->conn->closeConnectionSgp();
+            // $this->conn->closeConnectionSgp();
         }
     }
 
@@ -139,6 +139,30 @@ class Menu extends Connection implements ICrud {
 
     public function updateByParameters($id, $name, $path) {
         
+    }
+
+    public function update_create_profile_save($listSettingsMenu, $idUsrSgp) {
+        $rs;
+        foreach ($listSettingsMenu as $key => $value) {
+            //insert or update
+            //echo '-'.$value['prfl_saved_id'].'<br>';
+            $idmenu = $value['idMenu'];
+            $status = $value['checked'];
+            if ($status === 't') {
+                //echo 't'.$status;
+                $query1 = "SELECT f_create_or_update_profile_saved($idmenu,$idUsrSgp,'$status');";
+                $rs = $this->conn->execute_sgp($query1);
+            } else {
+                $query2 = "SELECT f_update_profile_saved($idmenu,$idUsrSgp);";
+                $rs = $this->conn->execute_sgp($query2);
+            }
+        }
+
+        if ($rs) {
+            return array('success' => TRUE, 'message' => 'La actulización se realizó con exito ');
+        } else {
+            return array('success' => FALSE, 'message' => 'Hubo un problema en la actualización');
+        }
     }
 
 }

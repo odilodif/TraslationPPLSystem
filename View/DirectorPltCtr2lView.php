@@ -18,6 +18,28 @@
 <!-- iCheck -->  
 <link href="./View/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css"/>
 <!-- Page Heading -->
+
+<!-- Page Heading -->
+<script src="./View/js/DirectorPlantCtrl1/directorPlantCtrl1.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./View/css/datatables/dataTables.bootstrap.min.css">
+
+<script src="./View/css/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<link href="./View/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<!-- Ionicons -->
+
+<link href="./View/bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+<!-- Theme style -->
+<link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">  
+<link href="./View/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>
+<!-- iCheck -->  
+<link href="./View/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css"/>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
 <br>
 <div class="row">
     <div class="col-lg-12">

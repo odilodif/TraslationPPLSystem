@@ -301,6 +301,11 @@
         var tblpplBody = $("tbody", tblppl);
         $('#AddPPL').on('click', function () {
 
+            var tbl = document.getElementById('tblPPLList');
+            if (tbl.contains() == false) {
+
+
+            }
             $("#tblPPLList tbody tr").each(function () {
                 var checked = $(this).find('td:eq(0) input');
                 if (checked.is(':checked')) {
@@ -485,8 +490,8 @@
                                 i++;
                             });
                             /*ifExistsPPL(jsonObj, id_traslation);*/
-                           /* var count = Object.keys(jsonObj).length;
-                            console.log(count);*/
+                            /* var count = Object.keys(jsonObj).length;
+                             console.log(count);*/
                             createTraslationDetails(jsonObj, id_traslation, obj);
 
                         } else

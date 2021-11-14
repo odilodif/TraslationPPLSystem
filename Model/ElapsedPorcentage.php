@@ -133,7 +133,7 @@ class ElapsedPorcentage extends Connection implements ICrud {
         
     }
 
-    public function calcule_porcentage_and_get_table_elapsed_percentage($param) {
+    public function calcule_porcentage_and_get_table_elapsed_percentage60($param) {
         $info;
         try {
             $query = "SELECT f_calcule_porcentage_and_get_table_elapsed_percentage60($param);";
@@ -177,6 +177,88 @@ class ElapsedPorcentage extends Connection implements ICrud {
         $info;
         try {
             $query = "SELECT f_calcule_porcentage_and_get_table_elapsed_percentage70($param);;";
+            //echo '' . $query;
+            
+            $rs = parent::execute_sgp($query);
+            if ($rs) {
+                while ($row = pg_fetch_row($rs)) {
+                    $result= (explode(",",trim($row[0],'()')));
+                    //var_dump($result);
+                    $info[] = array('success' => TRUE,
+                        'message' => 'Lista Pocentaje',
+                        'porcent_cumplido' => $result[0],
+                        'dias_a_la_fecha' => $result[1],
+                        'total_dias_judiciales_impuestos' => $result[2],
+                        'prontuario' => $result[3],
+                        'name_ppl' => $result[4],
+                        'last_name_ppl' => $result[5],
+                        'numero_detencion' => $result[6],
+                        'nombre_crs' => $result[7],
+                        'fecha_in' => $result[8]
+                    );
+                }
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, 'message' => 'Porcentajes no Encontrados',));
+                }
+            } else {
+                return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos!!!',));
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar lista Porcentajes' . $exc->getMessage());
+        } finally {
+            //parent::closeConnection();
+        }
+    }
+    
+    public function calcule_porcentage_and_get_table_elapsed_percentage80($param) {
+        $info;
+        try {
+            $query = "SELECT f_calcule_porcentage_and_get_table_elapsed_percentage80($param);";
+            //echo '' . $query;
+            
+            $rs = parent::execute_sgp($query);
+            if ($rs) {
+                while ($row = pg_fetch_row($rs)) {
+                    $result= (explode(",",trim($row[0],'()')));
+                    //var_dump($result);
+                    $info[] = array('success' => TRUE,
+                        'message' => 'Lista Pocentaje',
+                        'porcent_cumplido' => $result[0],
+                        'dias_a_la_fecha' => $result[1],
+                        'total_dias_judiciales_impuestos' => $result[2],
+                        'prontuario' => $result[3],
+                        'name_ppl' => $result[4],
+                        'last_name_ppl' => $result[5],
+                        'numero_detencion' => $result[6],
+                        'nombre_crs' => $result[7],
+                        'fecha_in' => $result[8]
+                    );
+                }
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, 'message' => 'Porcentajes no Encontrados',));
+                }
+            } else {
+                return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos!!!',));
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar lista Porcentajes' . $exc->getMessage());
+        } finally {
+            //parent::closeConnection();
+        }
+    }
+    
+    
+    
+     public function calcule_porcentage_and_get_table_elapsed_percentage90($param) {
+        $info;
+        try {
+            $query = "SELECT f_calcule_porcentage_and_get_table_elapsed_percentage90($param);";
             //echo '' . $query;
             
             $rs = parent::execute_sgp($query);
