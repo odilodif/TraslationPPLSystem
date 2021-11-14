@@ -37,6 +37,7 @@ function saveSettingsUser(idUsrSgp) {
             $('#respuestaAjax').html('');
             if (result['success']) {
                 loadListMenu(idUsrSgp);
+                disableEdition();
                 alert(result['message']);                
             }
             else
@@ -65,5 +66,24 @@ function enableEdition() {
     $('#tbl_roles tbody tr').each(function () {
         var col0 = $(this).find('td:eq(0) input');
         col0.prop("disabled", false);
+    });
+}
+
+
+function disableEdition() {
+    $('#menus_objetos tbody tr').each(function () {
+        var col0 = $(this).find('td:eq(0) input');
+        col0.prop("disabled", true);
+
+    });
+
+    $('#tbl_traslation_type tbody tr').each(function () {
+        var col0 = $(this).find('td:eq(0) input');
+        col0.prop("disabled", true);
+    });
+
+    $('#tbl_roles tbody tr').each(function () {
+        var col0 = $(this).find('td:eq(0) input');
+        col0.prop("disabled", true);
     });
 }
