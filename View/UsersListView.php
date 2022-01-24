@@ -20,6 +20,7 @@
                                     <th>ID.SGP</th>                                                        
                                     <th>Nombres.Completos</th>
                                     <th>Usuario.Nick</th>
+                                    <th>Perfil</th>
                                     <th>TipoTraslado.Asig</th>
                                     <th>Centro.CPL.CPPL</th> 
                                     <th>Area.Dirección</th>                                                         

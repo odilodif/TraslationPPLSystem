@@ -102,6 +102,10 @@ class TraslationType extends Connection implements ICrud {
         
     }
 
+    
+ 
+    
+    
 }
 
 ?>

@@ -45,27 +45,36 @@
     }
 
     .btn-save{
-        color: #fff;
-        background-color: #337ab7;
-        border-color: #2e6da4;
-        margin-left: 199px;
-        margin-bottom: 4px;
-        padding: 5px 10px;
-        font-size: 12px;
-        line-height: 1.5;
-        border-radius: 3px;
+        /*color: #fff;
+         background-color: #337ab7;
+         border-color: #2e6da4;
+         margin-left: 199px;
+         margin-bottom: 4px;
+         padding: 5px 10px;
+         font-size: 12px;
+         line-height: 1.5;
+         border-radius: 3px;*/
     }
-
+    #container-buttons{
+        width:250;
+        margin: 11px 0px 0px 217px;
+    }
 
 </style>
 <script src="./View/js/Menu/Menu.js" type="text/javascript"></script>
 <script src="./View/js/TraslationType/TraslationType.js" type="text/javascript"></script>
 <script src="./View/js/Roles/Roles.js" type="text/javascript"></script>
 <script src="./View/js/User/User.js" type="text/javascript"></script>
+<script src="./View/js/Profile/Profile.js" type="text/javascript"></script>
 <script src="./View/js/SettingsUserViews/SettingsUserViews.js" type="text/javascript"></script>
 <div id="form-container"> 
-    <input type="submit" id="btn-edit"  class="btn btn-primary btn-sm" value="Editar" style="    margin-left: 199px;   margin-bottom: 4px;"   onclick="enableEdition()" >
-    <input type="submit"  id="btn-save"  class="btn-save" value="Guardar" onclick="saveSettingsUser(idUsrSgp)" >
+    <div id="container-buttons">
+        <input type="submit" id="btn-edit"  class="btn btn-primary btn-sm" value="Editar"   onclick="enableEdition()" >        
+        <input type="submit"  id="btn-save"  class="btn-save btn-success" value="Guardar" onclick="saveSettingsUser(idUsrSgp)" >
+        <input type="submit" id="btn-cancel"  class="" value="Cancelar"   onclick="cancel()" >
+    </div>
+
+
     <form  id="fmrUser">
         <div class="section-fileds-global">
             <img id="usr_img" src="./View/images/avatar_4830521.png" alt="Girl in a jacket" width="100" height="100">
@@ -125,11 +134,13 @@
 <script>
     var btnSave = document.getElementById("btn-save");
     var btnEdit = document.getElementById("btn-edit");
+    var btnCancel = document.getElementById("btn-cancel");
     var select = document.getElementById("slect-profile");
     var txt_profile = document.getElementById("txt_profile");
     var idUsrSgp
-    $(document).ready(function () {
 
+    /*When init method this page*/
+    $(document).ready(function () {
         idUsrSgp = '<?php echo"" . (isset($_GET['idSgp'])) ? $_GET['idSgp'] : " " ?>';
         if (idUsrSgp) {
             //console.log('->'+idUsrSgp);
@@ -141,33 +152,50 @@
 
 
         btnSave.style.display = "none";
+        btnCancel.style.display = "none";
         select.style.display = "none";
         btnEdit.addEventListener("click", showBtnSave);
+        btnCancel.addEventListener("click", excuteCancel);
         btnSave.addEventListener("click", showBtnEdit);
-
-
-
-
-
     });
+    
+    (function(){
+        //alert('hello');
+        
+    })();
+    
+   
 
     function showBtnSave() {
-        btnSave.style.display = "block";
+        btnSave.style.display = "";
+        btnCancel.style.display = "";
         btnEdit.style.display = "none";
         select.style.display = "block";
         txt_profile.style.display = "none";
     }
     function showBtnEdit() {
         btnEdit.style.display = "block";
+        btnCancel.style.display = "block";
         btnSave.style.display = "none";
+        btnCancel.style.display = "none";
+
+    }
+
+    function excuteCancel() {
+        disableEdition();
+        btnCancel.style.display = "none";
+        btnSave.style.display = "none";
+        btnEdit.style.display = "";
+        select.style.display = "none";
+        txt_profile.style.display = "";
     }
 
     $('#menus_objetos').on('dblclick', 'tr', function (e) {
         e.preventDefault();
         if ($(this).find('#menu_check').is(":checked")) {
-            alert('checked..' + $(this).find('#menu_check').val()+'...->'+idUsrSgp);
-            
-            
+            alert('checked..' + $(this).find('#menu_check').val() + '...->' + idUsrSgp);
+
+
         } else
         {
             alert('Por favor ponga un check en el cuadro ...')

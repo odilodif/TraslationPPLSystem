@@ -145,7 +145,7 @@ class User extends Connection implements ICrud {
 LEFT JOIN profile prfl ON usr.prfle_id=prfl.prfle_id
 LEFT JOIN  traslation_type typ ON usr.trasl_type_id=typ.trasl_type_id
 LEFT JOIN prison_location pl ON usr.crs_id = pl.id
-LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t';";
+LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t' ORDER BY usr_id_sgp ASC;";
             //echo '' . $query;  
             $rs = $this->conn->execute_sgp($query);
             if ($rs) {

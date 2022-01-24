@@ -88,7 +88,7 @@ class TraslTypeUserLoginSaved extends Connection implements ICrud {
     public function getListByIdSGP($idSGP) {
         try {
             $query = "SELECT typu.trasl_type_id  FROM   trasl_type_user_login_saved typu  INNER JOIN user_login usr  on  typu.usr_id = usr.usr_id 
- WHERE typu.usr_id=  (SELECT usr_id FROM user_login WHERE usr_id_sgp=$idSGP );";
+ WHERE typu.usr_id=  (SELECT usr_id FROM user_login WHERE usr_id_sgp=$idSGP ) AND typu.state='t';";
             //echo ''.$query;
             $rs = $this->conn->execute_sgp($query);
             if ($rs) {
@@ -111,6 +111,30 @@ class TraslTypeUserLoginSaved extends Connection implements ICrud {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
             // parent::closeConnection();
+        }
+    }
+    
+    public function update_trasl_type_user_login_saved($list_Settings_TraslTypeSaved, $idUsrSgp){
+         $rs;
+        foreach ($listSettingsMenu as $key => $value) {
+            //insert or update
+            //echo '-'.$value['prfl_saved_id'].'<br>';
+            $idTypeTrasl = $value['idTypeTrasl'];
+            $status = $value['checked'];
+            if ($status === 't') {
+                //echo 't'.$status;
+                $query1 = "SELECT f_create_or_update_profile_saved($idTypeTrasl,$idUsrSgp,'$status');";
+                $rs = $this->conn->execute_sgp($query1);
+            } else {
+                $query2 = "SELECT f_update_profile_saved($idmenu,$idUsrSgp);";
+                $rs = $this->conn->execute_sgp($query2);
+            }
+        }
+
+        if ($rs) {
+            return array('success' => TRUE, 'message' => 'La actulización se realizó con exito ');
+        } else {
+            return array('success' => FALSE, 'message' => 'Hubo un problema en la actualización');
         }
     }
 

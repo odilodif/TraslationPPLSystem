@@ -301,11 +301,7 @@
         var tblpplBody = $("tbody", tblppl);
         $('#AddPPL').on('click', function () {
 
-            var tbl = document.getElementById('tblPPLList');
-            if (tbl.contains() == false) {
-
-
-            }
+            var tbl = document.getElementById('tblPPLList');           
             $("#tblPPLList tbody tr").each(function () {
                 var checked = $(this).find('td:eq(0) input');
                 if (checked.is(':checked')) {

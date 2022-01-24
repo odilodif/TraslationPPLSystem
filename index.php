@@ -20,7 +20,7 @@ if (isset($_SESSION['_USU'])) {
 ?>
 <style media="screen">
     *{
-      /* border: 1px solid #C00;*/
+       /*border: 1px solid #C00;*/
     }
     *{
         font-size: 12px;

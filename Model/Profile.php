@@ -84,7 +84,35 @@ class Profile extends Connection implements ICrud {
     }
 
     public function listAll() {
-        
+         $info;
+        try {
+            $query = "SELECT rol_id,	rol_description,	rol_state FROM rol WHERE rol_state='t' ORDER BY 1;";
+            //echo '' . $query;
+            $this->rs = parent::execute_sgp($query);
+            if ($this->rs) {
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info[] = array('success' => TRUE,
+                        'message' => 'Lista de Menus',
+                        'rol_id' => $row[0],
+                        'rol_description' => $row[1],
+                        'rol_state' => $row[2],
+                        'check' => FALSE
+                    );
+                }
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, 'message' => 'Lista de Roles no Encontrados',));
+                }
+            } else {
+                return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos!!!',));
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
+        } finally {
+            //parent::closeConnection();
+        }
     }
 
     public function listByParameter($id, $name, $path) {

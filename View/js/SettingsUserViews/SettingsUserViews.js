@@ -9,21 +9,20 @@ function saveSettingsUser(idUsrSgp) {
     $('#menus_objetos tbody tr').each(function () {
         var col0 = $(this).find('td:eq(0) input');
         /*var profilsv_id=$(this).find('td:eq(2) input');
-        var textval1 = $(this).find('td:eq(1)').text();*/
-        if (col0.is(':checked')) {             
-            jsonObj.push({"idMenu": col0.val(),"checked":"t"});
-        }
-        else
+         var textval1 = $(this).find('td:eq(1)').text();*/
+        if (col0.is(':checked')) {
+            jsonObj.push({"idMenu": col0.val(), "checked": "t"});
+        } else
         {
-            jsonObj.push({"idMenu": col0.val(),"checked":"f"});
+            jsonObj.push({"idMenu": col0.val(), "checked": "f"});
         }
     });
-     var dat = {
+    var dat = {
         "Menu": 'SettingsMenuUser',
         "listSettingsMenu": jsonObj,
         "idUsrSgp": idUsrSgp
     };
-    
+
     $.ajax({
         data: dat,
         url: "./Controller/MenuController.php",
@@ -38,9 +37,8 @@ function saveSettingsUser(idUsrSgp) {
             if (result['success']) {
                 loadListMenu(idUsrSgp);
                 disableEdition();
-                alert(result['message']);                
-            }
-            else
+                alert(result['message']);
+            } else
                 alert(result['message']);
         }
         ,
@@ -48,7 +46,7 @@ function saveSettingsUser(idUsrSgp) {
             alert('Error: ' + jqXHR.responseText + '!!!');
         }
     })
-  
+
 }
 
 function enableEdition() {
@@ -85,5 +83,44 @@ function disableEdition() {
     $('#tbl_roles tbody tr').each(function () {
         var col0 = $(this).find('td:eq(0) input');
         col0.prop("disabled", true);
+    });
+}
+
+function saveSettingsTraslados(idUsrSgp) {
+    var jsonObjTrasl = [];
+    $('#tbl_traslation_type tbody tr').each(function () {
+        var colch = $(this).find('td:eq(0) input');
+        if (colch.is(':checked')) {
+            jsonObjTrasl.push({"idTras": colch.val(), "checked": "t"});
+        } else {
+            jsonObjTrasl.push({"idTras": colch.val(), "checked": "f"});
+        }
+    })
+
+    var dataTrasl = {
+        "TraslTypeSaved": 'TraslTypeSttingsUser',
+        "listSettingsTraslType": jsonObjTrasl,
+        "idUsrSgp": idUsrSgp
+    };
+
+    $.ajax({
+        data: dataTrasl,
+        url: './Controller/TraslationTypeController.php',
+        type: 'POST',
+        dataType: 'JSON',
+        beforeSend: function () {
+            $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
+        },
+        success: function (result) {
+            if (result['success']) {
+                loadListMenu(idUsrSgp);
+                disableEdition();
+                alert(result['message']);
+            } else
+                alert(result['message']);
+        },
+        error: function (jqXHR, exception) {
+             alert('Error: ' + jqXHR.responseText + '!!!');
+        }
     });
 }

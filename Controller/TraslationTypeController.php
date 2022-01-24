@@ -25,11 +25,23 @@ if (isset($_POST['TraslationType'])) {
 }
 
 if (isset($_POST['listTraslTypeRequest'])) {
-    if ($_POST['listTraslTypeRequest'] === 'listTraslTypeRequest') { 
+    if ($_POST['listTraslTypeRequest'] === 'listTraslTypeRequest') {
         include_once ('./../Model/TraslationType.php');
-        $traslation_type = new TraslationType(); 
+        $traslation_type = new TraslationType();
         $list = $traslation_type->listAll();
         echo json_encode($list);
+    }
+}
+
+
+/* SettingsTrasladosTypeUser table 'trasl_type_user_login_saved' */
+if (isset($_POST['TraslTypeSaved'])) {
+    if ($_POST['TraslTypeSaved'] === 'TraslTypeSttingsUser') {        
+        $type_traslado_usr_saved = new TraslTypeUserLoginSaved();
+        $list_Settings_TraslTypeSaved = $_POST['listSettingsTraslType'];
+        $idUsrSgp = $_POST['idUsrSgp'];
+        $resul_BoolTraslType = $type_traslado_usr_saved->update_trasl_type_user_login_saved($list_Settings_TraslTypeSaved, $idUsrSgp);
+        echo json_encode($resul_BoolTraslType);
     }
 }
 ?>

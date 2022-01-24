@@ -317,7 +317,7 @@ function setDirectionAssigned(user_id) {
 
             } else
             {
-                alert('Hay Un problema con la Dirección');
+                alert('Hay Un problema con la Dirección ... Por favor establesca el Director que Autorizará el Traslado');
             }
         }
         ,
