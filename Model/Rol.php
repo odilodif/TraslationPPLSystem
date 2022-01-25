@@ -109,22 +109,29 @@ class Rol extends Connection implements ICrud {
     }
 
     public function listAll() {
-        $info;
+     
         try {
-            $query = "SELECT prfle_id, prfle_description FROM profile WHERE prfle_state='t' ORDER BY 2;";
+            $query = "SELECT rl.rol_id, rl.rol_description, rl.rol_state, rl.create, rl.read, rl.update, rl.delete FROM rol rl WHERE rol_state='t' ORDER BY 1;";
             //echo '' . $query;
-            $rs = parent::execute_sgp($query);
-            if ($rs) {
-                while ($row = pg_fetch_row($rs)) {
-                    $info[] = array('success' => TRUE,                        
+            $this->rs = parent::execute_sgp($query);
+            if ($this->rs) {
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info[] = array('success' => TRUE,
+                        'message' => 'Lista de Roles',
                         'rol_id' => $row[0],
-                        'rol_description' => $row[1]
+                        'rol_description' => $row[1],
+                        'rol_state' => $row[2],
+                        'check' => FALSE,
+                        'create' => $row[3],
+                        'read' => $row[4],
+                        'update' => $row[5],
+                        'delete' => $row[6]
                     );
                 }
                 if (!empty($info)) {
                     return $info;
                 } else {
-                    return array(array('success' => FALSE, 'message' => 'Lista de Perfiles no Encontrados',));
+                    return array(array('success' => FALSE, 'message' => 'Lista de Roles no Encontrados',));
                 }
             } else {
                 return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos!!!',));

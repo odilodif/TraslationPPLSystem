@@ -11,7 +11,7 @@ if ($_POST['Roles'] === 'ListRoles') {
     $idSGP=$_POST['idSGP'];
     $rol = new Rol();
     $listRol = $rol->listAll();
-    $profile = new Profile();
+    /*$profile = new Profile();
     $profile_rol=$profile->getProfileRolByIdSgp($idSGP);
     if ($profile_rol['success']) {
             foreach ($listRol as $key1 => $row_rol) {               
@@ -20,7 +20,7 @@ if ($_POST['Roles'] === 'ListRoles') {
                         break;                    
                 }
             }
-        }
+        }*/
     
     echo json_encode($listRol);
 }

@@ -22,15 +22,16 @@ function loadListRoles(idSGP) {
         success: function (data) {
             if (data[0]['success']) {
                 $.each(data, function (i, data) {
-                    var body = "<tr>";
-                    if (data.check)
-                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' checked disabled ></td>";
-                    else
-                        body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' disabled ></td>";
-                    body += "<td>" + data.rol_description + "</td>";
-                    body += "<tdtype='checkbox' name='' value=''hidden=''>" + data.rol_id + "</td>";
+                   var body = "<tr>";
+                    body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' disabled ></td>";
+                    body += "<td>" + data.rol_description + "</td>"; 
+                    body += data.create == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
+                    body += data.read == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
+                    body += data.update == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
+                    body += data.delete == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
                     body += "</tr>";
                     $("#tbl_roles tbody").append(body);
+                    console.log(i);
                 });
             }
         }

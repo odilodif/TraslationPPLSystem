@@ -86,23 +86,22 @@ class Profile extends Connection implements ICrud {
     public function listAll() {
          $info;
         try {
-            $query = "SELECT rol_id,	rol_description,	rol_state FROM rol WHERE rol_state='t' ORDER BY 1;";
+            $query = "SELECT prfle_id,	rol_id,	prfle_description,	prfle_state,	create_date,	write_date,	write_idu,	create_idu FROM profile WHERE prfle_state='t' ORDER BY 3;";
             //echo '' . $query;
-            $this->rs = parent::execute_sgp($query);
+            
+            $this->rs = $this->conn->execute_sgp($query);             
             if ($this->rs) {
                 while ($row = pg_fetch_row($this->rs)) {
                     $info[] = array('success' => TRUE,
-                        'message' => 'Lista de Menus',
-                        'rol_id' => $row[0],
-                        'rol_description' => $row[1],
-                        'rol_state' => $row[2],
-                        'check' => FALSE
+                        'message' => 'Lista de Perfiles',
+                        'prfle_id' => $row[0],
+                        'prfle_description' => $row[2]                       
                     );
                 }
                 if (!empty($info)) {
                     return $info;
                 } else {
-                    return array(array('success' => FALSE, 'message' => 'Lista de Roles no Encontrados',));
+                    return array(array('success' => FALSE, 'message' => 'Lista de Perfiles no Encontrados',));
                 }
             } else {
                 return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos!!!',));
@@ -139,9 +138,9 @@ class Profile extends Connection implements ICrud {
  INNER JOIN rol rl ON pfl.rol_id=rl.rol_id
  WHERE usr.usr_id_sgp =$idSGP";
             //echo '' . $query;
-            $rs = $this->conn->execute_sgp($query);
-            if ($rs) {
-                while ($row = pg_fetch_row($rs)) {
+            $this->rs = $this->conn->execute_sgp($query);
+            if ($this->rs) {
+                while ($row = pg_fetch_row($this->rs)) {
                     $info = array('success' => TRUE,
                         'message' => ' Perfil y  Rol encontrados',
                         'prfle_id' => $row[0],

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 
-function loadProfiles() {
+function loadProfilesAlls() {
     let parameters = {
         'Profile': 'Profile',
         'acction': 'getAll'
@@ -14,22 +14,36 @@ function loadProfiles() {
         url: './Controller/ProfileController.php',
         type: 'POST',
         dataType: 'JSON',
-        BeforeSend: function () {
+        beforeSend: function () {
             $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
         },
-        susccess: function (result) {
-            if (result[0]['success']) {
-                var options = '#slect-profile';
-                $.each(result, function (item) {
-                    options.append($("<option />").val(item.ImageFolderID).text(item.Name));
-                });
+        success: function (result) {
+            $.each(result,  (i, profile) => {
+                $('#slect-profile').append($('<option>', {
+                    value: profile.prfle_id,
+                    text: profile.prfle_description
+                }));
 
-            }
+            });
 
         },
         error: function (jqXHR, exception) {
             alert('Error: ' + jqXHR.responseText + '!!!');
         }
     });
+}
+
+function saveProfileByIdUsrSgp(idUsrSgp){
+    let data={
+        'idUsrSgp':idUsrSgp,
+        'acction':'save'
+    }
+    
+    $.ajax({
+        
+        
+    })
+        
+   
 }
 

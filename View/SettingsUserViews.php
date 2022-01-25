@@ -71,7 +71,7 @@
     <div id="container-buttons">
         <input type="submit" id="btn-edit"  class="btn btn-primary btn-sm" value="Editar"   onclick="enableEdition()" >        
         <input type="submit"  id="btn-save"  class="btn-save btn-success" value="Guardar" onclick="saveSettingsUser(idUsrSgp)" >
-        <input type="submit" id="btn-cancel"  class="" value="Cancelar"   onclick="cancel()" >
+        <input type="submit" id="btn-cancel"  class="" value="Cancelar"   onclick="" >
     </div>
 
 
@@ -84,8 +84,7 @@
                 <label for="lname">Perfil:</label><br>
                 <input type="text" id="txt_profile" name="txt_profile" value=""style="width:300px" readonly="">
                 <select id="slect-profile">
-                    <option>Administrador</option>
-                    <option>Analista</option>
+                    <option>Seleccione.Una.Opción</option>                    
                 </select>
             </div>
             <div class="section-fileds-dos">
@@ -119,9 +118,20 @@
 
         </div>
         <div class="roles-acctions-container">
-            <h2>Roles y Acciones </h2>
+            <h2>Roles, Acciones y Permisos </h2>
             <table id="tbl_roles">
-                <tbody></tbody>
+
+                <tbody>
+                    <tr>
+                        <th>Opción</th>
+                        <th>Descripción.Roles</th>  
+                        <th>Crear</th> 
+                        <th>Leer</th> 
+                        <th>Actualizar</th> 
+                        <th>Eliminar</th>                          
+
+                    </tr>
+                </tbody>
 
             </table>
         </div>
@@ -148,6 +158,7 @@
             loadListMenu(idUsrSgp);
             loadTraslationType(idUsrSgp);
             loadListRoles(idUsrSgp);
+            loadProfilesAlls();
         }
 
 
@@ -158,13 +169,13 @@
         btnCancel.addEventListener("click", excuteCancel);
         btnSave.addEventListener("click", showBtnEdit);
     });
-    
-    (function(){
+
+    (function () {
         //alert('hello');
-        
+
     })();
-    
-   
+
+
 
     function showBtnSave() {
         btnSave.style.display = "";

@@ -96,7 +96,7 @@ class Menu extends Connection implements ICrud {
     public function listAll() {
         $info;
         try {
-            $query = "SELECT menu_description_id, menu_description_description, menu_description_state FROM menu_objects WHERE menu_description_state='t' ORDER BY 1;";
+            $query = "SELECT menu_description_id, menu_description_description, menu_description_state FROM menu_objects WHERE menu_description_state='t' ORDER BY 2;";
             //echo '' . $query;
             $rs = $this->conn->execute_sgp($query);
             if ($rs) {
