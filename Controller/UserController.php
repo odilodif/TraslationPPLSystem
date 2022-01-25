@@ -12,11 +12,11 @@
  * @author Odilo Ipiales
  */
 /* * ********Connection to DDBB */
+include_once ('./../Model/User.php');
 
 if (isset($_POST['nick']) && isset($_POST['password'])) {
     if ($_POST['User'] === 'login') {
         include_once ('./../Utilitarian/php/Ldap.php');
-        include_once ('./../Model/User.php');
         $nick = $_POST['nick'];
         $pass = $_POST['password'];
         $ldap = new Ldap();
@@ -51,7 +51,6 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
     }
 }
 if ($_POST['User'] === 'listDirectorsPlntCtral') {
-    include_once ('./../Model/User.php');
     $user = new User();
     $usr = $user->listDirectorsPlantCtrl();
     if ($usr[0]['success']) {
@@ -62,20 +61,26 @@ if ($_POST['User'] === 'listDirectorsPlntCtral') {
 }
 
 if ($_POST['User'] === 'listUsers') {
-    include_once ('./../Model/User.php');
     $user = new User();
-   
     $usrList = $user->listAll();
     echo json_encode($usrList);
 }
 
-
 if ($_POST['User'] === 'loadUserForm') {
-    include_once ('./../Model/User.php');
     $user = new User();
-   $id_Sgp=$_POST['id_Sgp'];
+    $id_Sgp = $_POST['id_Sgp'];
     $usr = $user->getUserByIdSgp($id_Sgp);
     echo json_encode($usr);
+}
+
+if (isset($_POST['action'])) {
+    if ($_POST['action'] === 'updateProfileByidUsrSgp') {
+        $user = new User();
+        $idUsrSgp = $_POST['idUsrSgp'];
+        $idProfile = $_POST['idProfile'];
+        $rs = $user->updateProfileByidUsrSgp($idUsrSgp, $idProfile);
+        echo json_encode($rs);
+    }
 }
 
     

@@ -18,7 +18,7 @@ function loadProfilesAlls() {
             $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
         },
         success: function (result) {
-            $.each(result,  (i, profile) => {
+            $.each(result, (i, profile) => {
                 $('#slect-profile').append($('<option>', {
                     value: profile.prfle_id,
                     text: profile.prfle_description
@@ -32,18 +32,3 @@ function loadProfilesAlls() {
         }
     });
 }
-
-function saveProfileByIdUsrSgp(idUsrSgp){
-    let data={
-        'idUsrSgp':idUsrSgp,
-        'acction':'save'
-    }
-    
-    $.ajax({
-        
-        
-    })
-        
-   
-}
-

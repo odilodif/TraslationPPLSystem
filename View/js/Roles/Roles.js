@@ -19,7 +19,7 @@ function loadListRoles(idSGP) {
             //  alert('before');
         }
         ,
-        success: function (data) {
+        success:  data => {
             if (data[0]['success']) {
                 $.each(data, function (i, data) {
                    var body = "<tr>";
@@ -36,8 +36,10 @@ function loadListRoles(idSGP) {
             }
         }
         ,
-        error: function (jqXHR, exception) {
+        error: (jqXHR, exception) =>{
             alert('ERROR: ' + jqXHR.responseText);
         }
     })
 }
+
+

@@ -33,7 +33,7 @@ function listUsers() {
                     body += "<td>" + data.area_desription + "</td>";
                     body += "<td>" + data.usr_email + "</td>";
                     body += "<td>" + data.usr_state + "</td>";
-                    
+
                     body += "</tr>";
                     $("#tblUserList tbody").append(body);
                 });
@@ -73,7 +73,7 @@ function loadUserForm(id_Sgp) {
             if (result['success']) {
                 var fomulary = $('#fmrUser')
                 fomulary.find("#name_complete").val(result['name_complete']);
-                fomulary.find("#txt_profile").val(result['prfle_description']);                
+                fomulary.find("#txt_profile").val(result['prfle_description']);
                 fomulary.find("#crs_name").val(result['crs_name']);
                 fomulary.find("#user_nick").val(result['usr_nick']);
             }
@@ -83,5 +83,40 @@ function loadUserForm(id_Sgp) {
             alert('Error: ' + jqXHR.responseText + '!!!');
         }
     })
+
+}
+
+const updateProfileByIdUsrSgp = (idUsrSgp) => {
+    
+        let idProfile = $('#slect-profile').val();
+        let data = {
+            'User': 'User',
+            'idUsrSgp': idUsrSgp,
+            'idProfile': idProfile,
+            'action': 'updateProfileByidUsrSgp'
+        }
+
+        $.ajax({
+            data: data,
+            url: './Controller/UserController.php',
+            type: 'POST',
+            dataType: 'JSON',
+            BeforeSend: () => {
+                $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
+            },
+            success: (result) => {
+                if (result['success']) {
+                    alert(result['message']);
+                } else {
+                    alert(result['message']);
+                }
+            },
+            error: (jqXHR, exception) => {
+                alert('Error: ' + jqXHR.responseText + '!!!');
+            }
+
+        })
+    
+ 
 
 }

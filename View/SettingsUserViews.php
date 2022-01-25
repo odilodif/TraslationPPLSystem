@@ -84,7 +84,7 @@
                 <label for="lname">Perfil:</label><br>
                 <input type="text" id="txt_profile" name="txt_profile" value=""style="width:300px" readonly="">
                 <select id="slect-profile">
-                    <option>Seleccione.Una.Opción</option>                    
+                    <option value="0">Seleccione.Una.Opción</option>                    
                 </select>
             </div>
             <div class="section-fileds-dos">
@@ -171,7 +171,7 @@
     });
 
     (function () {
-        //alert('hello');
+
 
     })();
 
@@ -189,7 +189,8 @@
         btnCancel.style.display = "block";
         btnSave.style.display = "none";
         btnCancel.style.display = "none";
-
+        select.style.display = "none";
+        txt_profile.style.display = "";
     }
 
     function excuteCancel() {

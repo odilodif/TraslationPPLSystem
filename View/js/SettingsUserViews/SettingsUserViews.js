@@ -4,6 +4,19 @@
  * and open the template in the editor.
  */
 function saveSettingsUser(idUsrSgp) {
+    if ($('#slect-profile').val() != 0) {
+        saveSettingsUserMenu(idUsrSgp);
+        
+    } else {
+        disableEdition();
+        alert('Por favor escoger una opción de Perfil');
+
+    }
+}
+
+
+
+const  saveSettingsUserMenu = () => {
     //console.log(idUsrSgp)
     var jsonObj = [];
     $('#menus_objetos tbody tr').each(function () {
@@ -28,26 +41,29 @@ function saveSettingsUser(idUsrSgp) {
         url: "./Controller/MenuController.php",
         type: 'POST',
         dataType: 'JSON',
-        beforeSend: function () {
+        beforeSend: () => {
             $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
         }
         ,
-        success: function (result) {
+        success: (result) => {
             $('#respuestaAjax').html('');
             if (result['success']) {
                 loadListMenu(idUsrSgp);
                 disableEdition();
-                alert(result['message']);
+                updateProfileByIdUsrSgp(idUsrSgp);
             } else
                 alert(result['message']);
         }
         ,
-        error: function (jqXHR, exception) {
+        error: (jqXHR, exception) => {
             alert('Error: ' + jqXHR.responseText + '!!!');
         }
     })
 
 }
+
+
+
 
 function enableEdition() {
     $('#menus_objetos tbody tr').each(function () {
@@ -61,10 +77,10 @@ function enableEdition() {
         col0.prop("disabled", false);
     });
 
-    $('#tbl_roles tbody tr').each(function () {
-        var col0 = $(this).find('td:eq(0) input');
-        col0.prop("disabled", false);
-    });
+    /*$('#tbl_roles tbody tr').each(function () {
+     var col0 = $(this).find('td:eq(0) input');
+     col0.prop("disabled", false);
+     });*/
 }
 
 
@@ -120,7 +136,7 @@ function saveSettingsTraslados(idUsrSgp) {
                 alert(result['message']);
         },
         error: function (jqXHR, exception) {
-             alert('Error: ' + jqXHR.responseText + '!!!');
+            alert('Error: ' + jqXHR.responseText + '!!!');
         }
     });
 }

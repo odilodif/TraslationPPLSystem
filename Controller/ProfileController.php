@@ -6,10 +6,14 @@
  * and open the template in the editor.
  */
 if (isset($_POST['Profile'])) {
+    include_once ('./../Model/Profile.php');
+    $profile = new Profile();
+    
     if ($_POST['acction'] === 'getAll') {
-        include_once ('./../Model/Profile.php');
-        $profile = new Profile();
         $result = $profile->listAll();
         echo json_encode($result);
     }
+    
 }
+
+

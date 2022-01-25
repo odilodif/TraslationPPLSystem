@@ -122,7 +122,7 @@ class User extends Connection implements ICrud {
 
     function __construct() {
         //parent::__construct();
-        $this->conn= Connection::getInstance();
+        $this->conn = Connection::getInstance();
     }
 
 //Methods
@@ -174,7 +174,7 @@ LEFT JOIN direction_area dir ON usr.area_id = dir.area_id WHERE usr.usr_state='t
         } catch (Exception $exc) {
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
-        } 
+        }
     }
 
     public function listByParameter($id, $name, $path) {
@@ -231,13 +231,13 @@ where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' AND psv.prfl_saved_s
                             'crs_description' => $row[11]
                         );
                     }
-                    if(!empty($info)) {
-                       return $info; 
+                    if (!empty($info)) {
+                        return $info;
                     } else {
-                       return array(array('success' => FALSE, 'message' => 'Error No hay Usuario y/o Perfiles')); 
+                        return array(array('success' => FALSE, 'message' => 'Error No hay Usuario y/o Perfiles'));
                     }
                 } else {
-                    return array(array('success' => FALSE, 'message' => 'Error Algun Problema con la base de datos')); 
+                    return array(array('success' => FALSE, 'message' => 'Error Algun Problema con la base de datos'));
                 }
             } catch (Exception $exc) {
                 /* echo $exc->getTraceAsString(); */
@@ -344,6 +344,20 @@ where u.usr_id_sgp=$idSgp;";
             return array('success' => FALSE, 'message' => 'error al consultar ' . $exc->getMessage());
         } finally {
             // parent::closeConnection();
+        }
+    }
+
+    public function updateProfileByidUsrSgp($idUsrSgp,$idProfile) {
+        try {
+            $query = "UPDATE user_login SET prfle_id=$idProfile WHERE usr_id_sgp=$idUsrSgp;";
+            $rs = $this->conn->execute_sgp($query);
+            if ($rs) {
+                return $message = array('success' => TRUE, 'message' => 'Se guardo exitosamente');
+            } else {
+                return $message = array('success' => FALSE, 'message' => 'No se guardo exitosamente');
+            }
+        } catch (Exception $ex) {
+            return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         }
     }
 
