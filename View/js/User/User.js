@@ -106,6 +106,7 @@ const updateProfileByIdUsrSgp = (idUsrSgp) => {
             },
             success: (result) => {
                 if (result['success']) {
+                    window.location.reload();
                     alert(result['message']);
                 } else {
                     alert(result['message']);

@@ -86,7 +86,7 @@ class Profile extends Connection implements ICrud {
     public function listAll() {
          $info;
         try {
-            $query = "SELECT prfle_id,	rol_id,	prfle_description,	prfle_state,	create_date,	write_date,	write_idu,	create_idu FROM profile WHERE prfle_state='t' ORDER BY 3;";
+            $query = "SELECT prfle_id,	prfle_description,	prfle_state,	create_date,	write_date,	write_idu,	create_idu FROM profile WHERE prfle_state='t' ORDER BY 3;";
             //echo '' . $query;
             
             $this->rs = $this->conn->execute_sgp($query);             
@@ -95,7 +95,7 @@ class Profile extends Connection implements ICrud {
                     $info[] = array('success' => TRUE,
                         'message' => 'Lista de Perfiles',
                         'prfle_id' => $row[0],
-                        'prfle_description' => $row[2]                       
+                        'prfle_description' => $row[1]                       
                     );
                 }
                 if (!empty($info)) {
