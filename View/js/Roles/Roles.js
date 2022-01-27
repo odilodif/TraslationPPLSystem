@@ -19,12 +19,12 @@ function loadListRoles(idSGP) {
             //  alert('before');
         }
         ,
-        success:  data => {
+        success: data => {
             if (data[0]['success']) {
                 $.each(data, function (i, data) {
-                   var body = "<tr>";
-                    body += "<td><input type='radio' name='rol' value='" + data.rol_id + "' disabled ></td>";
-                    body += "<td>" + data.rol_description + "</td>"; 
+                    var body = "<tr>";
+                    body += data.rol_id != null ? "<td><input type='radio' name='rol' value='" + data.rol_id + "' disabled checked ></td>" : "<td><input type='radio' name='rol' value='" + data.rol_id + "' disabled ></td>" ;
+                    body += "<td>" + data.rol_description + "</td>";
                     body += data.create == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
                     body += data.read == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
                     body += data.update == 't' ? "<td><input id='menu_check' type='checkbox' name='' value='' checked disabled  ></td>" : "<td><input id='menu_check' type='checkbox' name='' value='' disabled  ></td>";
@@ -36,7 +36,7 @@ function loadListRoles(idSGP) {
             }
         }
         ,
-        error: (jqXHR, exception) =>{
+        error: (jqXHR, exception) => {
             alert('ERROR: ' + jqXHR.responseText);
         }
     })

@@ -6,7 +6,7 @@
 function saveSettingsUser(idUsrSgp) {
     if ($('#slect-profile').val() != 0) {
         saveSettingsUserMenu(idUsrSgp);
-        
+        saveSettingsTraslados(idUsrSgp);
     } else {
         disableEdition();
         alert('Por favor escoger una opción de Perfil');
@@ -107,9 +107,9 @@ function saveSettingsTraslados(idUsrSgp) {
     $('#tbl_traslation_type tbody tr').each(function () {
         var colch = $(this).find('td:eq(0) input');
         if (colch.is(':checked')) {
-            jsonObjTrasl.push({"idTras": colch.val(), "checked": "t"});
+            jsonObjTrasl.push({"idTypeTrasl": colch.val(), "checked": "t"});
         } else {
-            jsonObjTrasl.push({"idTras": colch.val(), "checked": "f"});
+            jsonObjTrasl.push({"idTypeTrasl": colch.val(), "checked": "f"});
         }
     })
 

@@ -10,7 +10,7 @@ if ($_POST['Roles'] === 'ListRoles') {
     include_once ('./../Model/Profile.php');
     $idSGP=$_POST['idSGP'];
     $rol = new Rol();
-    $listRol = $rol->listAll();
+    $listRol = $rol->getListById_Sgp($idSGP);
     /*$profile = new Profile();
     $profile_rol=$profile->getProfileRolByIdSgp($idSGP);
     if ($profile_rol['success']) {

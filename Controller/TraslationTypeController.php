@@ -1,9 +1,10 @@
 <?php
 
 date_default_timezone_set('America/Guayaquil');
+include_once ('./../Model/TraslationType.php');
+include_once ('./../Model/TraslTypeUserLoginSaved.php');
 if (isset($_POST['TraslationType'])) {
-    include_once ('./../Model/TraslationType.php');
-    include_once ('./../Model/TraslTypeUserLoginSaved.php');
+
     if ($_POST['TraslationType'] === 'listTraslationType') {
         $idUsrSgp = $_POST['idUsrSgp'];
         $traslation_type = new TraslationType();
@@ -25,8 +26,7 @@ if (isset($_POST['TraslationType'])) {
 }
 
 if (isset($_POST['listTraslTypeRequest'])) {
-    if ($_POST['listTraslTypeRequest'] === 'listTraslTypeRequest') {
-        include_once ('./../Model/TraslationType.php');
+    if ($_POST['listTraslTypeRequest'] === 'listTraslTypeRequest') {        
         $traslation_type = new TraslationType();
         $list = $traslation_type->listAll();
         echo json_encode($list);
@@ -36,7 +36,7 @@ if (isset($_POST['listTraslTypeRequest'])) {
 
 /* SettingsTrasladosTypeUser table 'trasl_type_user_login_saved' */
 if (isset($_POST['TraslTypeSaved'])) {
-    if ($_POST['TraslTypeSaved'] === 'TraslTypeSttingsUser') {        
+    if ($_POST['TraslTypeSaved'] === 'TraslTypeSttingsUser') {
         $type_traslado_usr_saved = new TraslTypeUserLoginSaved();
         $list_Settings_TraslTypeSaved = $_POST['listSettingsTraslType'];
         $idUsrSgp = $_POST['idUsrSgp'];

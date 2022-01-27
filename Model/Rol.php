@@ -109,7 +109,7 @@ class Rol extends Connection implements ICrud {
     }
 
     public function listAll() {
-     
+
         try {
             $query = "SELECT rl.rol_id, rl.rol_description, rl.rol_state, rl.create, rl.read, rl.update, rl.delete FROM rol rl WHERE rol_state='t' ORDER BY 1;";
             //echo '' . $query;
@@ -158,6 +158,45 @@ class Rol extends Connection implements ICrud {
 
     public function updateByParameters($id, $name, $path) {
         
+    }
+
+    public function getListById_Sgp($idSgp) {
+        try {
+            $query = "SELECT prfl.rol_id,rl.rol_description,rl.rol_state,rl.create, rl.read,rl.update, rl.delete FROM (SELECT rol1.rol_id, rol1.rol_description FROM rol rol1 WHERE rol1.rol_id=(SELECT rl.rol_id FROM user_login usr 
+	INNER JOIN profile prfl ON usr.prfle_id=prfl.prfle_id
+	INNER JOIN rol rl ON prfl.rol_id= rl.rol_id
+	WHERE usr.usr_id_sgp=$idSgp)) AS  prfl
+	RIGHT JOIN rol rl on prfl.rol_id=rl.rol_id ORDER BY rl.rol_id ASC;";
+            //echo '' . $query;
+            $this->rs = parent::execute_sgp($query);
+            if ($this->rs) {
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info[] = array('success' => TRUE,
+                        'message' => 'Lista de Roles',
+                        'rol_id' => $row[0],
+                        'rol_description' => $row[1],
+                        'rol_state' => $row[2],
+                        'check' => FALSE,
+                        'create' => $row[3],
+                        'read' => $row[4],
+                        'update' => $row[5],
+                        'delete' => $row[6]
+                    );
+                }
+                if (!empty($info)) {
+                    return $info;
+                } else {
+                    return array(array('success' => FALSE, 'message' => 'Lista de Roles no Encontrados',));
+                }
+            } else {
+                return array(array('success' => FALSE, 'message' => 'Problemas con la Base de Datos!!!',));
+            }
+        } catch (Exception $exc) {
+            /* echo $exc->getTraceAsString(); */
+            return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
+        } finally {
+            //parent::closeConnection();
+        }
     }
 
 }

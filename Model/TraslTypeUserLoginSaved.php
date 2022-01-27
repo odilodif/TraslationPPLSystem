@@ -98,14 +98,13 @@ class TraslTypeUserLoginSaved extends Connection implements ICrud {
                         'trasl_type_id' => $row[0]
                     );
                 }
-                if(!empty($info)) {
-                     return $info;
+                if (!empty($info)) {
+                    return $info;
                 } else {
                     return array(array('success' => FALSE, 'message' => 'No hay Tipos de Traslados Asignados'));
                 }
-               
             } else {
-                return array( array('success' => FALSE, 'message' => 'Error: Problemas conla base de datos'));
+                return array(array('success' => FALSE, 'message' => 'Error: Problemas conla base de datos'));
             }
         } catch (Exception $exc) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
@@ -113,20 +112,17 @@ class TraslTypeUserLoginSaved extends Connection implements ICrud {
             // parent::closeConnection();
         }
     }
-    
-    public function update_trasl_type_user_login_saved($list_Settings_TraslTypeSaved, $idUsrSgp){
-         $rs;
-        foreach ($listSettingsMenu as $key => $value) {
-            //insert or update
-            //echo '-'.$value['prfl_saved_id'].'<br>';
+
+    public function update_trasl_type_user_login_saved($list_Settings_TraslTypeSaved, $idUsrSgp) {
+        $rs;
+        foreach ($list_Settings_TraslTypeSaved as $key => $value) {
             $idTypeTrasl = $value['idTypeTrasl'];
             $status = $value['checked'];
             if ($status === 't') {
-                //echo 't'.$status;
-                $query1 = "SELECT f_create_or_update_profile_saved($idTypeTrasl,$idUsrSgp,'$status');";
+                $query1 = "SELECT f_create_or_update_trasl_type_user_login_saved($idTypeTrasl,$idUsrSgp,TRUE);";
                 $rs = $this->conn->execute_sgp($query1);
             } else {
-                $query2 = "SELECT f_update_profile_saved($idmenu,$idUsrSgp);";
+                $query2 = "SELECT f_only_update_trasl_type_user_login_saved($idTypeTrasl,$idUsrSgp);";
                 $rs = $this->conn->execute_sgp($query2);
             }
         }
