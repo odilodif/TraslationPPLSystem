@@ -1,5 +1,5 @@
 function listPPL() {
-    // alert('listadoDetCliente');
+   
     var crs_id = $('#crs_id').val()
     var datos = {
         'PrisionPerson': 'listPPL',
@@ -19,15 +19,15 @@ function listPPL() {
         success: function (data) {
             $('#waiting').modal('hide');           
                       
-            if (data[0]['success']) {                
+            if (data[0]['success']) { 
+                /*alert('listadoDetCliente');*/
                 $.each(data, function (i, data) {
                     var body = "<tr>";
-                    body += "<td><input type='checkbox'></td>";
-                    body += "<td>" + data.prison_per_photo + "</td>";
-                    body += "<td>" + data.prontuario + "</td>";
-                    body += "<td>" + data.prison_per_identification + "</td>";
+                    body += "<td><input type='checkbox'></td>";                    
+                    body += "<td>" + data.prontuario + "</td>";                    
                     body += "<td>" + data.prison_per_name + "</td>";
                     body += "<td>" + data.prison_per_lastname + "</td>";
+                    body += "<td>" + data.prison_per_identification + "</td>";
                     body += "<td>" + data.state + "</td>";
                     body += "<td>" + data.crs_name + "</td>";
                     body += "<td>" + data.sex + "</td>";

@@ -146,20 +146,36 @@ class PrisonPerson extends Connection implements ICrud {
 
     public function listAllWithCrs($crs_id) {
         try {
-            $query = "SELECT DISTINCT pp.id, pp.name,pp.last_name,pp.identificador,'<img src=\"data:image/jpeg;base64,' || encode(image0, 'escape') || '\"name=\"Imagen1\" align=\"left\" width=\"86\"
-height=\"99\" border=\"0\" />' as image_medium,' ' as prison_per_fingerprinter,pp.state,pp.prontuario , 
+            /* Query con imagen base64 bytea encode(image0, 'escape')
+             * $query = "SELECT DISTINCT pp.id, pp.name,pp.last_name,pp.identificador,'<img src=\"data:image/jpeg;base64,' || encode(image0, 'escape') || '\"name=\"Imagen1\" align=\"left\" width=\"86\"
+              height=\"99\" border=\"0\" />' as image_medium,' ' as prison_per_fingerprinter,pp.state,pp.prontuario ,
+              (SELECT prison_location.name FROM prison_location WHERE id=pp.center_id)  AS crs_name, pp.sex
+              from prison_person pp
+              INNER JOIN prison_move pm on  pp.id=pm.ppl_id
+              WHERE EXISTS (
+              SELECT 1 FROM prison_move pm1
+              WHERE (pm1.center_id=pp.center_id or pm1.center_to_id=pp.center_id)
+              and pm1.ppl_id=pp.id
+              and pm1.state in ('draft','done')
+              )
+              and pp.state<>'free'
+              and pp.center_id= $crs_id
+              ORDER BY pp.last_name ASC limit 1; "; */
+
+            $query = "SELECT DISTINCT pp.id, pp.prontuario , pp.name,pp.last_name,pp.identificador, pp.state, 
                 (SELECT prison_location.name FROM prison_location WHERE id=pp.center_id)  AS crs_name, pp.sex
-from prison_person pp 
-INNER JOIN prison_move pm on  pp.id=pm.ppl_id
-WHERE EXISTS (
-SELECT 1 FROM prison_move pm1 
-WHERE (pm1.center_id=pp.center_id or pm1.center_to_id=pp.center_id)
-and pm1.ppl_id=pp.id
-and pm1.state in ('draft','done') 
-)
-and pp.state<>'free' 
-and pp.center_id= $crs_id  
-ORDER BY pp.last_name ASC limit 1; ";
+                from prison_person pp 
+                INNER JOIN prison_move pm on  pp.id=pm.ppl_id
+                WHERE EXISTS (
+                SELECT 1 FROM prison_move pm1 
+                WHERE (pm1.center_id=pp.center_id or pm1.center_to_id=pp.center_id)
+                and pm1.ppl_id=pp.id
+                and pm1.state in ('draft','done') 
+                )
+                and pp.state<>'free' 
+                and pp.center_id= 4281  
+                ORDER BY pp.name ASC;";
+
             //  echo ''.$query;
 
             $this->rs = parent::execute_sgp($query);
@@ -168,15 +184,13 @@ ORDER BY pp.last_name ASC limit 1; ";
                     $info[] = array(
                         'success' => TRUE,
                         'prison_per_id' => $row[0],
-                        'prison_per_name' => $row[1],
-                        'prison_per_lastname' => $row[2],
-                        'prison_per_identification' => $row[3],
-                        'prison_per_photo' => $row[4],
-                        'prison_per_fingerprinter' => $row[5],
-                        'state' => $row[6],
-                        'prontuario' => $row[7],
-                        'crs_name' => $row[8],
-                        'sex' => $row[9]
+                        'prontuario' => $row[1],
+                        'prison_per_name' => $row[2],
+                        'prison_per_lastname' => $row[3],
+                        'prison_per_identification' => $row[4],
+                        'state' => $row[5],                        
+                        'crs_name' => $row[6],
+                        'sex' => $row[7]
                     );
                 }
                 return $info;

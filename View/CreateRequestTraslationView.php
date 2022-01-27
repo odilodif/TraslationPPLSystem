@@ -231,12 +231,11 @@
                     <table id="tblPPLList" class="table table-striped table-bordered" style="width:96%;font-size: 10px">
                         <thead>
                             <tr>
-                                <th>&nbsp;&nbsp;&nbsp;</th>
-                                <th>Foto</th>
-                                <th>Prontuario</th>
-                                <th>Cédula</th>
+                                <th>&nbsp;&nbsp;&nbsp;</th>                                
+                                <th>Prontuario</th>                                
                                 <th>Nombres</th>
-                                <th>Apellidos</th> 
+                                <th>Apellidos</th>
+                                <th>Cédula</th>
                                 <th>Estado</th>
                                 <th>Centro</th>
                                 <th>Sexo</th>
@@ -305,13 +304,13 @@
             $("#tblPPLList tbody tr").each(function () {
                 var checked = $(this).find('td:eq(0) input');
                 if (checked.is(':checked')) {
-                    var prontuario = $(this).find('td:eq(2)').text();
-                    var cedula = $(this).find('td:eq(3)').text();
-                    var nombres = $(this).find('td:eq(4)').text();
-                    var apellidos = $(this).find('td:eq(5)').text();
-                    var stateppl = $(this).find('td:eq(6)').text();
-                    var crs = $(this).find('td:eq(7)').text();
-                    var sex = $(this).find('td:eq(8)').text();
+                    var prontuario = $(this).find('td:eq(1)').text();
+                    var cedula = $(this).find('td:eq(4)').text();
+                    var nombres = $(this).find('td:eq(2)').text();
+                    var apellidos = $(this).find('td:eq(3)').text();
+                    var stateppl = $(this).find('td:eq(5)').text();
+                    var crs = $(this).find('td:eq(6)').text();
+                    var sex = $(this).find('td:eq(7)').text();
                     //alert(prontuario);
                     /*Identificacion,Nombres,Apellidos,Sexo,Prontuario,Estado*/
                     var bodyppl = "<tr>";
@@ -320,7 +319,7 @@
                     bodyppl += "<td>" + apellidos + "</td>";
                     bodyppl += "<td>" + sex + "</td>";
                     bodyppl += "<td>" + prontuario + "</td>";
-                    bodyppl += "<td>" + stateppl + "</td>";
+                    bodyppl += "<td>" + stateppl + "</td>";                   
                     bodyppl += "</tr>";
                     $("#tblppl tbody").append(bodyppl);
                 }
@@ -586,7 +585,7 @@
         // code to read selected table row cell data (values).
         $("#tblPPLList").on('click', 'tr', function (e) {
             // e.preventDefault();
-            var col1 = $(this).find('td:eq(2)').text();
+            var col1 = $(this).find('td:eq(1)').text();
             readMovesPPL(col1);
         });
     });
