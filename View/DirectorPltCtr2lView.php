@@ -428,7 +428,7 @@
         var usr_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';
         loadDirection(usr_id);
 
-    /*When user client click on tabs load tables Authorized and Executed*/
+        /*When user client click on tabs load tables Authorized and Executed*/
         $(".nav-tabs a").click(function () {
             $(this).tab('show');
             listAuthorized(usr_id);
@@ -492,6 +492,11 @@
             }
         });
 
+        $('#modal_ppl_load_pdf').on('hidden.bs.modal', function () {
+
+            //alert('hello2');
+            $('#listCertificatesPPLS tbody').empty();
+        })
     });
 </script>
 

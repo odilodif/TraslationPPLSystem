@@ -210,7 +210,7 @@
 
                                 <thead>
                                     <tr>
-                                        
+
                                         <th>Nro</th>
                                         <th>FechaSolicitud</th>
                                         <th>SolicitadoPor</th>
@@ -409,12 +409,12 @@
 
     $(document).ready(function () {
         var usr_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';
-        listToExecute(usr_id);       
-       
+        listToExecute(usr_id);
+
 
         $(".nav-tabs a").click(function () {
             $(this).tab('show');
-             listExecuted3(usr_id);
+            listExecuted3(usr_id);
         });
 
 
@@ -427,6 +427,11 @@
                 $("#tblAprobed > tbody > tr >td > input ").prop("checked", true);
             });
         });
+        $('#modal_ppl_load_pdf').on('hidden.bs.modal', function () {
+
+            //alert('hello2');
+            $('#listCertificatesPPLS tbody').empty();
+        })
     });
 
 </script>

@@ -199,7 +199,7 @@
 
 
 <!-- Trigger/Open The Modal -->
-<button id="btnSearching">Buscar PPL</button>
+<button id="btnSearching"  >Buscar PPL</button>
 <!-- Table Content PPL -->
 <div style="width:auto; height: auto; overflow-y: scroll;">
     <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">

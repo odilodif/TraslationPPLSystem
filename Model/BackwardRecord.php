@@ -25,7 +25,7 @@ class BackwardRecord implements ISurfMove {
 
     public function FielsEmpty() {
         $query = "SELECT lpad(th.trasl_id::text,5,'00'),	prison_location.name as crs_source,' ' as crs_destination
-		,' ' as trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,' ' as trasl_descripcion,' ' as trasl_path,
+		,' ' as trasl_type_descripcion,th.trasl_date_request,'Creado por: ' || u.name_complete as name_complete,u.usr_lasname,' ' as trasl_descripcion,' ' as trasl_path,
 		case
 when th.trasl_state_process ='start'  then 'Inicio'
 when th.trasl_state_process ='sent'  then 'Enviado'
@@ -45,7 +45,7 @@ end as trasl_state_process
 
     public function move1() {
         $query = "SELECT lpad(th.trasl_id::text,5,'00'),	prison_location.name as crs_source,crsd.name as crs_destination
-		,	ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_descripcion,th.trasl_path,
+		,	ty.trasl_type_descripcion,th.trasl_date_request, 'Creado por: ' || u.name_complete as name_complete,u.usr_lasname,th.trasl_descripcion,th.trasl_path,
 		case
 when th.trasl_state_process ='start'  then 'Inicio'
 when th.trasl_state_process ='sent'  then 'Enviado'
@@ -69,7 +69,7 @@ end as trasl_state_process
 
     public function move2() {
         $query = "	SELECT th.trasl_id,	prison_location.name as crs_source,' ' as crs_destination
-		,	ty.trasl_type_descripcion,th.trasl_date_request,u.usr_name,u.usr_lasname,th.trasl_descripcion,th.trasl_path,
+		,	ty.trasl_type_descripcion,th.trasl_date_request,'Creado por: ' || u.name_complete as name_complete,u.usr_lasname,th.trasl_descripcion,th.trasl_path,
 		case
 when th.trasl_state_process ='start'  then 'Inicio'
 when th.trasl_state_process ='sent'  then 'Enviado'

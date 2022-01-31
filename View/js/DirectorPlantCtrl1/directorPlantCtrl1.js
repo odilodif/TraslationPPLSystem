@@ -343,6 +343,7 @@ function reviewLoadPfPPL(id_ppl) {
         type: "POST",
         dataType: 'JSON',
         beforeSend: function () {
+            
 
         },
         success: function (result) {
@@ -354,7 +355,7 @@ function reviewLoadPfPPL(id_ppl) {
                     body += "<td>" + data.file_description_name + "</td>";
                     body += "<td><a id=\"pdf_download_ppl\" href=\"" + data.file_path + "\" download=\"adjuntoss.pdf\"><i class=\"fa fa-download\"></i>Descargar PDF</a></td>";
                     body += "</tr>";
-                    $("#listCertificatesPPLS tbody").append(body);
+                    $("#listCertificatesPPLS tbody").append(body); 
                 });
 
                 $('#modal_ppl_load_pdf').modal('show');
