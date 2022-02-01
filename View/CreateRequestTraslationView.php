@@ -21,6 +21,16 @@
 
 <!--Style Modal-->
 <link href="./View/css/CreateResquestTraslationView/CreateRequestTraslationView.css" rel="stylesheet" type="text/css"/>
+<style>
+
+    .button-blue {
+        background-color: #337ab7;
+        border-radius: 25px;
+        margin: 5px;
+        color: white;
+    }
+
+</style>
 
 <!-- Page Heading -->
 
@@ -199,7 +209,7 @@
 
 
 <!-- Trigger/Open The Modal -->
-<button id="btnSearching"  >Buscar PPL</button>
+<button id="btnSearching" class="button-blue" >Buscar PPL</button>
 <!-- Table Content PPL -->
 <div style="width:auto; height: auto; overflow-y: scroll;">
     <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">
@@ -300,7 +310,7 @@
         var tblpplBody = $("tbody", tblppl);
         $('#AddPPL').on('click', function () {
 
-            var tbl = document.getElementById('tblPPLList');           
+            var tbl = document.getElementById('tblPPLList');
             $("#tblPPLList tbody tr").each(function () {
                 var checked = $(this).find('td:eq(0) input');
                 if (checked.is(':checked')) {
@@ -319,7 +329,7 @@
                     bodyppl += "<td>" + apellidos + "</td>";
                     bodyppl += "<td>" + sex + "</td>";
                     bodyppl += "<td>" + prontuario + "</td>";
-                    bodyppl += "<td>" + stateppl + "</td>";                   
+                    bodyppl += "<td>" + stateppl + "</td>";
                     bodyppl += "</tr>";
                     $("#tblppl tbody").append(bodyppl);
                 }

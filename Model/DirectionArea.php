@@ -90,12 +90,12 @@ class DirectionArea extends Connection implements ICrud {
             $query = "SELECT u.usr_id,da.area_desription,u.name_complete from  direction_area da
 		INNER JOIN 	 user_login u  on da.area_id=u.area_id
 		where da.area_id=(SELECT 
-case 
-when da.area_parent is null  then da.area_id
-else
-da.area_parent
-end
-from  direction_area da
+                                    case 
+                                    when da.area_parent is null  then da.area_id
+                                    else
+                                    da.area_parent
+                                    end
+                                    from  direction_area da
 		INNER JOIN 	 user_login u  on da.area_id=u.area_id
 		where u.usr_id=$user_id)";
             $this->rs = parent::execute_sgp($query);

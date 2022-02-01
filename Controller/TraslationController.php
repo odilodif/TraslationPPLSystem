@@ -467,11 +467,7 @@ if (isset($_POST['Traslation'])) {
             $i++;
         }
 
-        foreach ($list as $key => $value) {
-            $trasl_id = $value['trasl_id'];
-            $result = $traslation->saveTraslationAuthorized($trasl_id, $usr_id_approbed);
-            $i++;
-        }
+       
 
         if ($result['success']) {
             $res = array('success' => TRUE, 'message' => 'Traslados Aprobados',

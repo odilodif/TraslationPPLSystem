@@ -56,6 +56,7 @@ function listTraslationByApprobePltanCtrl1(usr_id) {
         ,
         error: function (jqXHR, exception) {
             alert('ERROR: ' + jqXHR.responseText);
+            $('#respuestaAjax').html('');
         }
     })
 

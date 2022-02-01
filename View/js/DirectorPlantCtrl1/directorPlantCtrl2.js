@@ -90,10 +90,11 @@ function listToAuthorize(direction, usr_id) {
                     $('#tbl_to_authorize').DataTable();
                 });
             }
+            
         }
         ,
         error: function () {
-
+            $('#respuestaAjax').html('');
         }
     })
 
@@ -140,12 +141,12 @@ function traslationSaveAuthorized(listAuthorized) {
         },
         success: function (result) {
 
-            if (result['success']) {
+            
                 alert(result['nro'] + '  ' + result['message']);
+                
                 location.reload();
-            } else {
-                alert(result['nro'] + '  ' + result['message']);
-            }
+
+            
         },
         error: function (result) {
             alert('ERROR AL CONECTAR LA BASE DE DATOS"');
@@ -169,7 +170,7 @@ function listAuthorized(user_id) {
         beforeSend: function () {
 
             $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
-
+            $('#tblAuthorized tbody').empty();
         }
         ,
         success: function (result) {
@@ -232,6 +233,7 @@ function listExecuted(user_id) {
         beforeSend: function () {
 
             $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
+            $('#tblAprobedExecuted tbody').empty();
 
         }
         ,

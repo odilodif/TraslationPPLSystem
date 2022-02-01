@@ -576,7 +576,7 @@ INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this->trasl_director_assigned;";
+WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this->trasl_director_assigned order by 1 ASC ;";
             //echo ''.$query;
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
@@ -702,7 +702,7 @@ INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('approved')  AND th.trasl_approved_by=$this->trasl_approved_by;";
+WHERE th.trasl_state_process in('approved')  AND th.trasl_approved_by=$this->trasl_approved_by ORDER BY 1 ASC;";
             //echo ''.$query;
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
@@ -767,7 +767,7 @@ INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('executed') AND th.trasl_approved_by= $this->trasl_approved_by;";
+WHERE th.trasl_state_process in('executed') AND th.trasl_approved_by= $this->trasl_approved_by ORDER BY 1 ASC;";
             // echo ''.$query;
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
@@ -958,7 +958,7 @@ INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('executed') AND th.trasl_authorized_by=$usr ;";
+WHERE th.trasl_state_process in('executed') AND th.trasl_authorized_by=$usr ORDER BY 1 ASC;";
             // echo ''.$query;
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {

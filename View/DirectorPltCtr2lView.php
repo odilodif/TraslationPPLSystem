@@ -313,7 +313,7 @@
                                         </div>
                                         <div class="item14">
 
-                                            <input type="text" id="commentarytDirPltaCtrl" />
+                                            <input type="text" id="commentarytDirPltaCtrl" readonly="" />
 
                                         </div>
 

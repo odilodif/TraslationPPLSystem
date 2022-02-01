@@ -296,7 +296,7 @@
                                         </div>
                                         <div class="item14">
 
-                                            <input type="text" id="commentarytDirPltaCtrl" />
+                                            <input type="text" id="commentarytDirPltaCtrl" readonly=""/>
 
                                         </div>
 
@@ -336,7 +336,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" onclick="saveCommentary();">Guardar</button>
+                                    <!--<button type="button" class="btn btn-primary" onclick="saveCommentary();">Guardar</button>-->
                                 </div>
                             </form>
                         </div>
