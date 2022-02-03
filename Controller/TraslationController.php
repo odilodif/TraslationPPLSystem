@@ -397,6 +397,18 @@ if (isset($_POST['Traslation'])) {
 
 
 
+    if ($_POST['Traslation'] === 'refusedAuthorize') {
+        $traslation = new Traslation();
+        $result = $traslation->updateRefusedAprobed($_POST['idTraslation']);
+
+        if ($result['success']) {
+            echo json_encode($result);
+        } else {
+            echo json_encode($result);
+        }
+    }
+
+
     if ($_POST['Traslation'] === 'saveTraslationApprobed') {
         $traslation = new Traslation();
         $list = $_POST['listApproved'];
@@ -467,7 +479,7 @@ if (isset($_POST['Traslation'])) {
             $i++;
         }
 
-       
+
 
         if ($result['success']) {
             $res = array('success' => TRUE, 'message' => 'Traslados Aprobados',

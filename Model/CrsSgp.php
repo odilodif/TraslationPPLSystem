@@ -78,7 +78,7 @@ class CrsSgp extends Connection implements ICrud{
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -105,7 +105,7 @@ class CrsSgp extends Connection implements ICrud{
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+           // parent::closeConnection();
         }
     }
     

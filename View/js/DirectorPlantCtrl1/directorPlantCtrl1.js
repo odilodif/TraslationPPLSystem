@@ -79,9 +79,8 @@ function refusedAprobed(trasl_id) {
         success: function (result) {
             $('#respuestaAjax').html('');
             if (result['success']) {
-                alert(result['message']);
-                $('#traslationAnalystNearFmly').modal('hide');
-
+                alert(result['message']);                
+                location.reload();
             } else {
                 alert('Hubo un error al aporbar  los Traslados');
             }

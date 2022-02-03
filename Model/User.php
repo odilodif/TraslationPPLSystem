@@ -270,7 +270,7 @@ where u.usr_nick='$nick' and u.usr_password='$pass_encrypt' AND psv.prfl_saved_s
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 

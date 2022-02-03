@@ -202,14 +202,14 @@
         <br />
         <div id="contenidoRegistro"></div>
         <div class="" >
-            <input type="submit" name="btnSent" id="btnSent" class="btn btn-success btn-xs" value="Enviar" style="font-size: 20px;"/>
+            <input type="submit" name="btnSent" id="btnSent" class="btn btn-success btn-xs" value="Enviar" />
         </div>
     </div>
 </form>
 
 
 <!-- Trigger/Open The Modal -->
-<button id="btnSearching" class="button-blue" >Buscar PPL</button>
+<button id="btnSearching" class="button-blue" style="font-size: 20px; float: right;" >Buscar PPL</button>
 <!-- Table Content PPL -->
 <div style="width:auto; height: auto; overflow-y: scroll;">
     <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">

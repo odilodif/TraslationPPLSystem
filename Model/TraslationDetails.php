@@ -270,7 +270,7 @@ and (th.trasl_date_request BETWEEN '$date_from' and '$date_to');
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -344,7 +344,7 @@ WHERE th.trasl_id =$trasl_id ; ";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -435,7 +435,7 @@ and	crsd.crs_description like '%$crs_destino%' and usr.usr_name like '%$name_ana
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -510,7 +510,7 @@ WHERE
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -594,7 +594,7 @@ and 	typ.trasl_type_descripcion like '%$trasl_type_descripcion%'	and crss.crs_de
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -681,7 +681,7 @@ and (th.trasl_date_request BETWEEN '$date_from' and '$date_to'); ";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -752,7 +752,7 @@ WHERE th.crs_id_source=$crs_id GROUP BY th.trasl_id,th.trasl_date_request,th.tra
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -824,7 +824,7 @@ LEFT JOIN user_login usr     on  th.trasl_analyzed_by= usr.usr_id
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
     
@@ -872,7 +872,7 @@ LEFT JOIN user_login usr     on  th.trasl_analyzed_by= usr.usr_id
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
     

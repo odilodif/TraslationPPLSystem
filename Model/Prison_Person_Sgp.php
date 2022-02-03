@@ -800,7 +800,7 @@ class Prison_Person_Sgp extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 

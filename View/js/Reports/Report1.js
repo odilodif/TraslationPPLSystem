@@ -24,20 +24,7 @@ function loadReport1() {
         success: function (result) {
             $('#respuestaAjax').html('');
             if (result[0]['success']) {
-                /*
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 	
-                 * 
-                 * 
-                 **/
+                
                 $.each(result, function (i, data) {
                     var body = "<tr>";
                     body += "<td>" + data.trasl_id + "</td>";

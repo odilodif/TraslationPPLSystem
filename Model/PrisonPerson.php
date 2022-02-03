@@ -201,7 +201,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -244,7 +244,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -303,7 +303,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -338,7 +338,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+           /* parent::closeConnection();*/
         }
     }
 
@@ -366,7 +366,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -386,7 +386,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -427,7 +427,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -446,7 +446,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -482,7 +482,7 @@ WHERE ppl.id = $id_ppl and f.file_state='t';";
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -553,7 +553,7 @@ WHERE ppl.id = $id_ppl and f.file_state='t';";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -580,7 +580,7 @@ WHERE ppl.prison_per_id = $id_ppl ;";
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar ' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -600,7 +600,7 @@ WHERE ppl.prison_per_id = $id_ppl ;";
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 

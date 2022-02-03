@@ -7,9 +7,9 @@ class Connection {
     private $dbconsgp;
 
     function __construct() {
-        $conn_string = "host=192.168.1.185 port=5432 dbname=traslation user=postgres password=sgp@sgp4s3r@2017";
-        /* $conn_string = "host=localhost port=5432 dbname=traslation user=postgres password=12345"; */
-        $this->dbcon = pg_connect($conn_string) or die('connection failed');
+        /*$conn_string = "host=192.168.1.185 port=5432 dbname=traslation user=postgres password=sgp@sgp4s3r@2017";
+         $conn_string = "host=localhost port=5432 dbname=traslation user=postgres password=12345"; 
+        $this->dbcon = pg_connect($conn_string) or die('connection failed');*/
 
         $this->dbconsgp = pg_connect("host='192.168.1.185' port=5432 dbname='sgp' user='postgres' password='sgp@sgp4s3r@2017'")
                 or die('Error de Conexion: ' . pg_last_error());

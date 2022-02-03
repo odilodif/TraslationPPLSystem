@@ -75,8 +75,8 @@ function listToAuthorize(direction, usr_id) {
                     body += "<td>" + data.tras_date_analyst_send + "</td>";
                     body += "<td>" + data.names_analyst + "</td>";
                     body += "<td>" + data.status_proces + "</td>";
-                    body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + "   );'> Revisión </button></td>";
-
+                    body += "<td>" + "<button type='button' class='btn btn-info btn-xs'  onclick='javascript:reviewTraslation(" + data.trasl_id + " );'> Revisión </button></td>";
+                    body += "<td>" + "<button type='button' class='btn btn-warning btn-xs'  onclick='javascript:refusedAuthorize(" + data.trasl_id + "   );'> Rechazar </button></td>";
                     body += "</tr>";
 
                     $("#tbl_to_authorize tbody").append(body);
@@ -97,7 +97,6 @@ function listToAuthorize(direction, usr_id) {
             $('#respuestaAjax').html('');
         }
     })
-
 }
 function btnAhtorize() {
     var jsonObj = [];
@@ -280,5 +279,36 @@ function listExecuted(user_id) {
 
         }
     })
+
+}
+
+function refusedAuthorize(trasl_id) {
+
+    var dat = {
+        "Traslation": 'refusedAuthorize',
+        "idTraslation": trasl_id
+    };
+    $.ajax({
+        data: dat,
+        url: './Controller/TraslationController.php',
+        type: "POST",
+        dataType: 'JSON',
+        beforeSend: function () {
+            $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
+        },
+        success: function (result) {
+            $('#respuestaAjax').html('');
+            if (result['success']) {
+                alert(result['message']);                
+                location.reload();
+            } else {
+                alert('Hubo un error al aporbar  los Traslados');
+            }
+        },
+        error: function (jqXHR, exception) {
+            alert('ERROR: ' + jqXHR.responseText);
+        }
+
+    });
 
 }

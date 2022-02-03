@@ -255,12 +255,11 @@
                                         <div class="item1"><label>Cpl Origen</label></div>
                                         <div class="item2">
                                             <div>
-                                                <input type="text" id="CplSource" value="" readonly="">
-                                            </div>
+                                                <input type="text" id="CplSource" value="" readonly="" style="width:250px">                                            </div>
                                         </div>
                                         <div class="item3">  <label>Cpl Destino</label></div>
                                         <div class="item4">
-                                            <input type="text" id="CplDestination" value="" readonly="">
+                                            <input type="text" id="CplDestination" value="" readonly="" style="width:250px">
                                         </div>
                                         <div class="item5">  <label>Nombre Director</label></div>
                                         <div class="item6">

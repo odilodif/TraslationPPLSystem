@@ -11,11 +11,11 @@
 <script>
 
     $(document).ready(function () {
-       var typeTrasl = '<?php echo"" . (isset($_GET['typ'])) ? $_GET['typ'] : " " ?>';
+        var typeTrasl = '<?php echo"" . (isset($_GET['typ'])) ? $_GET['typ'] : " " ?>';
         var user_id = '<?php echo "" . $_SESSION['_USU'][0]['usr_id']; ?>';
         setDirectionAssigned(user_id);
-        traslationListAnalyst(user_id,typeTrasl);        
-       
+        traslationListAnalyst(user_id, typeTrasl);
+
     });
 
 
@@ -69,6 +69,8 @@
         text-align: center;*/
 
     }
+
+   
 </style>
 
 <div class="container">
@@ -156,7 +158,7 @@
                                     </div>
                                     <div class="item3">  <label>Cpl Destino</label></div>
                                     <div class="item4">
-                                        <input type="text" id="CplDestination" value="" readonly="">
+                                        <input type="text" id="CplDestination" value="" style="width: 339px" readonly="">
                                     </div>
                                     <div class="item5">  <label>Nombre Director</label></div>
                                     <div class="item6">
@@ -164,7 +166,7 @@
                                     </div>
                                     <div class="item7"><label>Comentario  Analista Plt Central</label></div>
                                     <div class="item8">
-                                        <input type="text" id="obsevationAbalyst" />
+                                        <input type="text" id="obsevationAbalyst" placeholder="....Poner comentario" />
                                     </div>
                                     <div class="item9">
                                         <label>Ver Archivos Adjuntos Director: </label>
@@ -176,7 +178,7 @@
                                     </div>
                                     <div class="item11">
                                         <input type="text" id="trasl_director_assigned" hidden="" >
-                                        <input type="text" id="area_desription" >
+                                        <input type="text" id="area_desription" style="width: 339px">
                                         <input type="text" id="directorsPltaCtrl" >
                                     </div>
                                     <div class="item12">
@@ -253,49 +255,49 @@
                             <table>
                                 <tr>
                                     <td>  <div style="width:300px;">
-                                    <form id="fmrloadPdfPPL">
-                                        <div>
-                                            <input type="text" name="prison_per_id" id="prison_per_id"  value="" hidden="" />
-                                        </div>
-                                        <div>   
-                                            <label>Nombres Completos del PPL</label>
-                                            <input type="text" id="ppl_name_lastname" value="" style="width:300px"/> <br>
-                                            <label>Subir Archivo</label>
-                                            <input type="file" id="file_pdf_ppl"   name="file_pdf_ppl" value=""/>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" name="btnSavePdf" class="btn btn-success btn-xs" value="Guardar"/>
-                                        </div>
-                                    </form>
-                                </div></td>  <td><div style="width:300px;">
-                                    Lista de Documentos
-                                    <table border="1" id="tblpplDocument" class="display" style="width:100%">
-                                        <thead style="background: grey;">
-                                            <tr>
-                                                <th >
-                                                    Codigo
-                                                </th>
-                                                <th >
-                                                    Description
-                                                </th>
-                                                <th>
-                                                    Adjuntos
-                                                </th>                                              
+                                            <form id="fmrloadPdfPPL">
+                                                <div>
+                                                    <input type="text" name="prison_per_id" id="prison_per_id"  value="" hidden="" />
+                                                </div>
+                                                <div>   
+                                                    <label>Nombres Completos del PPL</label>
+                                                    <input type="text" id="ppl_name_lastname" value="" style="width:300px"/> <br>
+                                                    <label>Subir Archivo</label>
+                                                    <input type="file" id="file_pdf_ppl"   name="file_pdf_ppl" value=""/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" name="btnSavePdf" class="btn btn-success btn-xs" value="Guardar"/>
+                                                </div>
+                                            </form>
+                                        </div></td>  <td><div style="width:300px;">
+                                            Lista de Documentos
+                                            <table border="1" id="tblpplDocument" class="display" style="width:100%">
+                                                <thead style="background: grey;">
+                                                    <tr>
+                                                        <th >
+                                                            Codigo
+                                                        </th>
+                                                        <th >
+                                                            Description
+                                                        </th>
+                                                        <th>
+                                                            Adjuntos
+                                                        </th>                                              
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                        </tbody>
+                                                </tbody>
 
-                                    </table>
-                                </div></td>   
+                                            </table>
+                                        </div></td>   
                                 </tr>
                             </table>
                             <div class="row">
-                              
 
-                                
+
+
                             </div>
 
 
@@ -343,8 +345,7 @@
                         alert(obj.message);
                         $("#file_pdf_ppl").val('');
                         $('#modal_ppl_load_pdf').modal('hide');
-                    }
-                    else
+                    } else
                     {
                         alert(obj.message);
                     }

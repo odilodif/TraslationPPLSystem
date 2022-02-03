@@ -218,7 +218,7 @@ class Traslation extends Connection implements ICrud {
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -268,7 +268,7 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -307,7 +307,7 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -354,7 +354,7 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -388,7 +388,7 @@ WHERE  t.trasl_state='t'  ORDER BY t.trasl_id  asc ;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar Traslados y PPLs' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -432,7 +432,7 @@ where th.trasl_state='t' and th.crs_id_source=$crs_id ORDER BY trasl_id ASC;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -478,7 +478,7 @@ ORDER BY th.trasl_id ASC;";
         } catch (Exception $exc) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+           /* parent::closeConnection();*/
         }
     }
 
@@ -528,7 +528,7 @@ INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this-
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -548,7 +548,7 @@ INNER JOIN prison_person pp on tdls.prison_per_id=pp.id WHERE th.trasl_id=$this-
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -611,7 +611,7 @@ WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -627,7 +627,7 @@ WHERE th.trasl_state_process in('revision') AND th.trasl_director_assigned=$this
 (select ul3.name_complete from user_login ul3 WHERE ul3.usr_id=th.trasl_executed_by) as trasl_executed_by,
 case 
 when th.trasl_state_process ='start'  then 'Inicio' 
-when th.trasl_state_process ='approbed'  then 'Aprobado' 
+when th.trasl_state_process ='approved'  then 'Aprobado' 
 when th.trasl_state_process ='revision'  then 'Revision' 
 when th.trasl_state_process ='executed'  then 'Finalizado'
 when th.trasl_state_process ='authorized'  then 'Autorizado'
@@ -673,7 +673,7 @@ WHERE th.trasl_state_process in('approved') AND th.trasl_direction_assigned=$dir
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -738,7 +738,7 @@ WHERE th.trasl_state_process in('approved')  AND th.trasl_approved_by=$this->tra
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -803,7 +803,7 @@ WHERE th.trasl_state_process in('executed') AND th.trasl_approved_by= $this->tra
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -867,7 +867,7 @@ WHERE th.trasl_state_process in('authorized') AND th.trasl_approved_by= $this->t
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -930,7 +930,7 @@ WHERE th.trasl_state_process in('authorized') AND th.trasl_authorized_by=$usr ;"
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -992,7 +992,7 @@ WHERE th.trasl_state_process in('executed') AND th.trasl_authorized_by=$usr ORDE
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1049,7 +1049,7 @@ WHERE th.trasl_state_process in('executed') AND th.trasl_executed_by=$usr ;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1106,7 +1106,7 @@ WHERE th.trasl_state_process in('authorized') ;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+           /*parent::closeConnection();*/
         }
     }
 
@@ -1163,7 +1163,7 @@ WHERE th.trasl_state_process in('authorized') ;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1218,7 +1218,7 @@ WHERE th.trasl_state_process in('approved','executed')";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1237,7 +1237,7 @@ WHERE th.trasl_state_process in('approved','executed')";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1256,7 +1256,7 @@ WHERE th.trasl_state_process in('approved','executed')";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+           /*parent::closeConnection();*/
         }
     }
 
@@ -1356,7 +1356,7 @@ WHERE th.trasl_state_process in('approved','executed')";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1414,7 +1414,7 @@ WHERE th.trasl_state_process in('approved','executed')";
         try {
             $query = " UPDATE traslation_head SET trasl_state='f' WHERE trasl_id =$idTraslation ";
             //echo "string".$query;
-            $rs = parent::execute($query);
+            $rs = parent::execute_sgp($query);
             if ($rs) {
                 return $info = array('success' => TRUE, 'message' => ' Traslado Eliminado');
             } else {
@@ -1425,36 +1425,40 @@ WHERE th.trasl_state_process in('approved','executed')";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
     public function report1() {
 
         try {
-            $query = "SELECT th.trasl_id,th.trasl_date_request,th.trasl_date_approved,th.trasl_date_confirm,typ.trasl_type_descripcion,crss.crs_description as crs_source ,crsd.crs_description as crs_destination
+           $query = "SELECT th.trasl_id,th.trasl_date_request,th.trasl_date_approved,th.trasl_date_confirm,typ.trasl_type_descripcion,crss.name as crs_source ,crsd.name as crs_destination
 ,case 
-when th.trasl_state_process ='START'  then 'Inicio' 
-when th.trasl_state_process ='APPROVED'  then 'Aprobado' 
-when th.trasl_state_process ='REVISION'  then 'Revision' 
-when th.trasl_state_process ='EXECUTED'  then 'Finalizado' 
+when th.trasl_state_process ='start'  then 'Inicio'
+when th.trasl_state_process ='sent'  then 'Enviado'
+when th.trasl_state_process ='approved'  then 'Aprobado'
+when th.trasl_state_process ='revision'  then 'Revision'
+when th.trasl_state_process ='executed'  then 'Finalizado'
+when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as status_proces
-,concat(usr.usr_name,' ', usr.usr_lasname) as names_dircrs 
+,usr.name_complete as names_dircrs 
 ,concat(usranlyst.usr_name,' ', usranlyst.usr_lasname) as names_analyst
 ,concat(usrapproved.usr_name,' ',usrapproved.usr_lasname)as names_approved
 from traslation_head th 
-INNER JOIN center_crs crss ON th.crs_id_source = crss.crs_id 
-INNER JOIN center_crs crsd ON th.crs_id_destination = crsd.crs_id 
-INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
-INNER JOIN user_login usr ON th.usr_id= usr.usr_id
+LEFT JOIN prison_location crss ON th.crs_id_source = crss.id 
+LEFT JOIN prison_location crsd ON th.crs_id_destination = crsd.id 
+LEFT JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
+LEFT JOIN user_login usr ON th.usr_id= usr.usr_id
 LEFT JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-LEFT JOIN user_login usrapproved ON th.trasl_approved_by= usrapproved.usr_id
-;";
-            $this->rs = parent::execute($query);
-            if ($this->rs) {
+LEFT JOIN user_login usrapproved ON th.trasl_approved_by= usrapproved.usr_id ORDER BY 1 ASC;";
+            
+            //echo ''.$query;             
+           
+            $rs = parent::execute_sgp($query);            
+            if ($rs) {
 
-                while ($row = pg_fetch_row($this->rs)) {
+                while ($row = pg_fetch_row($rs)) {
                     $info[] = array('success' => TRUE,
                         'message' => 'Lista  encontrada',
                         'trasl_id' => $row[0],
@@ -1478,7 +1482,7 @@ LEFT JOIN user_login usrapproved ON th.trasl_approved_by= usrapproved.usr_id
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+           // parent::closeConnection();
         }
     }
 
@@ -1518,7 +1522,7 @@ LEFT JOIN user_login usrapproved ON th.trasl_approved_by= usrapproved.usr_id
 
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1559,7 +1563,7 @@ GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_
             echo $exc->getTraceAsString();
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            //parent::closeConnection();
         }
     }
 
@@ -1598,7 +1602,7 @@ GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            //parent::closeConnection();
         }
     }
 
@@ -1636,7 +1640,7 @@ GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1655,7 +1659,7 @@ GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -1674,7 +1678,7 @@ GROUP BY ppl.prison_per_id,ppl.prison_per_id,ppl.prison_per_name,ppl.prison_per_
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar report1' . $exc->getMessage());
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 

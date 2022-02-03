@@ -100,7 +100,7 @@ class FileDocument extends Connection implements ICrud {
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
@@ -122,7 +122,7 @@ class FileDocument extends Connection implements ICrud {
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            parent::closeConnection();
+            /*parent::closeConnection();*/
         }
     }
 
