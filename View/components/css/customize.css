@@ -14,7 +14,7 @@ and open the template in the editor.
 #page-wrapper {
      background-image: url("./../../../View/images/fondosnai.jpeg");
     margin: auto;
-   // background: #eaeaea;
+   
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -192,5 +192,5 @@ i {
 }*/
 
 table{
-    width:100%;font-size: 10px;
+    width:100%;font-size: 12px;
 }

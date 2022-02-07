@@ -399,7 +399,7 @@ if (isset($_POST['Traslation'])) {
 
     if ($_POST['Traslation'] === 'refusedAuthorize') {
         $traslation = new Traslation();
-        $result = $traslation->updateRefusedAprobed($_POST['idTraslation']);
+        $result = $traslation->updateRefusedAuthorize($_POST['idTraslation']);
 
         if ($result['success']) {
             echo json_encode($result);

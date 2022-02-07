@@ -40,7 +40,7 @@ if (isset($_GET['exit']) && $_GET['exit'] == 1) {
         <section class="main">
             <div align="center" >
                 <!--img src="./View/images/Encabezado2.jpg" /-->
-                <h1> SysTra <span>Sistema de Gestion y Traslados SNAI</span></h1>
+                <h1> SysTra <span style="font-size: 18px">Sistema de Gestion y Traslados SNAI</span></h1>
             </div>
 
             <form  action="" method="POST" onsubmit="return false;" style="max-width: 40%;" id="frmLogin" >

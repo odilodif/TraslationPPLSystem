@@ -22,7 +22,7 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
         $ldap = new Ldap();
         $autentication = $ldap->ldap_consult($nick, $pass);
 
-        if ($autentication['autentication'] && !empty($autentication['profiles'])) {/* If exists roles and ldap */
+        if ($autentication['autentication'] && !empty($autentication['profiles'])) {/* If exists roles and ldap */            
             session_start();
             $roles = $autentication['profiles'];
             $_SESSION['_USU'] = $roles;
@@ -34,6 +34,7 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
                     echo json_encode($roles);
                 }
                 $_SESSION['_USU'] = $roles;
+                $_SESSION['time'] = time();
                 echo json_encode($roles);
             }
         } else if ($autentication['autentication'] && empty($autentication['profiles'])) {/* Wheather no roles then only autentication */

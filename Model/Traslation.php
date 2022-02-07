@@ -639,7 +639,7 @@ INNER JOIN prison_location crsd ON th.crs_id_destination = crsd.id
 INNER JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 INNER JOIN user_login usr ON th.usr_id= usr.usr_id
 INNER JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-WHERE th.trasl_state_process in('approved') AND th.trasl_direction_assigned=$direction;";
+WHERE th.trasl_state_process in('approved') AND th.trasl_direction_assigned=$direction ORDER BY 1 ASC;";
             // echo ''.$query;
             $this->rs = parent::execute_sgp($query);
             if ($this->rs) {
@@ -1259,6 +1259,26 @@ WHERE th.trasl_state_process in('approved','executed')";
            /*parent::closeConnection();*/
         }
     }
+    
+    
+       public function updateRefusedAuthorize($trasl_id) {
+        try {
+            $query = " UPDATE traslation_head SET trasl_state_process='revision' WHERE trasl_id =$trasl_id ";
+            //echo "string".$query_local;
+            $rs = parent::execute_sgp($query);
+            if ($rs) {
+                return $info = array('success' => TRUE, 'message' => 'El traslado fue devuelto');
+            } else {
+
+                return $info = array('success' => FALSE, 'message' => 'No se pudo actualizar las Observaciones del Traslado');
+                ;
+            }
+        } catch (Exception $exc) {
+            //echo 'error exception al crear Traslados' . $exc->getMessage();
+        } finally {
+           /*parent::closeConnection();*/
+        }
+    }
 
     public function saveTraslationApprobed($trasl_id, $usr_id_approved, $dirParent) {
         $dateapproved = date('Y-m-d');
@@ -1443,15 +1463,37 @@ when th.trasl_state_process ='authorized'  then 'Autorizado'
 else 'Sin Estado'
 end as status_proces
 ,usr.name_complete as names_dircrs 
-,concat(usranlyst.usr_name,' ', usranlyst.usr_lasname) as names_analyst
-,concat(usrapproved.usr_name,' ',usrapproved.usr_lasname)as names_approved
+,
+case 
+when usranlyst.name_complete IS NULL  then '<p style=\"color:#FF0000\";> PENDIENTE </p> <p style=\"color:#337ab7\";> ' || (SELECT ul1.name_complete FROM user_login ul1 INNER JOIN traslation_type ttyp ON ul1.usr_id=ttyp.usr_id WHERE ttyp.trasl_type_id = th.trasl_type_id ) || '</p> '
+else usranlyst.name_complete 
+end  as names_analyst
+, 
+CASE 
+WHEN usrapproved.name_complete IS NULL  then '<p style=\"color:#FF0000\";> PENDIENTE </p> <p style=\"color:#337ab7\";>'
+|| (
+	SELECT u.name_complete from  direction_area da
+		INNER JOIN 	 user_login u  on da.area_id=u.area_id
+		where da.area_id=(SELECT 
+                                    case 
+                                    when da.area_parent is null  then da.area_id
+                                    else
+                                    da.area_parent
+                                    end
+                                    from  direction_area da
+		INNER JOIN 	 user_login u  on da.area_id=u.area_id
+		where u.usr_id=(SELECT ttype.usr_id FROM traslation_type ttype WHERE ttype.trasl_type_id=th.trasl_type_id))
+) || '</p> '
+ELSE
+usrapproved.name_complete
+END AS names_approved
 from traslation_head th 
 LEFT JOIN prison_location crss ON th.crs_id_source = crss.id 
 LEFT JOIN prison_location crsd ON th.crs_id_destination = crsd.id 
 LEFT JOIN traslation_type typ ON th.trasl_type_id = typ.trasl_type_id 
 LEFT JOIN user_login usr ON th.usr_id= usr.usr_id
 LEFT JOIN user_login usranlyst ON th.trasl_analyzed_by= usranlyst.usr_id
-LEFT JOIN user_login usrapproved ON th.trasl_approved_by= usrapproved.usr_id ORDER BY 1 ASC;";
+LEFT JOIN user_login usrapproved ON th.trasl_approved_by= usrapproved.usr_id  WHERE th.trasl_state_process<>'start' ORDER BY 1 ASC";
             
             //echo ''.$query;             
            

@@ -30,6 +30,10 @@
         color: white;
     }
 
+    table, th, td {
+        border: 1px solid black;
+    }
+
 </style>
 
 <!-- Page Heading -->
@@ -64,7 +68,7 @@
 
 
 </div>
-<form id="fmrCreateTraslation" action="" method="POST" enctype="multipart/form-data" style="margin: -2% auto;" class="scaled"  >
+<form id="fmrCreateTraslation" action="" method="POST" enctype="multipart/form-data"  class="scaled"  >
 
     <div class="" id="modalContenido">
         <ol class="breadcrumb">
@@ -98,7 +102,10 @@
 
 
             </div>
-            <fieldset><legend></legend>
+            <fieldset style="border: 2px solid #F37622; "><legend></legend>
+
+
+
                 <div class="row no-padding" style="margin-left: 5px;">
 
                     <div class="col-md-1" >
@@ -109,31 +116,27 @@
                         <td><input type="text" id="idTraslation"  name="idTraslation" readonly="" style="color:red"/></td>
                     </label>
 
-                    <div class="col-md-1" >
-
-                    </div>
-                    <label class="input col-md-4" style="margin-left: 5px;" >
-
-                    </label>
+                  
 
                 </div>
                 <div class="row no-padding" style="margin-left: 5px;">
-
-                    <div class="col-md-1" >
-                        <label>Tipo de Traslado</label>
+                    <div>
+                        <div class="col-md-1" >
+                            <label>Tipo de Traslado</label>
+                        </div>
+                        <div>
+                            <label class="input col-md-4" style="margin-left: 5px;">
+                                <input type="text" id="txt_trasl_type"  name="trasl_type_iew" readonly="" hidden="" />
+                                <select id="trasl_type_id" name="trasl_type_id" required="" >
+                                    <option value="0">Selecionar Tipo de Traslados </option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                     <div>
-                        <label class="input col-md-4" style="margin-left: 5px;">
-                            <input type="text" id="txt_trasl_type"  name="trasl_type_iew" readonly="" hidden="" />
-                            <select id="trasl_type_id" name="trasl_type_id" required="" >
-                                <option value="0">Selecionar Tipo de Traslados </option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="col-md-1" >
-
-                    </div>
-                    <div>
+                        <div class="col-md-1">
+                            <label>Fecha: </label>
+                        </div>
                         <label class="input col-md-4" style="margin-left: 5px;" >
                             <input  id="txt_date_request_traslation" name="txt_date_request_traslation" type="date" value="" required="">
                         </label>
@@ -141,60 +144,55 @@
 
                 </div>
                 <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col-md-1" >
-                        <label>CPL Destino</label>
-                    </div>
-                    <div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-                            <input  id="txt_crs_id_destination" name="txt_crs_id_destination" type="text" value="" readonly="" hidden="">
-                            <select id="crs_id_destination" name="crs_id_destination"  >
-                                <option value="0">Selecionar Crs </option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="col-md-1" >
 
+                    <div>
+                        <div class="col-md-1" >
+                            <label>CPL Destino</label>
+                        </div>
+                        <div>
+                            <label class="input col-md-4" style="margin-left: 5px;" >
+                                <input  id="txt_crs_id_destination" name="txt_crs_id_destination" type="text" value="" readonly="" hidden="">
+                                <select id="crs_id_destination" name="crs_id_destination"  >
+                                    <option value="0">Selecionar Crs </option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                     <div>
+                        <div class="col-md-1">
+                            <label>Comentario: </label>
+                        </div>
                         <label class="input col-md-4" style="margin-left: 5px;" >
                             <input type="text" id="trasl_descripcion" name="trasl_descripcion" style="width: 300px;" required="" placeholder="Comentario" />
 
                         </label>
                     </div>
-
                 </div>
                 <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col-md-1" >
-                        <label></label>
+                    <div>
+                        <div class="col-md-1">
+                            <label>Cargar/Descargar</label>
+                        </div>
+                        <div>
+                            <label class="input col-md-4" >
+                                <a id="pdf_download_dir" href="" download="certificado-desde-crs.pdf" hidden="" class="btn btn-primary pull-right" >Certificado Enviado desde Crs PDF<img src="./View/images/icons/internet-download-symbol.png" alt=""></a>
+                                <input  type="file" id="file_pdf"  name="file_pdf" required="" />
+
+                            </label>
+                        </div>
                     </div>
                     <div>
-                        <label class=""  >
-                            <a id="pdf_download_dir" href="" download="certificado-desde-crs.pdf" hidden="" class="btn btn-primary pull-right" >Certificado Enviado desde Crs PDF<img src="./View/images/icons/internet-download-symbol.png" alt=""></a>
-                            <input  type="file" id="file_pdf"  name="file_pdf" required="" style="margin-left: 44px;"/>
-                        </label>
-                    </div>
-                </div>
-                <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col-md-1" >
-                        <label></label>
-                    </div>
-                    <div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-
-
-                        </label>
-                    </div>
-                    <div class="col-md-1" >
-
-                    </div>
-                    <div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-                            <label id="audit_usr"> </label>                          
-
+                        <div class="col-md-1">
+                            <label>Funcionario: </label>
+                        </div>
+                        <label class="input col-md-4" style="margin-left: 5px;">
+                            <label id="audit_usr"> </label>  
                         </label>
                     </div>
 
                 </div>
+
+
             </fieldset>
         </div>
         <div id="mensaje"></div>
@@ -202,14 +200,14 @@
         <br />
         <div id="contenidoRegistro"></div>
         <div class="" >
-            <input type="submit" name="btnSent" id="btnSent" class="btn btn-success btn-xs" value="Enviar" />
+            <input type="submit" name="btnSent" id="btnSent" class="btn btn-success" value="Enviar" />
         </div>
     </div>
 </form>
 
 
 <!-- Trigger/Open The Modal -->
-<button id="btnSearching" class="button-blue" style="font-size: 20px; float: right;" >Buscar PPL</button>
+<button id="btnSearching" class="button-blue" style="font-size: 14px; float: right;" >Buscar PPL</button>
 <!-- Table Content PPL -->
 <div style="width:auto; height: auto; overflow-y: scroll;">
     <table border="1" id="tblppl" class="display" style="width:100%;font-size: 10px;">

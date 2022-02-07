@@ -66,8 +66,8 @@ and open the template in the editor.
         background-color: #E7F6F6;
         border: 1px solid #99cccc;
     }
-    th { font-size: 8px; }
-    td { font-size: 8px; }
+    th { font-size: 12px; }
+    td { font-size: 12px; }
 
     th, td {
         padding: 8px;

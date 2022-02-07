@@ -687,7 +687,7 @@ function enableDisableFields(result, formulario, prfl, type) {
         formulario.find("#file_pdf").hide();
         formulario.find("#pdf_download_dir").attr("href", result[0]['trasl_path']);
         formulario.find("#pdf_download_dir").show();
-        formulario.find("#audit_usr").text('->' + result[0]['name_complete']);
+        formulario.find("#audit_usr").text(result[0]['name_complete']);
 
     }
     if (result[0]['trasl_state_process'] == 'Inicio' && prfl == 3) {
@@ -717,7 +717,7 @@ function enableDisableFields(result, formulario, prfl, type) {
         formulario.find("#file_pdf").show();
         formulario.find("#pdf_download_dir").attr("href", result[0]['trasl_path']);
         formulario.find("#pdf_download_dir").hide();
-        formulario.find("#audit_usr").text('->' + result[0]['name_complete']);
+        formulario.find("#audit_usr").text(result[0]['name_complete']);
         console.log(result[0]['name_complete']);
     }
     /*Whether view analyst profile*/

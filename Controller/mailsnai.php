@@ -38,7 +38,9 @@ private $mail;
             //Content
             $this->mail->isHTML(true);
             $this->mail->Subject = 'Tiene un Traslado!';
-            $this->mail->Body = 'Estimad@ tiene el  Traslado Nro.'.$idTraslado.' por Atender';
+            $this->mail->Body = 'Estimad@ tiene el  Traslado Nro.'.$idTraslado.' por Atender'
+                    . '<b>'
+                    . 'http://192.168.1.83/TraslationPPLSystem/index.php';
  
             $this->mail->send();
            

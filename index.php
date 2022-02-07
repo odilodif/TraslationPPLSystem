@@ -3,6 +3,10 @@ session_start();
 date_default_timezone_set('America/Guayaquil');
 $login = FALSE;
 if (isset($_SESSION['_USU'])) {
+    if ((time() - $_SESSION['time']) > 60) {
+        header('location: ./View/logout_page.php');
+    }
+
     $login = TRUE;
     foreach ($_SESSION['_USU'] as $key => $value) {
         $USER_PROFILE[] = $value;
@@ -20,38 +24,38 @@ if (isset($_SESSION['_USU'])) {
 ?>
 <style media="screen">
     *{
-       /*border: 1px solid #C00;*/
+        /*border: 1px solid #C00;*/
     }
     *{
-        font-size: 12px;
+        /*font-size: 12px;*/
         text-transfor: uppercase;
     }
-    
+
     /*******************************Sidear*****************************************/
     .sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
 
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 15px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 15px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
 
-/**********************color for comments placeholder*************************************/
- ::placeholder {
+    /**********************color for comments placeholder*************************************/
+    ::placeholder {
         color: red;
         opacity: 1; /* Firefox */
     }
@@ -64,49 +68,53 @@ if (isset($_SESSION['_USU'])) {
         color: red;
     }
 
-.sidebar a:hover {
-  color: #f1f1f1;
-}
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
 
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
 
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #111;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+    }
 
-.openbtn:hover {
-  background-color: #444;
-}
+    .openbtn:hover {
+        background-color: #444;
+    }
 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-    
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+        .sidebar {
+            padding-top: 15px;
+        }
+        .sidebar a {
+            font-size: 18px;
+        }
+    }
+
 
 
 
 </style>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -166,54 +174,54 @@ if (isset($_SESSION['_USU'])) {
 
                 <!-- /.navbar-collapse -->
             </nav>
-<div id="main">
-  <button class="openbtn" onclick="openNav()">☰</button>  
-            <!--div id="page-wrapper">
-                <div class="container-fluid" style="font-size: 12px; "-->
-            
-                    <?php
-                    if ($login) {
-                        if (isset($_GET['page'])) {
+            <div id="main">
+                <button class="openbtn" onclick="openNav()">☰</button>  
+                <!--div id="page-wrapper">
+                    <div class="container-fluid" style="font-size: 12px; "-->
 
-                            require './View/' . $_GET['page'] . '.php';
-                        } else {
-                            require './View/home.php';
-                        }
+                <?php
+                if ($login) {
+                    if (isset($_GET['page'])) {
+
+                        require './View/' . $_GET['page'] . '.php';
                     } else {
-                        include_once("./View/login.php");
+                        require './View/home.php';
                     }
-                    ?>
-                </div>
-
-
+                } else {
+                    include_once("./View/login.php");
+                }
+                ?>
             </div>
-            <!-- /#Waiting -->
-            <div class="modal modal-danger fade" id="waiting">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
 
-                        </div>
-                        <div class="modal-body">
-                            <span style="color: red;"> Espere por favor. </span></spam><img id="loader" src="./View/images/giphy.gif"/>
-                        </div>
+
+        </div>
+        <!-- /#Waiting -->
+        <div class="modal modal-danger fade" id="waiting">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
 
                     </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-        </div>
-    </body>
-<script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
+                    <div class="modal-body">
+                        <span style="color: red;"> Espere por favor. </span></spam><img id="loader" src="./View/images/giphy.gif"/>
+                    </div>
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+</body>
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
 </script>
 </html>
