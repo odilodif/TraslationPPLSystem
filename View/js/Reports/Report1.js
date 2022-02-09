@@ -47,6 +47,8 @@ function loadReport1() {
                     body += "<td>" + (data.names_dircrs ? data.names_dircrs : 'Sin Nombre del Director ') + "</td>";
                     body += "<td>" + (data.names_analyst ? data.names_analyst : ' ') + "</td>";
                     body += "<td>" + (data.names_approved ? data.names_approved : ' ') + "</td>";
+                    body += "<td>" + (data.names_authorized ? data.names_authorized : ' ') + "</td>";
+                    body += "<td>" + (data.names_excecuted ? data.names_excecuted : ' ') + "</td>";
                     body += "</tr>";
                     $("#Report1 tbody").append(body);
                 });

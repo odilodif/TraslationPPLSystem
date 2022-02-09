@@ -18,7 +18,7 @@ $currentDateTime = date('Y-m-d');
 
 
 <script type="text/javascript" language="javascript" class="init">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         loadReport1();
 
@@ -55,8 +55,10 @@ $currentDateTime = date('Y-m-d');
                     <th>CPL Destino</th>
                     <th>Estado</th>
                     <th>Director Crs</th>
-                    <th>Analista</th>
-                    <th>Aprobado por</th>
+                    <th>Analizado.Por</th>
+                    <th>Aprobado.Por</th>
+                    <th>Autorizado.Por</th>
+                    <th>Pinalizado.Por</th>
 
                 </tr>
             </thead>
@@ -70,5 +72,5 @@ $currentDateTime = date('Y-m-d');
 
 
     </div>
-    </div>
-    </section>
+</div>
+</section>

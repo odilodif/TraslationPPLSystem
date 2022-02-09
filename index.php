@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set('America/Guayaquil');
 $login = FALSE;
 if (isset($_SESSION['_USU'])) {
-    if ((time() - $_SESSION['time']) > 60) {
+    if ((time() - $_SESSION['time']) > 300) {
         header('location: ./View/logout_page.php');
     }
 

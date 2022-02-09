@@ -18,10 +18,10 @@ private $mail;
             $this->mail->SMTPDebug = 0; /* 2 */
             $this->mail->isSMTP();
             /* $mail->Helo = "www.eldominioqueusas.com.mx"; */
-            $this->mail->Host = 'smtp.gmail.com;';
+            $this->mail->Host = 'mail.atencionintegral.gob.ec;';
             $this->mail->SMTPAuth = true;
-            $this->mail->Username = 'dario.buk@gmail.com';
-            $this->mail->Password = 'Odilodif123';
+            $this->mail->Username = 'traslados.snai@atencionintegral.gob.ec';
+            $this->mail->Password = 'Usuario.2021';
             $this->mail->SMTPSecure = 'ssl'; /* tls */
             $this->mail->Port = 465; /* 587 */
 
@@ -38,7 +38,7 @@ private $mail;
             //Content
             $this->mail->isHTML(true);
             $this->mail->Subject = 'Tiene un Traslado!';
-            $this->mail->Body = 'Estimad@ tiene el  Traslado Nro.'.$idTraslado.' por Atender'
+            $this->mail->Body = 'Estimad@ tiene el  Traslado Nro.'.$idTraslado.' por Atender  '
                     . '<b>'
                     . 'http://192.168.1.83/TraslationPPLSystem/index.php';
  

@@ -116,7 +116,7 @@
                         <td><input type="text" id="idTraslation"  name="idTraslation" readonly="" style="color:red"/></td>
                     </label>
 
-                  
+
 
                 </div>
                 <div class="row no-padding" style="margin-left: 5px;">
@@ -595,6 +595,14 @@
             // e.preventDefault();
             var col1 = $(this).find('td:eq(1)').text();
             readMovesPPL(col1);
+        });
+
+
+        $("input[type='file']").on("change",  () => {
+            if (this.files[0].size > 2000000) {
+                alert("Please upload file less than 2MB. Thanks!!");
+                $(this).val('');
+            }
         });
     });
 </script>

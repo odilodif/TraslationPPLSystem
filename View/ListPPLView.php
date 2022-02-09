@@ -74,12 +74,11 @@ $currentDateTime = date('Y-m-d');
                                         <table id="tblPPLList" class="table table-striped table-bordered" style="width:100%;font-size: 10px">
                                             <thead>
                                                 <tr>
-                                                    <th>&nbsp;&nbsp;&nbsp;</th>
-                                                    <th>Foto</th>
-                                                    <th>Prontuario</th>
-                                                    <th>Cédula</th>
+                                                    <th>&nbsp;&nbsp;&nbsp;</th>                                                  
+                                                    <th>Prontuario</th>                                                    
                                                     <th>Nombres</th>
                                                     <th>Apellidos</th> 
+                                                    <th>Cédula</th>
                                                     <th>Estado</th>
                                                     <th>Centro</th>
                                                     <th>Sexo</th>

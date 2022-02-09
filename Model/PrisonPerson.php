@@ -173,7 +173,7 @@ class PrisonPerson extends Connection implements ICrud {
                 and pm1.state in ('draft','done') 
                 )
                 and pp.state<>'free' 
-                and pp.center_id= 4281  
+                and pp.center_id= $crs_id  
                 ORDER BY pp.name ASC;";
 
             //  echo ''.$query;

@@ -13,9 +13,9 @@ session_destroy();
         <div class="col-md-3"></div>
         <div class="col-md-6 well">
             <div align="center" >
-                 <h1> SysTra <span style="font-size: 18px">Sistema de Gestion y Traslados SNAI</span></h1>
+                <h1> SysTra <span style="font-size: 18px">Sistema de Gestion y Traslados SNAI</span></h1>
                 <img src="./images/infinito-en-el-tiempo.jpg" width="" height="">
-               
+
             </div>
             <hr style="border-top:1px dotted #ccc;"/>
             <center><h3>Se ha cerrado sesión por Inactividad</h3></center>
