@@ -22,7 +22,7 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
         $ldap = new Ldap();
         $autentication = $ldap->ldap_consult($nick, $pass);
 
-        if ($autentication['autentication'] && !empty($autentication['profiles'])) {/* If exists roles and ldap */            
+        if ($autentication['autentication'] && !empty($autentication['profiles'])) {/* If exists roles and ldap */
             session_start();
             $roles = $autentication['profiles'];
             $_SESSION['_USU'] = $roles;
@@ -38,11 +38,13 @@ if (isset($_POST['nick']) && isset($_POST['password'])) {
                 echo json_encode($roles);
             }
         } else if ($autentication['autentication'] && empty($autentication['profiles'])) {/* Wheather no roles then only autentication */
+            session_start();
+            $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete'], 'messages' => 'El usuario no tiene asisgnado centro, perfiles,roles');
+            $_SESSION['_USU'] = $autentication_user;
             if (!isset($_SESSION['_USU'])) {
                 session_start();
             }
-            $autentication_user[] = array('success' => TRUE, 'usr_name' => $autentication['name_complete'], 'messages' => 'El usuario no tiene asisgnado centro, perfiles,roles');
-            $_SESSION['_USU'] = $autentication_user;
+            $_SESSION['time'] = time();
             echo json_encode($autentication_user);
         } else {/* autentication no valid */
 

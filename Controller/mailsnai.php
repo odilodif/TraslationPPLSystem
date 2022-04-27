@@ -21,17 +21,17 @@ private $mail;
             $this->mail->Host = 'mail.atencionintegral.gob.ec;';
             $this->mail->SMTPAuth = true;
             $this->mail->Username = 'traslados.snai@atencionintegral.gob.ec';
-            $this->mail->Password = 'Usuario.2021';
+            $this->mail->Password = 'Sistr@.2022';
             $this->mail->SMTPSecure = 'ssl'; /* tls */
             $this->mail->Port = 465; /* 587 */
 
-            $this->mail->setFrom('dario.buk@gmail.com', 'Sistema Traslados');
+            $this->mail->setFrom('traslados.snai@atencionintegral.gob.ec', 'Sistema Traslados');
             $this->mail->addAddress($toaddress, 'Recipient1');
-            //$this->mail->addReplyTo('odilo.ipiales@atencionintegral.gob.ec');
+            $this->mail->addReplyTo('odilo.ipiales@atencionintegral.gob.ec');
             
             /*$mail->addReplyTo('noreply@example.com', 'noreply');*/
             $this->mail->addCC($to_address_asesor);
-            $this->mail->addBCC('odilo.ipiales@atencionintegral.gob.ec'); 
+            $this->mail->addBCC('edgar.villa@atencionintegral.gob.ec'); 
 
             //Attachments
             /* $mail->addAttachment('/backup/myfile.tar.gz'); */

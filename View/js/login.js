@@ -38,6 +38,7 @@ function login(nick, pass) {
                 // alert();
                 if (result[0]['messages']!=null) {
                     alert(result[0]['messages'])
+                    
                 }
 
                 window.location = './index.php';

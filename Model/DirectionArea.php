@@ -124,7 +124,7 @@ class DirectionArea extends Connection implements ICrud {
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-           /* parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -158,7 +158,7 @@ WHERE u.usr_id=$usr_id;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-           /* parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -187,9 +187,55 @@ WHERE u.usr_id=$usr_id;";
             /* echo $exc->getTraceAsString(); */
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $exc->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
 //put your code here
+
+    function generateTreeView($products, $currentParent, $currLevel = 0, $prevLevel = -1) {
+        foreach ($products as $productId => $product) {
+            if ($currentParent == $product['parent_id']) {
+                if ($currLevel > $prevLevel) {
+                    echo " 
+ 
+<ol class='tree'> ";
+                }
+
+                if ($currLevel == $prevLevel) {
+                    echo " </li>
+ 
+ 
+ ";
+                }
+
+                $menuLevel = $product['parent_id'];
+                if ($product['hasChild'] > 0) {
+                    $menuLevel = $productId;
+                }
+
+                echo '
+ 
+<li> <label for="level' . $menuLevel . '">' . $product['name'] . '</label><input type="checkbox" id="level' . $menuLevel . '"/>';
+
+                if ($currLevel > $prevLevel) {
+                    $prevLevel = $currLevel;
+                }
+
+                $currLevel++;
+
+                generateTreeView($products, $productId, $currLevel, $prevLevel);
+                $currLevel--;
+            }
+        }
+
+        if ($currLevel == $prevLevel)
+            echo " </li>
+ 
+</ol>
+ 
+ 
+ ";
+    }
+
 }

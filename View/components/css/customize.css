@@ -46,7 +46,7 @@ form {
     border-radius: 5px;
     max-width:100%;
     width:100%;
-    margin: 3% auto;
+    margin: 0% auto;
     background-color: #FFFFFF;
     overflow: hidden;
 }
@@ -86,9 +86,7 @@ a {
 textarea {
     border-radius: 0px 5px 5px 0px;
     border: 1px solid #EEE;
-    margin: 0;
-    width: 75%;
-    height: 130px;
+    margin: 0; 
     float: left;
     padding: 0px 15px;
 }

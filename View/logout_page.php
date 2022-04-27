@@ -18,7 +18,7 @@ session_destroy();
 
             </div>
             <hr style="border-top:1px dotted #ccc;"/>
-            <center><h3>Se ha cerrado sesión por Inactividad</h3></center>
+            <center><h3>Se ha cerrado sesión </h3></center>
             <a href="./../index.php">Volver a acceder</a>
         </div>
     </body>

@@ -34,6 +34,12 @@
         border: 1px solid black;
     }
 
+    #navegation-bar{
+        width: 467px;
+        float: right;
+        margin-right: 38%;
+    }
+
 </style>
 
 <!-- Page Heading -->
@@ -175,7 +181,7 @@
                         </div>
                         <div>
                             <label class="input col-md-4" >
-                                <a id="pdf_download_dir" href="" download="certificado-desde-crs.pdf" hidden="" class="btn btn-primary pull-right" >Certificado Enviado desde Crs PDF<img src="./View/images/icons/internet-download-symbol.png" alt=""></a>
+                                <a id="pdf_download_dir" href="" download="certificado-desde-crs.pdf" hidden="" class="btn btn-primary" >Certificado Enviado desde Crs PDF<img src="./View/images/icons/internet-download-symbol.png" alt=""></a>
                                 <input  type="file" id="file_pdf"  name="file_pdf" required="" />
 
                             </label>
@@ -598,7 +604,7 @@
         });
 
 
-        $("input[type='file']").on("change",  () => {
+        $("input[type='file']").on("change", () => {
             if (this.files[0].size > 2000000) {
                 alert("Please upload file less than 2MB. Thanks!!");
                 $(this).val('');
