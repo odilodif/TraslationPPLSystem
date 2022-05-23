@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set('America/Guayaquil');
-
+include_once ('./../Model/Bsg.php');
 if (isset($_POST['PrisionPerson'])) {
     include_once ('./../Model/PrisonPerson.php');
     if ($_POST['PrisionPerson'] === 'PrisonPersonList') {
@@ -103,7 +103,7 @@ if (isset($_POST['PrisionPerson'])) {
 
     if ($_POST['PrisionPerson'] === 'listPPL') {
         $prison_person = new PrisonPerson();
-        $crs_id=$_POST['crs_id'];
+        $crs_id = $_POST['crs_id'];
         $ppl = $prison_person->listAllWithCrs($crs_id);
         if ($ppl[0]['success']) {
             echo json_encode($ppl);
@@ -153,7 +153,7 @@ if (isset($_POST['PrisionPerson'])) {
             echo json_encode($result);
         }
     }
-    
+
     if ($_POST['PrisionPerson'] === 'editLoadForm') {
         $prison_person = new PrisonPerson();
         $result = $prison_person->loadFormEdit($_POST['ppl_id']);
@@ -164,8 +164,8 @@ if (isset($_POST['PrisionPerson'])) {
             echo json_encode($result);
         }
     }
-    
-     if ($_POST['PrisionPerson'] === 'deletePrinsonPerson') {
+
+    if ($_POST['PrisionPerson'] === 'deletePrinsonPerson') {
         $prison_person = new PrisonPerson();
         $result = $prison_person->deleteBolleanPPL($_POST['id_ppl']);
 
@@ -175,11 +175,19 @@ if (isset($_POST['PrisionPerson'])) {
             echo json_encode($result);
         }
     }
-    
+
+    if ($_POST['PrisionPerson'] === 'searchPrisonPerson') {
+        $cedula = $_POST['cedula'];
+        $bsg = new Bsg();        
+        $result = $bsg->obtenerDatosDePaciente($cedula);
+        $data_bsg=$result['return'];
+       echo json_encode($data_bsg);
+       //var_dump($data_bsg);
+    }
 }
 
 
-/******************************AUTOCOMPLETE************************************************/
+/* * ****************************AUTOCOMPLETE*********************************************** */
 
 if (isset($_POST['term'])) {
     include_once ('./../Model/Prison_Person_Sgp.php');

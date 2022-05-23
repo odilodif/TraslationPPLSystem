@@ -1,171 +1,103 @@
 
-<?php
-if (isset($_GET['result'])) {
-    if ($_GET['result'] == 1) {
-        echo '<script type="text/javascript">'
-        . 'alert("Usuario guardado Satisfatoriamente!");'
-        . ' profilesSelectOption();'
-        . ''
-        . '</script>';
-    } else {
-        echo '<script type="text/javascript">'
-        . 'alert("Error al Guardar Usuario");'
-        . 'profilesSelectOption();'
-        . ''
-        ;
-    }
-}
-?>
 <script src="./View/js/CreatePPL/createppl.js" type="text/javascript"></script>
- <form  action="" method="POST" onsubmit="return false;"  id="frmCreatePPL" >
+<style>
+    .container_global{
+        /*background-color:#CCC;*/
+        width:100%;
+        display:flex;
+        justify-content: space-between;
+    }
+    .content-table{
+        /* background-color: #C00;*/
+        width: 75%;
+        padding: 2px;
+    }
+    .content-search{
+        /* background-color: #337ab7;*/
+        width: 15%;
+        padding: 2px;
+    }
+    input {
+        /*border: 0;*/
 
-    <div class="modal-content" id="modalContenido">
-        <div class="modal-header">
+    }
+    table tbody tr td input{
+        width: 387px;
+        font-weight: bold;
+    }
+    table tbody tr td{
+        font-weight: bold;
+    }
+</style>
 
-            <input type="button" value="Persona Privada de Libertad" id="nuevaAsistencia"   class="btn btn-info btn-sm"/>
+
+
+<div id="respuestaAjax">
+
+
+</div>
+<div class="">
+
+    <label id="nuevaAsistencia" class="btn btn-info"  > Persona Privada de Libertad</label>
+    <fieldset><legend>Buscar PPL</legend>
+        <label>Tipo Documento</label>
+        <select id="doc_type_id" name="doc_type_id" required="">
+            <option value="0">Selecionar Tipo </option>
+            <option value="1">Cédula </option>
+            <option value="2">Pasaporte</option>
+            <option value="3">Otro</option>
+        </select>
+        <input type="text"  id="txtIdentification" name="txtIdentification"   required="">
+        <input type="submit" class="btn btn-primary" value="BUSCAR"   style="margin-left: 75px" onclick="searchPPLsByCedula()"/> </td> 
+    </fieldset>
+</div>
+<div>
+    <form action="action" id="formBSGData">
+        <div class="container_global" id="">
+
+            <div class="content-table">
+                <table id="tbbsg"  >                   
+                    <tr><td>Condicion.Cedulado</td><td><input type="text"  id="txtCondition" name="txtCondition" readonly="" ></td> <td>Nro.Cédula</td><td><input type="text"  id="txtNUI" name="txtNUI" readonly=""></td></tr>
+                    <tr><td>Nombres </td><td><input type="text"  id="txtName" name="txtName" readonly=""></td><td>Domicilio</td><td><input type="text"  id="txtResidence" name="txtResidence" readonly="" > </td>  </tr>
+                    <tr><td>Profesion </td><td><input type="text"  id="txtProfession" name="txtProfession" readonly="" ></td><td>FechaInscripcionGenero</td><td> <input type="text"  id="txtDatetInscriptionGender" name="txtDatetInscriptionGender" readonly="" > </td>       </tr>
+                    <tr><td>FechaNacimiento</td><td> <input type="text"  id="txtDateBorn" name="txtDateBorn"  readonly="" > </td>             <td>Sexo</td>  <td><input type="text"  id="txtSex" name="txtSex" readonly="" ></td> </tr>
+                    <tr><td>Instruccion</td><td><input type="text"  id="txtInstruction" name="txtInstruction" readonly=""  > </td>                  <td>EstadoCivil </td> <td><input type="text"  id="txtMarriedStatus" name="txtMarriedStatus" readonly="" ></td></tr>
+                    <tr><td><strong>Calle</strong></td><td><input type="text"  id="txtStreet" name="txtStreet" readonly="" ></td><td>LugarNacimiento</td><td><input type="text"  id="txtStreetBorn" name="txtStreetBorn" readonly="" ></td></tr>
+                    <tr><td>Consulta</td><td> <input type="text"  id="txtResult" name="txtResult" readonly=""  ></td>                     <td>NombreMadre </td><td><input type="text"  id="txtNameMother" name="txtNameMother" readonly=""  ></td></tr>
+                    <tr><td>FechaCedulación</td><td> <input type="text"  id="txtDateDocument" name="txtDateDocument" readonly="" > </td>             <td>NombrePadre</td><td><input type="text"  id="txtNameFather" name="txtNameFather" readonly=""  ></td></tr>
+                    <tr><td>Nacionalidad </td><td><input type="text"  id="txtNationality" name="txtNationality" readonly="" ></td><td>Conyuge</td><td> <input type="text"  id="txtSpouse" name="txtSpouse" readonly="" readonly=""  > </td> </tr>
+                    <tr><td>FechaInscripcionDefuncion</td><td> <input type="text"  id="txtDateDie" name="txtDateDie" readonly="" > </td>    <td>NumeroCasa</td><td><input type="text"  id="txtNumberHome" name="txtNumberHome" readonly=""  ></td></tr>
+                    <tr><td>Genero</td><td> <input type="text"  id="txtGender" name="txtGender" readonly=""  ></td>                       <td>CodigoError</td> <td><input type="text"  id="txtCodeError" name="txtCodeError" readonly=""  ></td> </tr>
+                    <tr><td>LugarInscripcionGenero</td><td> <input type="text"  id="txtStreetInscriptionGender" name="txtStreetInscriptionGender" readonly="" > </td>      <td></td> <td></td></tr>
+                </table> 
+            </div>
+            <div class="content-search">
+
+            </div>
+
+
 
         </div>
 
 
-        <div class="modal-body">
-            <fieldset><legend>1. Generar PPL</legend> 
-                <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col col-lg-12" style="margin-left: 5px;" id="idTxtNombre">
-                        <div class="col-md-1" >
-                            <label>Tipo Documento</label>
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;"   >
-    <!--                                <input type="text" value="Ramiro Calderon"/>-->
-                            <select id="doc_type_id" name="doc_type_id" required="" >
-                                <option value="0">Selecionar Tipo </option>
-                                <option value="1">Cédula </option>
-                                <option value="2">Pasaporte</option>
-                                <option value="3">Otro</option>
-                            </select>
-                        </label>
-
-                        <div class="col-md-1" >
-                            <!--<label>Foto</label>-->
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-                            <!--<input type="text"  class="form-control" placeholder="foto" readonly=""/>-->
-                        </label>
-                    </div>
-                </div>
+    </form>
 
 
 
-
-                <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col col-lg-12" style="margin-left: 5px;" id="idTxtNombre">
-                        <div class="col-md-1" >
-                            <label>Cédula</label>
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;"   >
-    <!--                                <input type="text" value="Ramiro Calderon"/>-->
-                            <td><input type="text"  class="form-control" id="txtIdentification" name="txtIdentification" maxlength="50" placeholder="1722678000" required/></td>
-                        </label>
-
-                        <div class="col-md-1" >
-                            <!--<label>Foto</label>-->
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-                            <!--<input type="text"  class="form-control" placeholder="foto" readonly=""/>-->
-                        </label>
-                    </div>
-                </div>
-                <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col col-lg-12" style="margin-left: 5px;">
-                        <div class="col-md-1" >
-                            <label>Nombres</label>
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-
-                            <td><input type="text"  class="form-control" id="txtName" name="txtName"    required  placeholder="nombres"/></td>
-                        </label>
-
-                        <div class="col-md-1" >
-                            <!-- <label>Huella</label>-->
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >
-
-                          <!--  <input type="text" class="form-control"  placeholder="Huella" readonly=""/>-->
-                        </label>
+    <div id="mensaje"></div>
 
 
-                    </div>
-                </div>
-                <div class="row no-padding" style="margin-left: 5px;">
-                    <div class="col col-lg-12" style="margin-left: 5px;">
-                        <div class="col-md-1" >
-                            <label>Apellidos</label>
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >    
-                            <td><input type="text" class="form-control"  name="txtLastname" id="txtLastname"  placeholder="apellidos" required/></td>
-                        </label>
-
-                        <div class="col-md-1" >
-                            <label></label>
-                        </div>
-                        <label class="input col-md-4" style="margin-left: 5px;" >   
-
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div id="mensaje"></div>
-        <fieldset><legend>Registro del PPL</legend>
-
-        </fieldset>
-        <br />
-        <div id="contenidoRegistro"></div>
-        <div class="modal-footer">
-            <!--<input type="button"  onclick="guardUsuario()" class="btn btn-default" value="Guardar" id="btnSaveUser"/>-->
-            <input type="submit"   class="btn btn-info btn-sm" value="Guardar" id="btnSavePPL" name="btnSavePPL" onclick="validFielsEmpty()"/>
-        </div>
+    <div id="contenidoRegistro"></div>
+    <div class="modal-footer">
+        <!--<input type="button"  onclick="guardUsuario()" class="btn btn-default" value="Guardar" id="btnSaveUser"/>-->
+        <input type="submit"   class="btn btn-info btn-sm" value="Guardar" id="btnSavePPL" name="btnSavePPL" onclick="validFielsEmpty()"/>
     </div>
-
-</form>
-
-<script  type="text/javascript">
-
-    $(document).ready(function () {
-        
-
-    });
-    
+</div>
 
 
 
-    /*$("#doc_type_id").on('change', function () {
-        $("#doc_type_id option:selected").each(function () {
-            var selected = $(this).val();
-            alert(selected);
-            switch (selected) {
-                case '1':
-                    validIdentification();
-                    console.log('cedula');
-                    break;
-                case '2':
-                    console.log('pasaporte');
-                    break;
-                case '3':
-                    console.log('otro');
-                    break;
-
-                default:
-                    console.log('default' + selected + '.');
-            }
-
-        });
-
-    });*/
-
-   
 
 
-</script>
 
 
 

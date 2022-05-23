@@ -47,26 +47,23 @@ if (isset($_GET['exit']) && $_GET['exit'] == 1) {
                 <table style="margin-left: 75px;     margin-top: 20px;">
                     <tr>
                         <td>
-                             <p class="field">
-                        <input type="text"  id="nick" placeholder="Username"  >
-                        <i class="fa fa-user fa-2x"></i>
-                    </p>
+                            <p class="field">
+                                <input type="text"  id="nick" placeholder="Usuario"  >
+                                <i class="fa fa-user fa-2x"></i>
+                            </p>
                         </td>
 
                     </tr>
                     <tr>
                         <td>
-                              <p class="field">
-                        <input type="password"  id="password" placeholder="Password"  >
-                        <i class="fa fa-lock fa-2x"></i>
-                    </p>
+                            <p class="field">
+                                <input type="password"  id="password" placeholder="Contraseña"  >
+                                <i class="fa fa-lock fa-2x"></i>
+                            </p>
                         </td>
-
-
                     </tr>
                 </table>
                 <input type="submit" class="btn btn-primary" value="INGRESAR" style="margin-left: 75px" onclick="validateUser()"/>
-
             </form>
 
         </section>

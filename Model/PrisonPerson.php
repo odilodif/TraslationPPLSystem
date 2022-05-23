@@ -188,7 +188,7 @@ class PrisonPerson extends Connection implements ICrud {
                         'prison_per_name' => $row[2],
                         'prison_per_lastname' => $row[3],
                         'prison_per_identification' => $row[4],
-                        'state' => $row[5],                        
+                        'state' => $row[5],
                         'crs_name' => $row[6],
                         'sex' => $row[7]
                     );
@@ -201,7 +201,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -244,7 +244,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -303,7 +303,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -338,7 +338,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-           /* parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -351,6 +351,7 @@ class PrisonPerson extends Connection implements ICrud {
     }
 
     public function updateByParameters($id, $name, $path) {
+
         try {
             $query = "";
             $rs = parent::execute($query);
@@ -366,7 +367,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -386,7 +387,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -427,7 +428,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -446,7 +447,7 @@ class PrisonPerson extends Connection implements ICrud {
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -482,7 +483,7 @@ WHERE ppl.id = $id_ppl and f.file_state='t';";
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -553,7 +554,7 @@ WHERE ppl.id = $id_ppl and f.file_state='t';";
         } catch (Exception $exc) {
             //echo 'error exception al crear Traslados' . $exc->getMessage();
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -580,7 +581,7 @@ WHERE ppl.prison_per_id = $id_ppl ;";
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar ' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
         }
     }
 
@@ -600,7 +601,47 @@ WHERE ppl.prison_per_id = $id_ppl ;";
         } catch (Exception $ex) {
             return array('success' => FALSE, 'message' => 'error al consultar lista' . $ex->getMessage());
         } finally {
-            /*parent::closeConnection();*/
+            /* parent::closeConnection(); */
+        }
+    }
+
+    public function getPPLByIdentificator($cedula) {
+        try {
+
+            $query = "SELECT pp.id,	pp.name,pp.last_name,(SELECT complete_name FROM prison_location WHERE id=pp.location_id) celda,(SELECT  name FROM prison_crime where id= pp.crime_id) crime,pp.state,	(SELECT name FROM prison_location WHERE id= pp.center_id) center,		pp.prontuario,		pp.identificador,	pp.image0,		pp.regimen, ps.notes as sanctions,pd.date_in
+FROM prison_person pp
+LEFT JOIN prison_sanctions ps ON pp.id= ps.ppl_id
+INNER JOIN prison_detention pd ON pp.id=pd.person_id
+where identificador = '$cedula';";
+            $this->rs = parent::execute_sgp($query);
+            if ($this->rs) {
+                /*  id	name	last_name	celda	crime	state	center	prontuario	identificador	image0	regimen	sanctions	date_in  */
+                while ($row = pg_fetch_row($this->rs)) {
+                    $info = array('success' => TRUE,
+                        'id' => $row[0],
+                        'name' => $row[1],
+                        'last_name' => $row[2],
+                        'celda' => $row[3],
+                        'crime' => $row[4],
+                        'state' => $row[5],
+                        'center' => $row[6],
+                        'prontuario' => $row[7],
+                        'identificador' => $row[5],
+                        'image0' => $row[8],
+                        'regimen' => $row[9],
+                        'sanctions' => $row[10],
+                        'date_in' => $row[11]
+                    );
+                }
+                return $info;
+            } else {
+
+                return array('success' => FALSE, 'message' => 'error al consultar  PPLs ');
+            }
+        } catch (Exception $ex) {
+            return array('success' => FALSE, 'message' => 'error al consultar ' . $ex->getMessage());
+        } finally {
+            /* parent::closeConnection(); */
         }
     }
 

@@ -55,22 +55,7 @@ if (isset($_SESSION['_USU'])) {
     }
 
     /**********************color for comments placeholder*************************************/
-    ::placeholder {
-        color: red;
-        opacity: 1; /* Firefox */
-    }
-
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: red;
-    }
-
-    ::-ms-input-placeholder { /* Microsoft Edge */
-        color: red;
-    }
-
-    .sidebar a:hover {
-        color: #f1f1f1;
-    }
+  
 
     .sidebar .closebtn {
         position: absolute;

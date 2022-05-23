@@ -19,8 +19,7 @@ function validFielsEmpty() {
             default:
                 console.log('default' + selected + '.');
         }
-    }
-    else
+    } else
     {
         alert('Asegúrese que todos los campos estń llenos');
     }
@@ -56,8 +55,7 @@ function validIdentification(identification, name, lastname) {
             //document.getElementById("salida").innerHTML = ("Cedula Inválida");
             alert('Cedula Inválida');
         }
-    }
-    else {
+    } else {
         alert('No tiene la longuitud de cédula');
     }
 }
@@ -77,7 +75,7 @@ function createPPL(ced, name, lastname) {
         type: "POST",
         dataType: 'json',
         beforeSend: function () {
-
+            $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
         },
         success: function (result) {
 
@@ -95,4 +93,74 @@ function createPPL(ced, name, lastname) {
             alert('Error al Conectarse a la base de Datos');
         }
     });
+
+
+}
+
+
+function searchPPLsByCedula() {
+
+    let cedula = $('#txtIdentification').val();
+    var data = {
+        "PrisionPerson": 'searchPrisonPerson',
+        "cedula": cedula
+    };
+    $.ajax({
+        data: data,
+        url: "./Controller/PrisonPersonController.php",
+        type: "POST",
+        dataType: "json",
+        beforeSend: function () {
+            $('#respuestaAjax').html('<img id="loader" src="./View/images/giphy.gif"/>');
+        },
+        success: function (result) {
+            $('#respuestaAjax').html('');
+            if (result['CodigoError'] == '000') {
+
+                //alert(result['Nombre']);
+
+                let elementoDom = $('#formBSGData');
+                elementoDom.find('#txtCondition').val(result['CondicionCedulado']);
+                elementoDom.find('#txtName').val(result['Nombre']);
+                elementoDom.find('#txtProfession').val(result['Profesion']);
+                elementoDom.find('#txtDateBorn').val(result['FechaNacimiento']);
+                elementoDom.find('#txtName').val(result['Nombre']);
+                elementoDom.find('#txtInstruction').val(result['Instruccion']);
+                elementoDom.find('#txtStreet').val(result['Domicilio']);
+                elementoDom.find('#txtResult').val(result['Error']);
+                elementoDom.find('#txtDateDocument').val(result['FechaCedulacion']);
+
+
+                elementoDom.find('#txtNationality').val(result['Nacionalidad']);
+                elementoDom.find('#txtDateDie').val(result['FechaInscripcionDefuncion']);
+                elementoDom.find('#txtGender').val(result['Genero']);
+                elementoDom.find('#txtStreetInscriptionGender').val(result['LugarInscripcionGenero']);
+                elementoDom.find('#txtNUI').val(result['NUI']);
+                elementoDom.find('#txtResidence').val(result['Domicilio']);
+
+
+                elementoDom.find('#txtDatetInscriptionGender').val(result['FechaInscripcionGenero']);
+                elementoDom.find('#txtSex').val(result['Sexo']);
+                elementoDom.find('#txtMarriedStatus').val(result['EstadoCivil']);
+                elementoDom.find('#txtStreetBorn').val(result['LugarNacimiento']);
+                elementoDom.find('#txtNameMother').val(result['NombreMadre']);
+                elementoDom.find('#txtNameFather').val(result['NombrePadre']);
+                elementoDom.find('#txtSpouse').val(result['Conyuge']);
+                elementoDom.find('#txtNumberHome').val(result['NumeroCasa']);
+                elementoDom.find('#txtCodeError').val(result['CodigoError']);
+
+
+
+            } else {
+
+                alert('No hay datos');
+
+            }
+        },
+        error: function (xhr, status, error) {
+            $('#respuestaAjax').html('');
+            alert(xhr.responseText);
+        }
+    });
+
 }
